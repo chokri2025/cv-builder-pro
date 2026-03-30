@@ -16,7 +16,7 @@ export default function CVPreview({ data, template }: Props) {
     const element = previewRef.current;
     if (!element) return;
 
-    const htmlToPdf = (await import('html2pdf.js' as any)).default;
+    const htmlToPdf = (await import('html2pdf.js')).default;
     const opt = {
       margin: 0,
       filename: `${data.personal.fullName || 'cv'}-resume.pdf`,
