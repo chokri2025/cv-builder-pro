@@ -1,0 +1,67 @@
+import { Link } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
+import { SEO_SKILLS, SEO_CITIES } from '../data/seo-data';
+
+export default function SitemapPage() {
+  useSEO({
+    title: 'Sitemap – CV Builder Pro',
+    description: 'Browse all CV builder landing pages by skill and city.',
+  });
+
+  return (
+    <div className="seo-page">
+      <nav className="seo-nav">
+        <Link to="/" className="seo-nav-logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="#0ea5e9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          CV Builder <span className="seo-nav-pro">PRO</span>
+        </Link>
+      </nav>
+
+      <div className="sitemap-page">
+        <h1>Sitemap</h1>
+        <p className="sitemap-intro">All CV builder pages, organized by skill and city.</p>
+
+        <section>
+          <h2>CV Builder by Skill</h2>
+          <div className="sitemap-grid">
+            {SEO_SKILLS.map(skill => (
+              <Link key={skill.slug} to={`/resume/${skill.slug}`} className="sitemap-link">
+                {skill.label} CV Builder
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>CV Builder by City</h2>
+          <div className="sitemap-grid">
+            {SEO_CITIES.map(city => (
+              <Link key={city.slug} to={`/resume/${city.slug}`} className="sitemap-link">
+                CV Builder – {city.label}
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>CV Builder by Skill & City</h2>
+          <div className="sitemap-grid">
+            {SEO_SKILLS.slice(0, 8).map(skill =>
+              SEO_CITIES.slice(0, 8).map(city => (
+                <Link
+                  key={`${skill.slug}-${city.slug}`}
+                  to={`/resume/${skill.slug}-${city.slug}`}
+                  className="sitemap-link"
+                >
+                  {skill.label} CV – {city.label}
+                </Link>
+              ))
+            )}
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+}

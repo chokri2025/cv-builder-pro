@@ -1,11 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import FormPanel from '../components/FormPanel';
 import CVPreview from '../components/CVPreview';
 import { useCV } from '../hooks/useCV';
+import { useSEO } from '../hooks/useSEO';
 
 export default function CVBuilderPage() {
   const cv = useCV();
   const [showPreview, setShowPreview] = useState(false);
+  const location = useLocation();
+
+  useSEO({
+    title: 'CV Builder Pro – Free Online Resume & CV Maker',
+    description: 'Create a professional CV or resume in minutes. Choose from 3 beautiful templates and download as PDF. Free, no sign-up required.',
+    canonical: 'https://cvbuilder.replit.app/',
+  });
+
+  useEffect(() => {
+    const state = location.state as { prefilledJobTitle?: string } | null;
+    if (state?.prefilledJobTitle) {
+      cv.updatePersonal('jobTitle', state.prefilledJobTitle);
+      window.history.replaceState({}, '', '/');
+    }
+  }, []);
 
   return (
     <div className="app-layout">
