@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { useCV } from '../hooks/useCV';
 import { CVData, TemplateType } from '../types/cv';
 
 const LANGUAGE_LEVELS = ['Native', 'Fluent', 'Advanced', 'Intermediate', 'Conversational', 'Beginner'];
@@ -17,6 +16,7 @@ interface FormPanelProps {
   setTemplate: (t: TemplateType) => void;
   saved: boolean;
   onSave: () => void;
+  onClear: () => void;
   updatePersonal: (field: string, value: string) => void;
   updateSummary: (value: string) => void;
   addExperience: () => void;
@@ -36,7 +36,7 @@ interface FormPanelProps {
 }
 
 export default function FormPanel(props: FormPanelProps) {
-  const { cvData, template, setTemplate, saved, onSave,
+  const { cvData, template, setTemplate, saved, onSave, onClear,
     updatePersonal, updateSummary,
     addExperience, updateExperience, removeExperience,
     addEducation, updateEducation, removeEducation,
@@ -82,9 +82,14 @@ export default function FormPanel(props: FormPanelProps) {
           </svg>
           <span>CV Builder <span className="pro-badge">PRO</span></span>
         </div>
-        <button className="save-btn" onClick={onSave}>
-          {saved ? '✓ Saved' : '💾 Save'}
-        </button>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <button className="reset-btn" onClick={() => { if (window.confirm('Reset all CV data? This cannot be undone.')) onClear(); }} title="Reset CV">
+            ↺
+          </button>
+          <button className="save-btn" onClick={onSave}>
+            {saved ? '✓ Saved' : '💾 Save'}
+          </button>
+        </div>
       </div>
 
       <div className="template-switcher">

@@ -16,6 +16,7 @@ export default function CVBuilderPage() {
           setTemplate={cv.setTemplate}
           saved={cv.saved}
           onSave={cv.saveToStorage}
+          onClear={cv.clearCV}
           updatePersonal={cv.updatePersonal}
           updateSummary={cv.updateSummary}
           addExperience={cv.addExperience}

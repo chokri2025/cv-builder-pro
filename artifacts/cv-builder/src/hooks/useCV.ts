@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { CVData, DEFAULT_CV_DATA, WorkExperience, Education, Skill, Language, Project, TemplateType } from '../types/cv';
 
 const STORAGE_KEY = 'cv-builder-data';
 const TEMPLATE_KEY = 'cv-builder-template';
+const AUTOSAVE_DELAY_MS = 1500;
 
 function generateId(): string {
   return Math.random().toString(36).substr(2, 9);
@@ -23,8 +24,21 @@ export function useCV() {
   });
 
   const [saved, setSaved] = useState(false);
+  const autoSaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
+    autoSaveTimer.current = setTimeout(() => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cvData));
+      localStorage.setItem(TEMPLATE_KEY, template);
+    }, AUTOSAVE_DELAY_MS);
+    return () => {
+      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
+    };
+  }, [cvData, template]);
 
   const saveToStorage = useCallback(() => {
+    if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cvData));
     localStorage.setItem(TEMPLATE_KEY, template);
     setSaved(true);
@@ -157,6 +171,7 @@ export function useCV() {
   const clearCV = useCallback(() => {
     setCvData(DEFAULT_CV_DATA);
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(TEMPLATE_KEY);
   }, []);
 
   return {

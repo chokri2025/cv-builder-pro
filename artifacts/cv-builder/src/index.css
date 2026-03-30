@@ -117,6 +117,24 @@ body {
   background: rgba(56, 189, 248, 0.1);
 }
 
+.reset-btn {
+  padding: 0.4rem 0.6rem;
+  background: transparent;
+  border: 1px solid #374151;
+  color: #64748b;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.reset-btn:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.08);
+}
+
 /* ========================
    TEMPLATE SWITCHER
 ======================== */
