@@ -58,8 +58,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/sitemap.xml", (req: Request, res: Response) => {
-  const host = req.get("x-forwarded-host") || req.get("host") || "localhost";
-  const proto = req.get("x-forwarded-proto") || "https";
+  const xFwdHost = req.get("x-forwarded-host");
+  const xFwdProto = req.get("x-forwarded-proto");
+  const host = xFwdHost || req.get("host") || process.env["APP_URL"] || "localhost";
+  const proto = xFwdProto || "https";
+  logger.info({ xFwdHost, xFwdProto, host, proto }, "sitemap request headers");
   const base = `${proto}://${host}`;
 
   const slugs = getAllSeoSlugs();
