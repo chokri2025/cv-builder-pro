@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "CV Builder Pro"
+version = "1.0.0"
+id = "artifacts/cv-builder"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 22723
+
+[services.development]
+run = "pnpm --filter @workspace/cv-builder run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/cv-builder", "run", "build" ]
+publicDir = "artifacts/cv-builder/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22723"
+BASE_PATH = "/"
