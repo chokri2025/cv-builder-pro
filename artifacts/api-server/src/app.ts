@@ -58,12 +58,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/sitemap.xml", (req: Request, res: Response) => {
+  const envAppUrl = process.env["APP_URL"] || "";
   const xFwdHost = req.get("x-forwarded-host");
   const xFwdProto = req.get("x-forwarded-proto");
-  const host = xFwdHost || req.get("host") || process.env["APP_URL"] || "localhost";
-  const proto = xFwdProto || "https";
-  logger.info({ xFwdHost, xFwdProto, host, proto }, "sitemap request headers");
-  const base = `${proto}://${host}`;
+  const detectedHost = xFwdHost || req.get("host") || "localhost";
+  const detectedProto = xFwdProto || "https";
+  const base = envAppUrl
+    ? envAppUrl.replace(/\/$/, "")
+    : `${detectedProto}://${detectedHost}`;
+  logger.info({ envAppUrl, xFwdHost, detectedHost, base }, "sitemap base url");
 
   const slugs = getAllSeoSlugs();
   const today = new Date().toISOString().split("T")[0];
@@ -85,9 +88,13 @@ app.get("/sitemap.xml", (req: Request, res: Response) => {
 });
 
 app.get("/robots.txt", (req: Request, res: Response) => {
-  const host = req.get("x-forwarded-host") || req.get("host") || "localhost";
-  const proto = req.get("x-forwarded-proto") || "https";
-  const base = `${proto}://${host}`;
+  const envAppUrl = process.env["APP_URL"] || "";
+  const xFwdHost = req.get("x-forwarded-host");
+  const detectedHost = xFwdHost || req.get("host") || "localhost";
+  const detectedProto = req.get("x-forwarded-proto") || "https";
+  const base = envAppUrl
+    ? envAppUrl.replace(/\/$/, "")
+    : `${detectedProto}://${detectedHost}`;
 
   res.setHeader("Content-Type", "text/plain");
   res.send(`User-agent: *\nAllow: /\nSitemap: ${base}/sitemap.xml\n`);

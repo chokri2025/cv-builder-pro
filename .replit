@@ -24,3 +24,9 @@ expertMode = true
 [postMerge]
 path = "scripts/post-merge.sh"
 timeoutMs = 20000
+
+[userenv]
+
+[userenv.production]
+VITE_APP_URL = "https://cvbuilderpromax.replit.app"
+APP_URL = "https://cvbuilderpromax.replit.app"
