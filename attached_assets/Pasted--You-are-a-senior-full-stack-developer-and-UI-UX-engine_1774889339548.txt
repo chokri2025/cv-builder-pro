@@ -1,0 +1,200 @@
+
+You are a senior full-stack developer and UI/UX engineer.
+I want you to generate a complete single-page CV Builder web application that works using pure HTML + CSS + JavaScript (no backend required).
+The final result must be a SINGLE HTML FILE that can be embedded inside a WordPress page (via Custom HTML block or iframe) and hosted on Hostinger.
+The application must be fast, responsive, and mobile-friendly.
+The goal: allow users to create a professional CV and download it as a PDF.
+-----------------------------------
+MAIN FEATURES
+-----------------------------------
+1. Live CV Builder
+The user fills a form and the CV preview updates in real time.
+Sections required:
+Personal Information
+- Full Name
+- Job Title
+- Email
+- Phone
+- Location
+- LinkedIn
+- Portfolio Website
+- Profile Picture upload
+Professional Summary
+Short description text area.
+Work Experience
+Dynamic repeatable fields:
+- Job Title
+- Company
+- Location
+- Start Date
+- End Date
+- Description
+Education
+Dynamic repeatable fields:
+- Degree
+- School
+- Year
+- Description
+Skills
+- Tag input system
+- Example: JavaScript, Marketing, AI, SEO
+Languages
+- Language
+- Level
+Projects
+- Project name
+- Description
+- Link
+-----------------------------------
+LIVE CV PREVIEW
+-----------------------------------
+The right side of the page must show a real-time CV preview styled like a modern resume.
+Design requirements:
+- clean professional layout
+- A4 format preview
+- modern typography
+- subtle colors
+- professional spacing
+-----------------------------------
+TEMPLATES
+-----------------------------------
+Add at least 3 resume templates:
+Template 1
+Minimal professional
+Template 2
+Modern with sidebar
+Template 3
+Creative layout
+User must be able to switch templates instantly.
+-----------------------------------
+EXPORT FEATURES
+-----------------------------------
+Add buttons:
+Download as PDF
+Print CV
+Use a JavaScript library like:
+html2pdf.js
+so the CV can be exported as a properly formatted A4 PDF.
+-----------------------------------
+UX REQUIREMENTS
+-----------------------------------
+- Responsive layout
+- Works on mobile and desktop
+- Smooth animations
+- Clean UI
+- Form on left side
+- CV preview on right side
+-----------------------------------
+TECH STACK
+-----------------------------------
+Use only:
+HTML
+CSS
+Vanilla JavaScript
+Allowed external libraries:
+html2pdf.js
+FontAwesome
+Google Fonts
+NO frameworks (no React, no Vue).
+-----------------------------------
+WORDPRESS COMPATIBILITY
+-----------------------------------
+Important:
+The output must be ONE HTML FILE that works if pasted inside WordPress Custom HTML block.
+Avoid code that conflicts with WordPress.
+-----------------------------------
+BONUS FEATURES
+-----------------------------------
+If possible add:
+Save CV to localStorage
+Load saved CV
+Add/remove experience dynamically
+Drag and reorder sections
+-----------------------------------
+FINAL OUTPUT
+-----------------------------------
+Return ONLY the complete HTML code ready to use.
+Do not explain anything.
+Just return the code.
+
+Afficher moins
+7 mars
+
+Consulté un fichier, fichier créé, lu un fichier
+Consulté un fichier, fichier créé, lu un fichier
+Your CV Builder Pro is ready — a single HTML file with everything built in:
+
+3 Templates: Minimal Professional, Modern Sidebar, Creative/Editorial — switchable instantly
+Live Preview with zoom controls (real-time A4 rendering on the right)
+All Sections: Personal info + photo upload, summary, experience, education, skills (tag system), languages, projects
+Dynamic fields: Add/remove/drag-reorder experience, education, and projects
+PDF Export via html2pdf.js with a progress indicator
+Print support built in
+Save/Load to localStorage with full state restoration
+Mobile responsive with a floating preview toggle button
+Dark UI builder, white professional CV output — WordPress-safe, no frameworks
+To embed in WordPress, paste the file contents into a Custom HTML block, or upload to Hostinger and embed via <iframe src="cv-builder.html" width="100%" height="900px"></iframe>.
+
+Cv builder
+Code · HTML 
+corriger ui ux for bleu mecanique and bleu sky and fix the boutons of save and generate pdf
+
+9 mars
+
+A consulté 2 fichiers
+A consulté 2 fichiers
+Now I have a full picture. I'll rebuild the file with a mechanical blue + sky blue palette and fix the Save/PDF buttons to be prominent and fully functional.
+
+
+17 fichiers modifiés, a consulté 6 fichiers
+17 fichiers modifiés, a consulté 6 fichiers
+Now update the HTML button markup to use the new class names:
+
+
+Fix header buttons to use new blue class names
+Fix header buttons to use new blue class names
+Now update the logo HTML to use the new badge span:
+
+
+Fix logo HTML to use new badge class
+Fix logo HTML to use new badge class
+Now update the modal button to use btn-pdf style and fix modal overlay background:
+
+
+Update modal confirm button to match blue theme
+Update modal confirm button to match blue theme
+Now update the export-progress icon color from gold to blue:
+
+
+Update export progress icon color to sky blue
+Update export progress icon color to sky blue
+Now update the preview wrapper box shadow to a blue glow:
+
+
+Update preview wrapper shadow to blue glow
+Update preview wrapper shadow to blue glow
+Now also update the mobile media query so btn span visibility uses the new class structure properly, and add a ripple effect to the PDF button:
+
+
+Fichier modifié, lu un fichier
+Fichier modifié, lu un fichier
+Done! Here's what was updated throughout the UI:
+
+Color palette — the entire interface is now bleu mécanique (deep #06111e → #0b1d2e → #0f2540) as the dark background, with bleu ciel (#38bdf8 / #0ea5e9) as the primary accent — all inputs, tags, tabs, section titles, borders, and glows follow this system.
+
+Buttons — completely redesigned with clear visual hierarchy:
+
+Save CV — solid mechanical blue with a sky blue border and subtle inner glow, labeled clearly "Save CV"
+Download PDF — bold sky blue gradient CTA with a glowing shadow (box-shadow: 0 4px 18px rgba(56,189,248,0.38)), clearly labeled "Download PDF" — unmistakable as the primary action
+Load / Print — transparent ghost style, subordinate to the main actions
+PRO badge in the logo matches the mechanical blue theme
+Other touches — progress bar animates with a sky-to-deep-blue gradient, preview panel has a subtle blue glow behind the CV card, the mobile toggle button uses the same sky blue gradient.
+
+Cv builder
+Code · HTML 
+
+
+
+
+
+Claude est une IA et peut faire des erreurs. Veuillez vérifier les réponses.
