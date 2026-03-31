@@ -1,18 +1,24 @@
+import { useTranslation } from 'react-i18next';
 import { CVData } from '../../types/cv';
 
 interface Props {
   data: CVData;
 }
 
-function formatDate(dateStr: string): string {
-  if (!dateStr) return '';
-  const [year, month] = dateStr.split('-');
-  if (!month) return year;
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  return `${months[parseInt(month) - 1]} ${year}`;
+function useFormatDate() {
+  const { t } = useTranslation();
+  return (dateStr: string): string => {
+    if (!dateStr) return '';
+    const [year, month] = dateStr.split('-');
+    if (!month) return year;
+    const months = t('cv.months', { returnObjects: true }) as unknown as string[];
+    return `${months[parseInt(month) - 1]} ${year}`;
+  };
 }
 
 export default function CreativeTemplate({ data }: Props) {
+  const { t } = useTranslation();
+  const formatDate = useFormatDate();
   const { personal, summary, experience, education, skills, languages, projects } = data;
 
   return (
@@ -41,14 +47,14 @@ export default function CreativeTemplate({ data }: Props) {
         <div className="cv-creative-left">
           {summary && (
             <div className="cv-creative-section">
-              <div className="cv-creative-section-title">About Me</div>
+              <div className="cv-creative-section-title">{t('cv.profile')}</div>
               <p className="cv-creative-text">{summary}</p>
             </div>
           )}
 
           {experience.length > 0 && (
             <div className="cv-creative-section">
-              <div className="cv-creative-section-title">Experience</div>
+              <div className="cv-creative-section-title">{t('cv.experience')}</div>
               {experience.map(exp => (
                 <div key={exp.id} className="cv-creative-item">
                   <div className="cv-creative-item-marker" />
@@ -58,7 +64,7 @@ export default function CreativeTemplate({ data }: Props) {
                       {exp.company}{exp.location ? ` · ${exp.location}` : ''}
                     </div>
                     <div className="cv-creative-dates">
-                      {formatDate(exp.startDate)}{exp.startDate && ' – '}{exp.current ? 'Present' : formatDate(exp.endDate)}
+                      {formatDate(exp.startDate)}{exp.startDate && ' – '}{exp.current ? t('cv.present') : formatDate(exp.endDate)}
                     </div>
                     {exp.description && <p className="cv-creative-desc">{exp.description}</p>}
                   </div>
@@ -69,7 +75,7 @@ export default function CreativeTemplate({ data }: Props) {
 
           {projects.length > 0 && (
             <div className="cv-creative-section">
-              <div className="cv-creative-section-title">Projects</div>
+              <div className="cv-creative-section-title">{t('cv.projects')}</div>
               {projects.map(proj => (
                 <div key={proj.id} className="cv-creative-item">
                   <div className="cv-creative-item-marker" />
@@ -87,7 +93,7 @@ export default function CreativeTemplate({ data }: Props) {
         <div className="cv-creative-right">
           {education.length > 0 && (
             <div className="cv-creative-section">
-              <div className="cv-creative-section-title">Education</div>
+              <div className="cv-creative-section-title">{t('cv.education')}</div>
               {education.map(edu => (
                 <div key={edu.id} className="cv-creative-edu-item">
                   <div className="cv-creative-edu-year">{edu.year}</div>
@@ -103,7 +109,7 @@ export default function CreativeTemplate({ data }: Props) {
 
           {skills.length > 0 && (
             <div className="cv-creative-section">
-              <div className="cv-creative-section-title">Skills</div>
+              <div className="cv-creative-section-title">{t('cv.skills')}</div>
               <div className="cv-creative-skills">
                 {skills.map(s => <span key={s.id} className="cv-creative-skill">{s.name}</span>)}
               </div>
@@ -112,11 +118,11 @@ export default function CreativeTemplate({ data }: Props) {
 
           {languages.length > 0 && (
             <div className="cv-creative-section">
-              <div className="cv-creative-section-title">Languages</div>
+              <div className="cv-creative-section-title">{t('cv.languages')}</div>
               {languages.map(l => (
                 <div key={l.id} className="cv-creative-lang">
                   <span className="cv-creative-lang-name">{l.language}</span>
-                  <span className="cv-creative-lang-level">{l.level}</span>
+                  <span className="cv-creative-lang-level">{t(`languageLevels.${l.level}`, { defaultValue: l.level })}</span>
                 </div>
               ))}
             </div>

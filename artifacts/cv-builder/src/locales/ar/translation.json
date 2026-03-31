@@ -1,0 +1,141 @@
+{
+  "lang": "ar",
+  "langName": "العربية",
+  "nav": {
+    "logo": "منشئ السيرة الذاتية",
+    "pro": "PRO",
+    "buildCta": "أنشئ سيرتي الذاتية مجاناً ←"
+  },
+  "builder": {
+    "reset": "↺",
+    "resetConfirm": "هل تريد إعادة تعيين جميع بيانات السيرة الذاتية؟ لا يمكن التراجع عن هذا الإجراء.",
+    "save": "💾 حفظ",
+    "saved": "✓ تم الحفظ",
+    "template": "القالب",
+    "templates": {
+      "minimal": "بسيط",
+      "modern": "عصري",
+      "creative": "إبداعي"
+    },
+    "editLabel": "تحرير →",
+    "previewLabel": "← معاينة"
+  },
+  "sections": {
+    "personal": "المعلومات الشخصية",
+    "summary": "الملخص المهني",
+    "experience": "الخبرة العملية",
+    "education": "التعليم",
+    "skills": "المهارات",
+    "languages": "اللغات",
+    "projects": "المشاريع"
+  },
+  "fields": {
+    "fullName": "الاسم الكامل",
+    "jobTitle": "المسمى الوظيفي",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "location": "الموقع",
+    "linkedin": "لينكدإن",
+    "portfolio": "المعرض",
+    "addPhoto": "إضافة صورة",
+    "summaryPlaceholder": "اكتب ملخصاً مهنياً موجزاً...",
+    "company": "الشركة",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء",
+    "currentPosition": "المنصب الحالي",
+    "description": "الوصف",
+    "degree": "الدرجة العلمية",
+    "school": "المدرسة / الجامعة",
+    "year": "السنة",
+    "skillPlaceholder": "اكتب مهارة واضغط Enter أو فاصلة...",
+    "language": "اللغة",
+    "projectName": "اسم المشروع",
+    "link": "الرابط"
+  },
+  "placeholders": {
+    "fullName": "محمد أحمد",
+    "jobTitle": "مهندس برمجيات",
+    "email": "mohammed@example.com",
+    "phone": "+971 50 000 0000",
+    "location": "دبي، الإمارات",
+    "linkedin": "linkedin.com/in/mohammedahmad",
+    "portfolio": "mohammedahmad.dev",
+    "company": "شركة التقنية",
+    "degree": "بكالوريوس علوم الحاسوب",
+    "school": "جامعة الإمارات",
+    "year": "2018 – 2022",
+    "experienceDescription": "اوصف مسؤولياتك وإنجازاتك...",
+    "educationDescription": "الإنجازات البارزة، المعدل التراكمي، الأوسمة...",
+    "projectName": "مشروعي الرائع",
+    "projectLink": "https://github.com/...",
+    "projectDescription": "ماذا بنيت وما الأثر الذي أحدثه؟"
+  },
+  "actions": {
+    "addExperience": "+ إضافة خبرة",
+    "addEducation": "+ إضافة تعليم",
+    "addLanguage": "+ إضافة لغة",
+    "addProject": "+ إضافة مشروع"
+  },
+  "languageLevels": {
+    "Native": "لغة أم",
+    "Fluent": "طلاقة تامة",
+    "Advanced": "متقدم",
+    "Intermediate": "متوسط",
+    "Conversational": "محادثة",
+    "Beginner": "مبتدئ"
+  },
+  "preview": {
+    "livePreview": "معاينة مباشرة",
+    "print": "طباعة",
+    "downloadPdf": "تحميل PDF"
+  },
+  "cv": {
+    "profile": "الملف الشخصي",
+    "experience": "الخبرة",
+    "education": "التعليم",
+    "skills": "المهارات",
+    "languages": "اللغات",
+    "projects": "المشاريع",
+    "present": "حتى الآن",
+    "months": ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"]
+  },
+  "seo": {
+    "homeTitle": "منشئ السيرة الذاتية Pro – إنشاء CV مجاني عبر الإنترنت",
+    "homeDescription": "أنشئ سيرة ذاتية احترافية في دقائق. اختر من 3 قوالب أنيقة وحمّل PDF. مجاني، دون تسجيل.",
+    "notFound": "الصفحة غير موجودة",
+    "notFoundDesc": "هذه الصفحة غير موجودة. جرّب",
+    "notFoundLink": "منشئ السيرة الذاتية المجاني",
+    "readyIn": "⚡ جاهز في 5 دقائق",
+    "pdfDownload": "📄 تحميل PDF",
+    "templates": "🎨 3 قوالب",
+    "startBuilding": "ابدأ إنشاء سيرتي الذاتية",
+    "howItWorks": "كيف يعمل",
+    "step1Title": "أدخل بياناتك",
+    "step1Desc": "أضف خبرتك ومهاراتك وتعليمك ومعلومات الاتصال باستخدام نموذجنا المُوجَّه.",
+    "step2Title": "اختر قالباً",
+    "step2Desc": "اختر من بين البسيط والعصري والإبداعي — جميعها مصممة باحترافية.",
+    "step3Title": "حمّل بصيغة PDF",
+    "step3Desc": "صدّر سيرتك الذاتية النهائية بصيغة PDF A4، جاهزة للإرسال للمسؤولين عن التوظيف.",
+    "faqTitle": "الأسئلة الشائعة",
+    "relatedTitle": "أدلة السيرة الذاتية ذات الصلة",
+    "freeLabel": "100% مجاني",
+    "footerTagline": "منشئ سيرة ذاتية مجاني عبر الإنترنت. لا حاجة للتسجيل.",
+    "sitemap": "خريطة الموقع",
+    "home": "الرئيسية",
+    "tipsSkillTitle": "نصائح لسيرة ذاتية رائعة في {{skill}}",
+    "tipsCityTitle": "نصائح لسيرتك الذاتية في {{city}}",
+    "related": {
+      "newYork": "CV Builder – نيويورك",
+      "london": "CV Builder – لندن",
+      "toronto": "CV Builder – تورنتو",
+      "sydney": "CV Builder – سيدني",
+      "softwareEngineer": "سيرة ذاتية مهندس برمجيات",
+      "nurse": "سيرة ذاتية ممرض/ة",
+      "teacher": "سيرة ذاتية معلم/ة",
+      "projectManager": "سيرة ذاتية مدير مشروع"
+    }
+  },
+  "languageSwitcher": {
+    "label": "اللغة"
+  }
+}

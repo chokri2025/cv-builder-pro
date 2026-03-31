@@ -1,0 +1,141 @@
+{
+  "lang": "fr",
+  "langName": "Français",
+  "nav": {
+    "logo": "CV Builder",
+    "pro": "PRO",
+    "buildCta": "Créer mon CV gratuitement →"
+  },
+  "builder": {
+    "reset": "↺",
+    "resetConfirm": "Réinitialiser toutes les données du CV ? Cette action est irréversible.",
+    "save": "💾 Sauvegarder",
+    "saved": "✓ Sauvegardé",
+    "template": "Modèle",
+    "templates": {
+      "minimal": "Minimaliste",
+      "modern": "Moderne",
+      "creative": "Créatif"
+    },
+    "editLabel": "← Modifier",
+    "previewLabel": "Aperçu →"
+  },
+  "sections": {
+    "personal": "Informations personnelles",
+    "summary": "Résumé professionnel",
+    "experience": "Expérience professionnelle",
+    "education": "Formation",
+    "skills": "Compétences",
+    "languages": "Langues",
+    "projects": "Projets"
+  },
+  "fields": {
+    "fullName": "Nom complet",
+    "jobTitle": "Intitulé du poste",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "location": "Localisation",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "addPhoto": "Ajouter une photo",
+    "summaryPlaceholder": "Rédigez un bref résumé professionnel...",
+    "company": "Entreprise",
+    "startDate": "Date de début",
+    "endDate": "Date de fin",
+    "currentPosition": "Poste actuel",
+    "description": "Description",
+    "degree": "Diplôme",
+    "school": "École / Université",
+    "year": "Année",
+    "skillPlaceholder": "Tapez une compétence et appuyez sur Entrée ou virgule...",
+    "language": "Langue",
+    "projectName": "Nom du projet",
+    "link": "Lien"
+  },
+  "placeholders": {
+    "fullName": "Jean Dupont",
+    "jobTitle": "Ingénieur logiciel",
+    "email": "jean@exemple.fr",
+    "phone": "+33 6 00 00 00 00",
+    "location": "Paris, France",
+    "linkedin": "linkedin.com/in/jeandupont",
+    "portfolio": "jeandupont.dev",
+    "company": "Entreprise SA",
+    "degree": "Licence Informatique",
+    "school": "Université Paris-Saclay",
+    "year": "2018 – 2022",
+    "experienceDescription": "Décrivez vos responsabilités et réalisations...",
+    "educationDescription": "Mentions, GPA, distinctions...",
+    "projectName": "Mon super projet",
+    "projectLink": "https://github.com/...",
+    "projectDescription": "Qu'avez-vous construit et quel impact cela a-t-il eu ?"
+  },
+  "actions": {
+    "addExperience": "+ Ajouter une expérience",
+    "addEducation": "+ Ajouter une formation",
+    "addLanguage": "+ Ajouter une langue",
+    "addProject": "+ Ajouter un projet"
+  },
+  "languageLevels": {
+    "Native": "Langue maternelle",
+    "Fluent": "Courant",
+    "Advanced": "Avancé",
+    "Intermediate": "Intermédiaire",
+    "Conversational": "Conversationnel",
+    "Beginner": "Débutant"
+  },
+  "preview": {
+    "livePreview": "Aperçu en direct",
+    "print": "Imprimer",
+    "downloadPdf": "Télécharger PDF"
+  },
+  "cv": {
+    "profile": "Profil",
+    "experience": "Expérience",
+    "education": "Formation",
+    "skills": "Compétences",
+    "languages": "Langues",
+    "projects": "Projets",
+    "present": "Présent",
+    "months": ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"]
+  },
+  "seo": {
+    "homeTitle": "CV Builder Pro – Créateur de CV & Resume Gratuit en Ligne",
+    "homeDescription": "Créez un CV professionnel en quelques minutes. Choisissez parmi 3 modèles élégants et téléchargez en PDF. Gratuit, sans inscription.",
+    "notFound": "Page introuvable",
+    "notFoundDesc": "Cette page n'existe pas. Essayez notre",
+    "notFoundLink": "créateur de CV gratuit",
+    "readyIn": "⚡ Prêt en 5 minutes",
+    "pdfDownload": "📄 Téléchargement PDF",
+    "templates": "🎨 3 modèles",
+    "startBuilding": "Créer mon CV",
+    "howItWorks": "Comment ça marche",
+    "step1Title": "Remplissez vos informations",
+    "step1Desc": "Ajoutez votre expérience, vos compétences, votre formation et vos coordonnées via notre formulaire guidé.",
+    "step2Title": "Choisissez un modèle",
+    "step2Desc": "Choisissez parmi Minimaliste, Moderne ou Créatif — tous conçus professionnellement.",
+    "step3Title": "Téléchargez en PDF",
+    "step3Desc": "Exportez votre CV fini au format A4 parfait, prêt à envoyer aux employeurs.",
+    "faqTitle": "Questions fréquemment posées",
+    "relatedTitle": "Guides CV associés",
+    "freeLabel": "100% Gratuit",
+    "footerTagline": "Créateur de CV et de resume en ligne gratuit. Sans inscription requise.",
+    "sitemap": "Plan du site",
+    "home": "Accueil",
+    "tipsSkillTitle": "Conseils pour un excellent CV {{skill}}",
+    "tipsCityTitle": "Conseils pour votre CV à {{city}}",
+    "related": {
+      "newYork": "CV Builder – New York",
+      "london": "CV Builder – Londres",
+      "toronto": "CV Builder – Toronto",
+      "sydney": "CV Builder – Sydney",
+      "softwareEngineer": "CV Ingénieur Logiciel",
+      "nurse": "CV Infirmier",
+      "teacher": "CV Enseignant",
+      "projectManager": "CV Chef de projet"
+    }
+  },
+  "languageSwitcher": {
+    "label": "Langue"
+  }
+}

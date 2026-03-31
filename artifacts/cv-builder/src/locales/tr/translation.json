@@ -1,0 +1,141 @@
+{
+  "lang": "tr",
+  "langName": "Türkçe",
+  "nav": {
+    "logo": "CV Builder",
+    "pro": "PRO",
+    "buildCta": "CV'mi Ücretsiz Oluştur →"
+  },
+  "builder": {
+    "reset": "↺",
+    "resetConfirm": "Tüm CV verileri sıfırlansın mı? Bu işlem geri alınamaz.",
+    "save": "💾 Kaydet",
+    "saved": "✓ Kaydedildi",
+    "template": "Şablon",
+    "templates": {
+      "minimal": "Minimal",
+      "modern": "Modern",
+      "creative": "Yaratıcı"
+    },
+    "editLabel": "← Düzenle",
+    "previewLabel": "Önizleme →"
+  },
+  "sections": {
+    "personal": "Kişisel Bilgiler",
+    "summary": "Profesyonel Özet",
+    "experience": "İş Deneyimi",
+    "education": "Eğitim",
+    "skills": "Beceriler",
+    "languages": "Diller",
+    "projects": "Projeler"
+  },
+  "fields": {
+    "fullName": "Ad Soyad",
+    "jobTitle": "İş Unvanı",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "location": "Konum",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "addPhoto": "Fotoğraf Ekle",
+    "summaryPlaceholder": "Kısa bir profesyonel özet yazın...",
+    "company": "Şirket",
+    "startDate": "Başlangıç Tarihi",
+    "endDate": "Bitiş Tarihi",
+    "currentPosition": "Mevcut pozisyon",
+    "description": "Açıklama",
+    "degree": "Derece",
+    "school": "Okul / Üniversite",
+    "year": "Yıl",
+    "skillPlaceholder": "Bir beceri yazın ve Enter veya virgüle basın...",
+    "language": "Dil",
+    "projectName": "Proje Adı",
+    "link": "Bağlantı"
+  },
+  "placeholders": {
+    "fullName": "Ahmet Yılmaz",
+    "jobTitle": "Yazılım Mühendisi",
+    "email": "ahmet@ornek.com",
+    "phone": "+90 555 000 00 00",
+    "location": "İstanbul, Türkiye",
+    "linkedin": "linkedin.com/in/ahmetyilmaz",
+    "portfolio": "ahmetyilmaz.dev",
+    "company": "Şirket A.Ş.",
+    "degree": "Bilgisayar Mühendisliği Lisans",
+    "school": "İstanbul Teknik Üniversitesi",
+    "year": "2018 – 2022",
+    "experienceDescription": "Sorumluluklarınızı ve başarılarınızı açıklayın...",
+    "educationDescription": "Önemli başarılar, GPA, onur listesi...",
+    "projectName": "Harika Projem",
+    "projectLink": "https://github.com/...",
+    "projectDescription": "Ne inşa ettiniz ve ne gibi bir etki yarattı?"
+  },
+  "actions": {
+    "addExperience": "+ Deneyim Ekle",
+    "addEducation": "+ Eğitim Ekle",
+    "addLanguage": "+ Dil Ekle",
+    "addProject": "+ Proje Ekle"
+  },
+  "languageLevels": {
+    "Native": "Anadil",
+    "Fluent": "Akıcı",
+    "Advanced": "İleri",
+    "Intermediate": "Orta",
+    "Conversational": "Günlük Konuşma",
+    "Beginner": "Başlangıç"
+  },
+  "preview": {
+    "livePreview": "Canlı Önizleme",
+    "print": "Yazdır",
+    "downloadPdf": "PDF İndir"
+  },
+  "cv": {
+    "profile": "Profil",
+    "experience": "Deneyim",
+    "education": "Eğitim",
+    "skills": "Beceriler",
+    "languages": "Diller",
+    "projects": "Projeler",
+    "present": "Devam ediyor",
+    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"]
+  },
+  "seo": {
+    "homeTitle": "CV Builder Pro – Ücretsiz Çevrimiçi CV & Resume Oluşturucu",
+    "homeDescription": "Dakikalar içinde profesyonel bir CV oluşturun. 3 şık şablondan birini seçin ve PDF olarak indirin. Ücretsiz, kayıt gerekmez.",
+    "notFound": "Sayfa bulunamadı",
+    "notFoundDesc": "Bu sayfa mevcut değil. Deneyin",
+    "notFoundLink": "ücretsiz CV oluşturucumuzu",
+    "readyIn": "⚡ 5 dakikada hazır",
+    "pdfDownload": "📄 PDF indirme",
+    "templates": "🎨 3 şablon",
+    "startBuilding": "CV'mi Oluşturmaya Başla",
+    "howItWorks": "Nasıl çalışır",
+    "step1Title": "Bilgilerinizi doldurun",
+    "step1Desc": "Rehberli formumuzu kullanarak deneyiminizi, becerilerinizi, eğitiminizi ve iletişim bilgilerinizi ekleyin.",
+    "step2Title": "Bir şablon seçin",
+    "step2Desc": "Minimal, Modern veya Yaratıcı arasından seçim yapın — hepsi profesyonelce tasarlanmış.",
+    "step3Title": "PDF olarak indirin",
+    "step3Desc": "Tamamlanmış CV'nizi mükemmel A4 PDF olarak dışa aktarın, işverenlere göndermeye hazır.",
+    "faqTitle": "Sıkça sorulan sorular",
+    "relatedTitle": "İlgili CV kılavuzları",
+    "freeLabel": "100% Ücretsiz",
+    "footerTagline": "Ücretsiz çevrimiçi CV ve resume oluşturucu. Kayıt gerekmez.",
+    "sitemap": "Site haritası",
+    "home": "Ana Sayfa",
+    "tipsSkillTitle": "Harika bir {{skill}} CV'si için ipuçları",
+    "tipsCityTitle": "{{city}}'deki CV'niz için ipuçları",
+    "related": {
+      "newYork": "CV Builder – New York",
+      "london": "CV Builder – Londra",
+      "toronto": "CV Builder – Toronto",
+      "sydney": "CV Builder – Sidney",
+      "softwareEngineer": "Yazılım Mühendisi CV",
+      "nurse": "Hemşire CV",
+      "teacher": "Öğretmen CV",
+      "projectManager": "Proje Yöneticisi CV"
+    }
+  },
+  "languageSwitcher": {
+    "label": "Dil"
+  }
+}

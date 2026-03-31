@@ -1,0 +1,141 @@
+{
+  "lang": "en",
+  "langName": "English",
+  "nav": {
+    "logo": "CV Builder",
+    "pro": "PRO",
+    "buildCta": "Build My CV Free →"
+  },
+  "builder": {
+    "reset": "↺",
+    "resetConfirm": "Reset all CV data? This cannot be undone.",
+    "save": "💾 Save",
+    "saved": "✓ Saved",
+    "template": "Template",
+    "templates": {
+      "minimal": "Minimal",
+      "modern": "Modern",
+      "creative": "Creative"
+    },
+    "editLabel": "← Edit",
+    "previewLabel": "Preview →"
+  },
+  "sections": {
+    "personal": "Personal Information",
+    "summary": "Professional Summary",
+    "experience": "Work Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "languages": "Languages",
+    "projects": "Projects"
+  },
+  "fields": {
+    "fullName": "Full Name",
+    "jobTitle": "Job Title",
+    "email": "Email",
+    "phone": "Phone",
+    "location": "Location",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "addPhoto": "Add Photo",
+    "summaryPlaceholder": "Write a brief professional summary...",
+    "company": "Company",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "currentPosition": "Current position",
+    "description": "Description",
+    "degree": "Degree",
+    "school": "School",
+    "year": "Year",
+    "skillPlaceholder": "Type a skill and press Enter or comma...",
+    "language": "Language",
+    "projectName": "Project Name",
+    "link": "Link"
+  },
+  "placeholders": {
+    "fullName": "John Doe",
+    "jobTitle": "Software Engineer",
+    "email": "john@example.com",
+    "phone": "+1 (555) 000-0000",
+    "location": "New York, USA",
+    "linkedin": "linkedin.com/in/johndoe",
+    "portfolio": "johndoe.dev",
+    "company": "Acme Corp",
+    "degree": "B.Sc. Computer Science",
+    "school": "MIT",
+    "year": "2018 – 2022",
+    "experienceDescription": "Describe your responsibilities and achievements...",
+    "educationDescription": "Notable achievements, GPA, honors...",
+    "projectName": "My Awesome Project",
+    "projectLink": "https://github.com/...",
+    "projectDescription": "What did you build and what impact did it have?"
+  },
+  "actions": {
+    "addExperience": "+ Add Experience",
+    "addEducation": "+ Add Education",
+    "addLanguage": "+ Add Language",
+    "addProject": "+ Add Project"
+  },
+  "languageLevels": {
+    "Native": "Native",
+    "Fluent": "Fluent",
+    "Advanced": "Advanced",
+    "Intermediate": "Intermediate",
+    "Conversational": "Conversational",
+    "Beginner": "Beginner"
+  },
+  "preview": {
+    "livePreview": "Live Preview",
+    "print": "Print",
+    "downloadPdf": "Download PDF"
+  },
+  "cv": {
+    "profile": "Profile",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "languages": "Languages",
+    "projects": "Projects",
+    "present": "Present",
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  },
+  "seo": {
+    "homeTitle": "CV Builder Pro – Free Online Resume & CV Maker",
+    "homeDescription": "Create a professional CV or resume in minutes. Choose from 3 beautiful templates and download as PDF. Free, no sign-up required.",
+    "notFound": "Page not found",
+    "notFoundDesc": "This page doesn't exist. Try our",
+    "notFoundLink": "free CV builder",
+    "readyIn": "⚡ Ready in 5 minutes",
+    "pdfDownload": "📄 PDF download",
+    "templates": "🎨 3 templates",
+    "startBuilding": "Start Building My CV",
+    "howItWorks": "How it works",
+    "step1Title": "Fill in your details",
+    "step1Desc": "Add your experience, skills, education and contact info using our guided form.",
+    "step2Title": "Choose a template",
+    "step2Desc": "Pick from Minimal, Modern Sidebar or Creative — all professionally designed.",
+    "step3Title": "Download as PDF",
+    "step3Desc": "Export your finished CV as a perfect A4 PDF, ready to send to employers.",
+    "faqTitle": "Frequently asked questions",
+    "relatedTitle": "Related CV guides",
+    "freeLabel": "100% Free",
+    "footerTagline": "Free online CV and resume builder. No sign-up required.",
+    "sitemap": "Sitemap",
+    "home": "Home",
+    "tipsSkillTitle": "Tips for a great {{skill}} CV",
+    "tipsCityTitle": "Tips for your CV in {{city}}",
+    "related": {
+      "newYork": "CV Builder – New York",
+      "london": "CV Builder – London",
+      "toronto": "CV Builder – Toronto",
+      "sydney": "CV Builder – Sydney",
+      "softwareEngineer": "Software Engineer CV",
+      "nurse": "Nurse CV",
+      "teacher": "Teacher CV",
+      "projectManager": "Project Manager CV"
+    }
+  },
+  "languageSwitcher": {
+    "label": "Language"
+  }
+}

@@ -1,26 +1,40 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import FormPanel from '../components/FormPanel';
 import CVPreview from '../components/CVPreview';
 import { useCV } from '../hooks/useCV';
 import { useSEO } from '../hooks/useSEO';
+import { useLanguage } from '../hooks/useLanguage';
+import type { SupportedLang } from '../i18n';
 
 export default function CVBuilderPage() {
   const cv = useCV();
   const [showPreview, setShowPreview] = useState(false);
   const location = useLocation();
+  const params = useParams<{ lang?: string }>();
+  const { t, i18n } = useTranslation();
+  const { changeLanguage } = useLanguage();
 
   useSEO({
-    title: 'CV Builder Pro – Free Online Resume & CV Maker',
-    description: 'Create a professional CV or resume in minutes. Choose from 3 beautiful templates and download as PDF. Free, no sign-up required.',
+    title: t('seo.homeTitle'),
+    description: t('seo.homeDescription'),
     canonical: 'https://cvbuilder.replit.app/',
   });
+
+  useEffect(() => {
+    const urlLang = params.lang;
+    const supported = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
+    if (urlLang && supported.includes(urlLang) && urlLang !== i18n.language?.slice(0, 2)) {
+      changeLanguage(urlLang as SupportedLang);
+    }
+  }, [params.lang]);
 
   useEffect(() => {
     const state = location.state as { prefilledJobTitle?: string } | null;
     if (state?.prefilledJobTitle) {
       cv.updatePersonal('jobTitle', state.prefilledJobTitle);
-      window.history.replaceState({}, '', '/');
+      window.history.replaceState({}, '', window.location.pathname);
     }
   }, []);
 
@@ -59,7 +73,7 @@ export default function CVBuilderPage() {
         className="mobile-toggle-btn"
         onClick={() => setShowPreview(p => !p)}
       >
-        {showPreview ? '← Edit' : 'Preview →'}
+        {showPreview ? t('builder.editLabel') : t('builder.previewLabel')}
       </button>
     </div>
   );

@@ -1,46 +1,87 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useSEO } from '../hooks/useSEO';
-import { parseSlug, buildSeoPageData } from '../data/seo-data';
+import { useLanguage } from '../hooks/useLanguage';
+import { parseSlug } from '../data/seo-data';
+import { buildLocalizedSeoPageData } from '../data/localized-seo-data';
+import type { SupportedLang } from '../i18n';
+
+const SUPPORTED_LANG_CODES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
 
 export default function LandingPage() {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug, lang: urlLang } = useParams<{ slug: string; lang?: string }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
+  const { currentLang } = useLanguage();
+
+  const effectiveLang: SupportedLang =
+    urlLang && SUPPORTED_LANG_CODES.includes(urlLang)
+      ? (urlLang as SupportedLang)
+      : currentLang;
 
   const { skill, city } = parseSlug(slug ?? '');
-  const page = buildSeoPageData(skill, city);
+  const page = buildLocalizedSeoPageData(skill, city, effectiveLang);
+
+  const canonicalBase = 'https://cvbuilder.replit.app';
+  const canonical = urlLang
+    ? `${canonicalBase}/${effectiveLang}/resume/${slug}`
+    : `${canonicalBase}/resume/${slug}`;
 
   useSEO({
     title: page.pageTitle,
     description: page.metaDescription,
-    canonical: `https://cvbuilder.replit.app/resume/${slug}`,
+    canonical,
+    lang: effectiveLang,
+    alternateLangs: SUPPORTED_LANG_CODES.map(l => ({
+      lang: l,
+      href: `${canonicalBase}/${l}/resume/${slug}`,
+    })),
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: page.pageTitle,
+      description: page.metaDescription,
+      url: canonical,
+      inLanguage: effectiveLang,
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'CV Builder Pro', item: canonicalBase },
+          { '@type': 'ListItem', position: 2, name: page.h1, item: canonical },
+        ],
+      },
+    },
   });
 
   const handleStart = () => {
-    navigate('/', { state: { prefilledJobTitle: page.prefilledJobTitle } });
+    const target = urlLang ? `/${urlLang}` : '/';
+    navigate(target, { state: { prefilledJobTitle: page.prefilledJobTitle } });
   };
 
   if (!skill && !city) {
     return (
       <div className="seo-not-found">
         <div className="seo-not-found-inner">
-          <h1>Page not found</h1>
-          <p>This page doesn't exist. Try our <Link to="/">free CV builder</Link>.</p>
+          <h1>{t('seo.notFound')}</h1>
+          <p>{t('seo.notFoundDesc')} <Link to="/">{t('seo.notFoundLink')}</Link>.</p>
         </div>
       </div>
     );
   }
 
+  const langPrefix = urlLang ? `/${urlLang}` : '';
+
   return (
     <div className="seo-page">
       <nav className="seo-nav">
-        <Link to="/" className="seo-nav-logo">
+        <Link to={langPrefix || '/'} className="seo-nav-logo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
             <path d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="#0ea5e9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          CV Builder <span className="seo-nav-pro">PRO</span>
+          {t('nav.logo')} <span className="seo-nav-pro">{t('nav.pro')}</span>
         </Link>
         <button className="seo-nav-cta" onClick={handleStart}>
-          Build My CV Free →
+          {t('nav.buildCta')}
         </button>
       </nav>
 
@@ -49,19 +90,19 @@ export default function LandingPage() {
           <div className="seo-badges">
             {skill && <span className="seo-badge">{skill.label}</span>}
             {city && <span className="seo-badge">{city.label}</span>}
-            <span className="seo-badge seo-badge-free">100% Free</span>
+            <span className="seo-badge seo-badge-free">{t('seo.freeLabel')}</span>
           </div>
           <h1 className="seo-h1">{page.h1}</h1>
           <p className="seo-h2">{page.h2}</p>
           <p className="seo-intro">{page.intro}</p>
           <div className="seo-cta-row">
             <button className="seo-cta-primary" onClick={handleStart}>
-              Start Building My CV
+              {t('seo.startBuilding')}
             </button>
             <div className="seo-stats">
-              <span>⚡ Ready in 5 minutes</span>
-              <span>📄 PDF download</span>
-              <span>🎨 3 templates</span>
+              <span>{t('seo.readyIn')}</span>
+              <span>{t('seo.pdfDownload')}</span>
+              <span>{t('seo.templates')}</span>
             </div>
           </div>
         </div>
@@ -70,7 +111,9 @@ export default function LandingPage() {
       <section className="seo-tips-section">
         <div className="seo-section-inner">
           <h2 className="seo-section-title">
-            {skill ? `Tips for a great ${skill.label} CV` : `Tips for your CV in ${city?.label}`}
+            {skill
+              ? t('seo.tipsSkillTitle', { skill: skill.label })
+              : t('seo.tipsCityTitle', { city: city?.label })}
           </h2>
           <ul className="seo-tips-list">
             {page.tips.map((tip, i) => (
@@ -85,22 +128,22 @@ export default function LandingPage() {
 
       <section className="seo-how-section">
         <div className="seo-section-inner">
-          <h2 className="seo-section-title">How it works</h2>
+          <h2 className="seo-section-title">{t('seo.howItWorks')}</h2>
           <div className="seo-steps">
             <div className="seo-step">
               <div className="seo-step-icon">1</div>
-              <h3>Fill in your details</h3>
-              <p>Add your experience, skills, education and contact info using our guided form.</p>
+              <h3>{t('seo.step1Title')}</h3>
+              <p>{t('seo.step1Desc')}</p>
             </div>
             <div className="seo-step">
               <div className="seo-step-icon">2</div>
-              <h3>Choose a template</h3>
-              <p>Pick from Minimal, Modern Sidebar or Creative — all professionally designed.</p>
+              <h3>{t('seo.step2Title')}</h3>
+              <p>{t('seo.step2Desc')}</p>
             </div>
             <div className="seo-step">
               <div className="seo-step-icon">3</div>
-              <h3>Download as PDF</h3>
-              <p>Export your finished CV as a perfect A4 PDF, ready to send to employers.</p>
+              <h3>{t('seo.step3Title')}</h3>
+              <p>{t('seo.step3Desc')}</p>
             </div>
           </div>
         </div>
@@ -108,7 +151,7 @@ export default function LandingPage() {
 
       <section className="seo-faq-section">
         <div className="seo-section-inner">
-          <h2 className="seo-section-title">Frequently asked questions</h2>
+          <h2 className="seo-section-title">{t('seo.faqTitle')}</h2>
           <div className="seo-faqs">
             {page.faqs.map((faq, i) => (
               <details key={i} className="seo-faq-item">
@@ -122,21 +165,21 @@ export default function LandingPage() {
 
       <section className="seo-related-section">
         <div className="seo-section-inner">
-          <h2 className="seo-section-title">Related CV guides</h2>
+          <h2 className="seo-section-title">{t('seo.relatedTitle')}</h2>
           <div className="seo-related-links">
             {skill ? (
               <>
-                <Link to="/resume/new-york" className="seo-related-link">CV Builder – New York</Link>
-                <Link to="/resume/london" className="seo-related-link">CV Builder – London</Link>
-                <Link to="/resume/toronto" className="seo-related-link">CV Builder – Toronto</Link>
-                <Link to="/resume/sydney" className="seo-related-link">CV Builder – Sydney</Link>
+                <Link to={`${langPrefix}/resume/new-york`} className="seo-related-link">{t('seo.related.newYork')}</Link>
+                <Link to={`${langPrefix}/resume/london`} className="seo-related-link">{t('seo.related.london')}</Link>
+                <Link to={`${langPrefix}/resume/toronto`} className="seo-related-link">{t('seo.related.toronto')}</Link>
+                <Link to={`${langPrefix}/resume/sydney`} className="seo-related-link">{t('seo.related.sydney')}</Link>
               </>
             ) : (
               <>
-                <Link to="/resume/software-engineer" className="seo-related-link">Software Engineer CV</Link>
-                <Link to="/resume/nurse" className="seo-related-link">Nurse CV</Link>
-                <Link to="/resume/teacher" className="seo-related-link">Teacher CV</Link>
-                <Link to="/resume/project-manager" className="seo-related-link">Project Manager CV</Link>
+                <Link to={`${langPrefix}/resume/software-engineer`} className="seo-related-link">{t('seo.related.softwareEngineer')}</Link>
+                <Link to={`${langPrefix}/resume/nurse`} className="seo-related-link">{t('seo.related.nurse')}</Link>
+                <Link to={`${langPrefix}/resume/teacher`} className="seo-related-link">{t('seo.related.teacher')}</Link>
+                <Link to={`${langPrefix}/resume/project-manager`} className="seo-related-link">{t('seo.related.projectManager')}</Link>
               </>
             )}
           </div>
@@ -145,11 +188,11 @@ export default function LandingPage() {
 
       <footer className="seo-footer">
         <div className="seo-footer-inner">
-          <Link to="/" className="seo-footer-logo">CV Builder Pro</Link>
-          <p>Free online CV and resume builder. No sign-up required.</p>
+          <Link to={langPrefix || '/'} className="seo-footer-logo">{t('nav.logo')} {t('nav.pro')}</Link>
+          <p>{t('seo.footerTagline')}</p>
           <div className="seo-footer-links">
-            <Link to="/">Home</Link>
-            <Link to="/sitemap">Sitemap</Link>
+            <Link to={langPrefix || '/'}>{t('seo.home')}</Link>
+            <Link to={`${langPrefix}/sitemap`}>{t('seo.sitemap')}</Link>
           </div>
         </div>
       </footer>

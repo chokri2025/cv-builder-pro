@@ -1,0 +1,141 @@
+{
+  "lang": "es",
+  "langName": "Español",
+  "nav": {
+    "logo": "CV Builder",
+    "pro": "PRO",
+    "buildCta": "Crear mi CV gratis →"
+  },
+  "builder": {
+    "reset": "↺",
+    "resetConfirm": "¿Restablecer todos los datos del CV? Esta acción no se puede deshacer.",
+    "save": "💾 Guardar",
+    "saved": "✓ Guardado",
+    "template": "Plantilla",
+    "templates": {
+      "minimal": "Minimalista",
+      "modern": "Moderno",
+      "creative": "Creativo"
+    },
+    "editLabel": "← Editar",
+    "previewLabel": "Vista previa →"
+  },
+  "sections": {
+    "personal": "Información personal",
+    "summary": "Resumen profesional",
+    "experience": "Experiencia laboral",
+    "education": "Formación académica",
+    "skills": "Habilidades",
+    "languages": "Idiomas",
+    "projects": "Proyectos"
+  },
+  "fields": {
+    "fullName": "Nombre completo",
+    "jobTitle": "Puesto de trabajo",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "location": "Ubicación",
+    "linkedin": "LinkedIn",
+    "portfolio": "Portfolio",
+    "addPhoto": "Añadir foto",
+    "summaryPlaceholder": "Escribe un breve resumen profesional...",
+    "company": "Empresa",
+    "startDate": "Fecha de inicio",
+    "endDate": "Fecha de fin",
+    "currentPosition": "Puesto actual",
+    "description": "Descripción",
+    "degree": "Titulación",
+    "school": "Universidad / Centro",
+    "year": "Año",
+    "skillPlaceholder": "Escribe una habilidad y pulsa Enter o coma...",
+    "language": "Idioma",
+    "projectName": "Nombre del proyecto",
+    "link": "Enlace"
+  },
+  "placeholders": {
+    "fullName": "Juan García",
+    "jobTitle": "Ingeniero de software",
+    "email": "juan@ejemplo.es",
+    "phone": "+34 600 000 000",
+    "location": "Madrid, España",
+    "linkedin": "linkedin.com/in/juangarcia",
+    "portfolio": "juangarcia.dev",
+    "company": "Empresa S.A.",
+    "degree": "Grado en Informática",
+    "school": "Universidad Complutense",
+    "year": "2018 – 2022",
+    "experienceDescription": "Describe tus responsabilidades y logros...",
+    "educationDescription": "Logros destacados, calificaciones, menciones...",
+    "projectName": "Mi proyecto increíble",
+    "projectLink": "https://github.com/...",
+    "projectDescription": "¿Qué construiste y qué impacto tuvo?"
+  },
+  "actions": {
+    "addExperience": "+ Añadir experiencia",
+    "addEducation": "+ Añadir formación",
+    "addLanguage": "+ Añadir idioma",
+    "addProject": "+ Añadir proyecto"
+  },
+  "languageLevels": {
+    "Native": "Nativo",
+    "Fluent": "Fluido",
+    "Advanced": "Avanzado",
+    "Intermediate": "Intermedio",
+    "Conversational": "Conversacional",
+    "Beginner": "Principiante"
+  },
+  "preview": {
+    "livePreview": "Vista previa en vivo",
+    "print": "Imprimir",
+    "downloadPdf": "Descargar PDF"
+  },
+  "cv": {
+    "profile": "Perfil",
+    "experience": "Experiencia",
+    "education": "Formación",
+    "skills": "Habilidades",
+    "languages": "Idiomas",
+    "projects": "Proyectos",
+    "present": "Actualidad",
+    "months": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+  },
+  "seo": {
+    "homeTitle": "CV Builder Pro – Creador de CV y Currículum Gratuito",
+    "homeDescription": "Crea un CV profesional en minutos. Elige entre 3 plantillas elegantes y descarga en PDF. Gratis, sin registro.",
+    "notFound": "Página no encontrada",
+    "notFoundDesc": "Esta página no existe. Prueba nuestro",
+    "notFoundLink": "creador de CV gratuito",
+    "readyIn": "⚡ Listo en 5 minutos",
+    "pdfDownload": "📄 Descarga PDF",
+    "templates": "🎨 3 plantillas",
+    "startBuilding": "Crear mi CV ahora",
+    "howItWorks": "Cómo funciona",
+    "step1Title": "Rellena tus datos",
+    "step1Desc": "Añade tu experiencia, habilidades, formación e información de contacto con nuestro formulario guiado.",
+    "step2Title": "Elige una plantilla",
+    "step2Desc": "Elige entre Minimalista, Moderno o Creativo — todos diseñados profesionalmente.",
+    "step3Title": "Descarga en PDF",
+    "step3Desc": "Exporta tu CV terminado como PDF A4 perfecto, listo para enviar a los empleadores.",
+    "faqTitle": "Preguntas frecuentes",
+    "relatedTitle": "Guías de CV relacionadas",
+    "freeLabel": "100% Gratis",
+    "footerTagline": "Creador de CV y currículum en línea gratuito. Sin registro requerido.",
+    "sitemap": "Mapa del sitio",
+    "home": "Inicio",
+    "tipsSkillTitle": "Consejos para un gran CV de {{skill}}",
+    "tipsCityTitle": "Consejos para tu CV en {{city}}",
+    "related": {
+      "newYork": "CV Builder – Nueva York",
+      "london": "CV Builder – Londres",
+      "toronto": "CV Builder – Toronto",
+      "sydney": "CV Builder – Sydney",
+      "softwareEngineer": "CV Ingeniero de Software",
+      "nurse": "CV Enfermero/a",
+      "teacher": "CV Docente",
+      "projectManager": "CV Gestor de Proyectos"
+    }
+  },
+  "languageSwitcher": {
+    "label": "Idioma"
+  }
+}
