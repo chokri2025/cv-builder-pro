@@ -1739,76 +1739,99 @@ body {
 .lang-switcher-btn {
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  padding: 0.3rem 0.5rem;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 6px;
-  color: #e2e8f0;
-  font-size: 0.78rem;
-  font-weight: 500;
+  gap: 0.35rem;
+  padding: 0.35rem 0.6rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 8px;
+  color: #f1f5f9;
+  font-size: 0.8rem;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
 }
 
 .lang-switcher-btn:hover {
-  background: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(56,189,248,0.6);
 }
 
-.lang-flag { font-size: 1rem; line-height: 1; }
-.lang-code { letter-spacing: 0.04em; }
-.lang-chevron { font-size: 0.65rem; transition: transform 0.2s; }
+.lang-flag { font-size: 1.35rem; line-height: 1; }
+.lang-name-short { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.lang-chevron { font-size: 0.65rem; transition: transform 0.2s; opacity: 0.65; }
 .lang-chevron.open { transform: rotate(180deg); }
 
 .lang-dropdown {
   position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  background: #1e293b;
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  top: calc(100% + 8px);
+  left: 0;
+  background: #0f2540;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
   list-style: none;
   margin: 0;
-  padding: 0.3rem;
-  min-width: 160px;
+  padding: 0.4rem;
+  min-width: 190px;
   z-index: 9999;
 }
 
 [dir="rtl"] .lang-dropdown {
-  right: auto;
-  left: 0;
+  left: auto;
+  right: 0;
 }
 
 .lang-option {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.6rem;
-  border-radius: 6px;
+  gap: 0.65rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 7px;
   cursor: pointer;
-  font-size: 0.82rem;
   color: #cbd5e1;
   transition: background 0.15s;
 }
 
 .lang-option:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.1);
   color: #f1f5f9;
 }
 
 .lang-option.active {
-  background: rgba(56,189,248,0.15);
+  background: rgba(56,189,248,0.18);
   color: #38bdf8;
 }
 
-.lang-name { flex: 1; }
+.lang-option-flag {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.lang-option-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  flex: 1;
+}
+
+.lang-option-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.lang-option-native {
+  font-size: 0.72rem;
+  opacity: 0.6;
+  line-height: 1.2;
+}
 
 .lang-check {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #38bdf8;
+  font-weight: 700;
 }
 
 /* ─── RTL Support ───────────────────────────────────────── */

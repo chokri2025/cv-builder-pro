@@ -29,9 +29,10 @@ export default function LanguageSwitcher() {
         aria-expanded={open}
       >
         <span className="lang-flag">{current.flag}</span>
-        <span className="lang-code">{current.code.toUpperCase()}</span>
+        <span className="lang-name-short">{current.code.toUpperCase()}</span>
         <span className={`lang-chevron ${open ? 'open' : ''}`}>▾</span>
       </button>
+
       {open && (
         <ul className="lang-dropdown" role="listbox" aria-label={t('languageSwitcher.label')}>
           {languages.map(lang => (
@@ -45,8 +46,13 @@ export default function LanguageSwitcher() {
                 setOpen(false);
               }}
             >
-              <span className="lang-flag">{lang.flag}</span>
-              <span className="lang-name">{lang.name}</span>
+              <span className="lang-option-flag">{lang.flag}</span>
+              <span className="lang-option-info">
+                <span className="lang-option-name">{lang.nativeName}</span>
+                {lang.nativeName !== lang.name && (
+                  <span className="lang-option-native">{lang.name}</span>
+                )}
+              </span>
               {lang.code === currentLang && <span className="lang-check">✓</span>}
             </li>
           ))}

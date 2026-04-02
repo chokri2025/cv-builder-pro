@@ -10,12 +10,12 @@ import tr from './locales/tr/translation.json';
 import pt from './locales/pt/translation.json';
 
 export const SUPPORTED_LANGUAGES = [
-  { code: 'en', name: 'English', flag: '🇬🇧', dir: 'ltr' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷', dir: 'ltr' },
-  { code: 'es', name: 'Español', flag: '🇪🇸', dir: 'ltr' },
-  { code: 'ar', name: 'العربية', flag: '🇸🇦', dir: 'rtl' },
-  { code: 'tr', name: 'Türkçe', flag: '🇹🇷', dir: 'ltr' },
-  { code: 'pt', name: 'Português', flag: '🇵🇹', dir: 'ltr' },
+  { code: 'en', name: 'English',    nativeName: 'English',    flag: '🇬🇧', dir: 'ltr' },
+  { code: 'fr', name: 'French',     nativeName: 'Français',   flag: '🇫🇷', dir: 'ltr' },
+  { code: 'es', name: 'Spanish',    nativeName: 'Español',    flag: '🇪🇸', dir: 'ltr' },
+  { code: 'ar', name: 'Arabic',     nativeName: 'العربية',    flag: '🇸🇦', dir: 'rtl' },
+  { code: 'tr', name: 'Turkish',    nativeName: 'Türkçe',     flag: '🇹🇷', dir: 'ltr' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português',  flag: '🇵🇹', dir: 'ltr' },
 ] as const;
 
 export type SupportedLang = typeof SUPPORTED_LANGUAGES[number]['code'];
