@@ -85,7 +85,6 @@ export default function FormPanel(props: FormPanelProps) {
           <span>{t('nav.logo')} <span className="pro-badge">{t('nav.pro')}</span></span>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <LanguageSwitcher />
           <button className="reset-btn" onClick={() => { if (window.confirm(t('builder.resetConfirm'))) onClear(); }} title={t('builder.reset')}>
             {t('builder.reset')}
           </button>
@@ -93,6 +92,11 @@ export default function FormPanel(props: FormPanelProps) {
             {saved ? t('builder.saved') : t('builder.save')}
           </button>
         </div>
+      </div>
+
+      <div className="lang-bar">
+        <span className="lang-bar-label">{t('languageSwitcher.label')}</span>
+        <LanguageSwitcher />
       </div>
 
       <div className="template-switcher">
