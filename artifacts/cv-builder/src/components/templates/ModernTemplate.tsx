@@ -26,7 +26,7 @@ export default function ModernTemplate({ data }: Props) {
       <div className="cv-modern-sidebar">
         {personal.profilePicture && (
           <div className="cv-photo-modern-wrap">
-            <img src={personal.profilePicture} alt="Profile" className="cv-photo-modern" />
+            <img src={personal.profilePicture} alt={personal.fullName ? `${personal.fullName}'s profile photo` : 'Profile photo'} className="cv-photo-modern" />
           </div>
         )}
         <div className="cv-modern-name">

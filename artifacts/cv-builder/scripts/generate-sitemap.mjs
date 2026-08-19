@@ -40,7 +40,7 @@ function getAllSeoSlugs() {
   return slugs;
 }
 
-const appUrl = process.env.VITE_APP_URL || process.env.APP_URL || 'https://cvbuilder.replit.app';
+const appUrl = process.env.VITE_APP_URL || process.env.APP_URL || 'https://cv-builderpro.vercel.app';
 const base = appUrl.replace(/\/$/, '');
 const slugs = getAllSeoSlugs();
 const today = new Date().toISOString().split('T')[0];

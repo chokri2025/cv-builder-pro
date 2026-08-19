@@ -31,7 +31,7 @@ export default function CreativeTemplate({ data }: Props) {
             {personal.jobTitle && <p className="cv-creative-subtitle">{personal.jobTitle}</p>}
           </div>
           {personal.profilePicture && (
-            <img src={personal.profilePicture} alt="Profile" className="cv-photo-creative" />
+            <img src={personal.profilePicture} alt={personal.fullName ? `${personal.fullName}'s profile photo` : 'Profile photo'} className="cv-photo-creative" />
           )}
         </div>
         <div className="cv-creative-contact">

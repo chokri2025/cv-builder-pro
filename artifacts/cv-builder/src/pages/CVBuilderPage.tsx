@@ -6,7 +6,10 @@ import CVPreview from '../components/CVPreview';
 import { useCV } from '../hooks/useCV';
 import { useSEO } from '../hooks/useSEO';
 import { useLanguage } from '../hooks/useLanguage';
+import { SITE_URL } from '../lib/site';
 import type { SupportedLang } from '../i18n';
+
+const SUPPORTED_LANG_CODES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
 
 export default function CVBuilderPage() {
   const cv = useCV();
@@ -16,10 +19,17 @@ export default function CVBuilderPage() {
   const { t, i18n } = useTranslation();
   const { changeLanguage } = useLanguage();
 
+  const urlLang = params.lang;
+  const canonical = urlLang ? `${SITE_URL}/${urlLang}` : `${SITE_URL}/`;
+
   useSEO({
     title: t('seo.homeTitle'),
     description: t('seo.homeDescription'),
-    canonical: 'https://cvbuilder.replit.app/',
+    canonical,
+    alternateLangs: SUPPORTED_LANG_CODES.map(l => ({
+      lang: l,
+      href: `${SITE_URL}/${l}`,
+    })),
   });
 
   useEffect(() => {

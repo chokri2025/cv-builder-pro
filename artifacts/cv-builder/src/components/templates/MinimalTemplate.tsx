@@ -25,7 +25,7 @@ export default function MinimalTemplate({ data }: Props) {
     <div className="cv-minimal">
       <div className="cv-header-minimal">
         {personal.profilePicture && (
-          <img src={personal.profilePicture} alt="Profile" className="cv-photo-minimal" />
+          <img src={personal.profilePicture} alt={personal.fullName ? `${personal.fullName}'s profile photo` : 'Profile photo'} className="cv-photo-minimal" />
         )}
         <div className="cv-header-text">
           <h1>{personal.fullName || 'Your Name'}</h1>

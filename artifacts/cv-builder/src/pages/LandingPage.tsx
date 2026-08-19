@@ -4,6 +4,7 @@ import { useSEO } from '../hooks/useSEO';
 import { useLanguage } from '../hooks/useLanguage';
 import { parseSlug } from '../data/seo-data';
 import { buildLocalizedSeoPageData } from '../data/localized-seo-data';
+import { SITE_URL } from '../lib/site';
 import type { SupportedLang } from '../i18n';
 
 const SUPPORTED_LANG_CODES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
@@ -22,7 +23,7 @@ export default function LandingPage() {
   const { skill, city } = parseSlug(slug ?? '');
   const page = buildLocalizedSeoPageData(skill, city, effectiveLang);
 
-  const canonicalBase = 'https://cvbuilder.replit.app';
+  const canonicalBase = SITE_URL;
   const canonical = urlLang
     ? `${canonicalBase}/${effectiveLang}/resume/${slug}`
     : `${canonicalBase}/resume/${slug}`;

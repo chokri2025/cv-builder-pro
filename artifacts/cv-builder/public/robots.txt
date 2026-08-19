@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cvbuilder.replit.app/sitemap.xml
+Sitemap: https://cv-builderpro.vercel.app/sitemap.xml

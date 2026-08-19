@@ -118,7 +118,7 @@ export default function FormPanel(props: FormPanelProps) {
         <CollapsibleSection title={t('sections.personal')} isOpen={openSections.personal} onToggle={() => toggleSection('personal')}>
           <div className="photo-upload-area" onClick={() => fileInputRef.current?.click()}>
             {cvData.personal.profilePicture
-              ? <img src={cvData.personal.profilePicture} alt="Profile" className="photo-preview" />
+              ? <img src={cvData.personal.profilePicture} alt={cvData.personal.fullName ? `${cvData.personal.fullName}'s profile photo` : 'Profile photo'} className="photo-preview" />
               : <div className="photo-placeholder">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="7" r="4" stroke="#38bdf8" strokeWidth="2"/></svg>
                   <span>{t('fields.addPhoto')}</span>
