@@ -24,7 +24,7 @@ export function useLanguage() {
       i18n.changeLanguage(lang);
       localStorage.setItem('cv-builder-lang', lang);
     },
-    [i18n]
+    [i18n],
   );
 
   return {

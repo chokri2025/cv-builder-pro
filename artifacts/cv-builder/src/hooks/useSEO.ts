@@ -45,7 +45,8 @@ export function useSEO({ title, description, canonical, lang, alternateLangs, js
       const xDefault = document.createElement('link');
       xDefault.rel = 'alternate';
       xDefault.hreflang = 'x-default';
-      xDefault.href = alternateLangs.find(l => l.lang === 'en')?.href ?? alternateLangs[0]?.href ?? '';
+      xDefault.href =
+        alternateLangs.find((l) => l.lang === 'en')?.href ?? alternateLangs[0]?.href ?? '';
       xDefault.setAttribute('data-i18n-hreflang', 'true');
       document.head.appendChild(xDefault);
     }
@@ -87,9 +88,9 @@ function setLink(rel: string, href: string) {
 }
 
 function removeOldHreflangs() {
-  document.querySelectorAll('link[data-i18n-hreflang]').forEach(el => el.remove());
+  document.querySelectorAll('link[data-i18n-hreflang]').forEach((el) => el.remove());
 }
 
 function removeOldJsonLd() {
-  document.querySelectorAll('script[data-i18n-jsonld]').forEach(el => el.remove());
+  document.querySelectorAll('script[data-i18n-jsonld]').forEach((el) => el.remove());
 }

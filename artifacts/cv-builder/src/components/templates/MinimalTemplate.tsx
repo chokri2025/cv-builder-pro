@@ -25,7 +25,11 @@ export default function MinimalTemplate({ data }: Props) {
     <div className="cv-minimal">
       <div className="cv-header-minimal">
         {personal.profilePicture && (
-          <img src={personal.profilePicture} alt={personal.fullName ? `${personal.fullName}'s profile photo` : 'Profile photo'} className="cv-photo-minimal" />
+          <img
+            src={personal.profilePicture}
+            alt={personal.fullName ? `${personal.fullName}'s profile photo` : 'Profile photo'}
+            className="cv-photo-minimal"
+          />
         )}
         <div className="cv-header-text">
           <h1>{personal.fullName || 'Your Name'}</h1>
@@ -50,7 +54,7 @@ export default function MinimalTemplate({ data }: Props) {
       {experience.length > 0 && (
         <div className="cv-section">
           <div className="cv-section-title">{t('cv.experience')}</div>
-          {experience.map(exp => (
+          {experience.map((exp) => (
             <div key={exp.id} className="cv-item">
               <div className="cv-item-header">
                 <div>
@@ -73,7 +77,7 @@ export default function MinimalTemplate({ data }: Props) {
       {education.length > 0 && (
         <div className="cv-section">
           <div className="cv-section-title">{t('cv.education')}</div>
-          {education.map(edu => (
+          {education.map((edu) => (
             <div key={edu.id} className="cv-item">
               <div className="cv-item-header">
                 <div>
@@ -94,17 +98,23 @@ export default function MinimalTemplate({ data }: Props) {
             <div>
               <div className="cv-section-title">{t('cv.skills')}</div>
               <div className="cv-tags-row">
-                {skills.map(s => <span key={s.id} className="cv-tag">{s.name}</span>)}
+                {skills.map((s) => (
+                  <span key={s.id} className="cv-tag">
+                    {s.name}
+                  </span>
+                ))}
               </div>
             </div>
           )}
           {languages.length > 0 && (
             <div>
               <div className="cv-section-title">{t('cv.languages')}</div>
-              {languages.map(l => (
+              {languages.map((l) => (
                 <div key={l.id} className="cv-lang-row">
                   <span>{l.language}</span>
-                  <span className="cv-lang-level">{t(`languageLevels.${l.level}`, { defaultValue: l.level })}</span>
+                  <span className="cv-lang-level">
+                    {t(`languageLevels.${l.level}`, { defaultValue: l.level })}
+                  </span>
                 </div>
               ))}
             </div>
@@ -115,11 +125,15 @@ export default function MinimalTemplate({ data }: Props) {
       {projects.length > 0 && (
         <div className="cv-section">
           <div className="cv-section-title">{t('cv.projects')}</div>
-          {projects.map(proj => (
+          {projects.map((proj) => (
             <div key={proj.id} className="cv-item">
               <div className="cv-item-header">
                 <strong>{proj.name}</strong>
-                {proj.link && <a href={proj.link} className="cv-link" target="_blank" rel="noopener noreferrer">{proj.link}</a>}
+                {proj.link && (
+                  <a href={proj.link} className="cv-link" target="_blank" rel="noopener noreferrer">
+                    {proj.link}
+                  </a>
+                )}
               </div>
               {proj.description && <p className="cv-desc">{proj.description}</p>}
             </div>

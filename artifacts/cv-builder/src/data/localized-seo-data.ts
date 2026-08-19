@@ -14,7 +14,7 @@ export const LOCALIZED_SEO_SLUGS: Record<LangCode, { prefix: string }> = {
 export function buildLocalizedSeoPageData(
   skill: SeoSkill | null,
   city: SeoCity | null,
-  lang: LangCode
+  lang: LangCode,
 ): SeoPageData {
   if (lang === 'fr') return buildFrSeoPageData(skill, city);
   if (lang === 'es') return buildEsSeoPageData(skill, city);
@@ -78,11 +78,12 @@ function buildEnSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const faqs: Array<{ q: string; a: string }> = [
     {
-      q: city && skill
-        ? `What should a ${skillLabel} CV include for jobs in ${city.label}?`
-        : skill
-        ? `What should a ${skillLabel} CV include?`
-        : `What sections should a CV include?`,
+      q:
+        city && skill
+          ? `What should a ${skillLabel} CV include for jobs in ${city.label}?`
+          : skill
+            ? `What should a ${skillLabel} CV include?`
+            : `What sections should a CV include?`,
       a: `A strong CV should include a professional summary, work experience with measurable results, education, skills, and contact details. ${city ? `For ${city.label} employers, keep it concise — typically 1–2 pages.` : 'Keep it to 1–2 pages.'}`,
     },
     {
@@ -170,11 +171,12 @@ function buildFrSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const faqs: Array<{ q: string; a: string }> = [
     {
-      q: city && skill
-        ? `Que doit contenir un CV de ${skillLabel} pour les emplois à ${city.label} ?`
-        : skill
-        ? `Que doit contenir un CV de ${skillLabel} ?`
-        : `Quelles sections doit contenir un CV ?`,
+      q:
+        city && skill
+          ? `Que doit contenir un CV de ${skillLabel} pour les emplois à ${city.label} ?`
+          : skill
+            ? `Que doit contenir un CV de ${skillLabel} ?`
+            : `Quelles sections doit contenir un CV ?`,
       a: `Un bon CV doit inclure un résumé professionnel, une expérience professionnelle avec des résultats mesurables, la formation, les compétences et les coordonnées. ${city ? `Pour les employeurs à ${city.label}, soyez concis — généralement 1–2 pages.` : 'Limitez-le à 1–2 pages.'}`,
     },
     {
@@ -262,11 +264,12 @@ function buildEsSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const faqs: Array<{ q: string; a: string }> = [
     {
-      q: city && skill
-        ? `¿Qué debe incluir un CV de ${skillLabel} para empleos en ${city.label}?`
-        : skill
-        ? `¿Qué debe incluir un CV de ${skillLabel}?`
-        : `¿Qué secciones debe tener un CV?`,
+      q:
+        city && skill
+          ? `¿Qué debe incluir un CV de ${skillLabel} para empleos en ${city.label}?`
+          : skill
+            ? `¿Qué debe incluir un CV de ${skillLabel}?`
+            : `¿Qué secciones debe tener un CV?`,
       a: `Un buen CV debe incluir un resumen profesional, experiencia laboral con resultados medibles, formación, habilidades y datos de contacto. ${city ? `Para empleadores en ${city.label}, sé conciso — normalmente 1–2 páginas.` : 'Limítalo a 1–2 páginas.'}`,
     },
     {
@@ -354,11 +357,12 @@ function buildArSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const faqs: Array<{ q: string; a: string }> = [
     {
-      q: city && skill
-        ? `ما الذي يجب أن تتضمنه سيرة ذاتية لـ ${skillLabel} في ${city.label}؟`
-        : skill
-        ? `ما الذي يجب أن تتضمنه سيرة ذاتية لـ ${skillLabel}؟`
-        : `ما الأقسام التي يجب أن يتضمنها السيرة الذاتية؟`,
+      q:
+        city && skill
+          ? `ما الذي يجب أن تتضمنه سيرة ذاتية لـ ${skillLabel} في ${city.label}؟`
+          : skill
+            ? `ما الذي يجب أن تتضمنه سيرة ذاتية لـ ${skillLabel}؟`
+            : `ما الأقسام التي يجب أن يتضمنها السيرة الذاتية؟`,
       a: `يجب أن تتضمن السيرة الذاتية القوية ملخصاً مهنياً وخبرة عملية مع نتائج قابلة للقياس وتعليماً ومهارات ومعلومات الاتصال. ${city ? `للمقابلات في ${city.label}، اجعلها موجزة — عادةً من صفحة إلى صفحتين.` : 'اجعلها من صفحة إلى صفحتين.'}`,
     },
     {
@@ -446,11 +450,12 @@ function buildTrSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const faqs: Array<{ q: string; a: string }> = [
     {
-      q: city && skill
-        ? `${city.label}'deki işler için ${skillLabel} CV'si ne içermeli?`
-        : skill
-        ? `${skillLabel} CV'si ne içermeli?`
-        : `Bir CV hangi bölümleri içermeli?`,
+      q:
+        city && skill
+          ? `${city.label}'deki işler için ${skillLabel} CV'si ne içermeli?`
+          : skill
+            ? `${skillLabel} CV'si ne içermeli?`
+            : `Bir CV hangi bölümleri içermeli?`,
       a: `Güçlü bir CV; profesyonel özet, ölçülebilir sonuçlarla iş deneyimi, eğitim, beceriler ve iletişim bilgilerini içermelidir. ${city ? `${city.label} işverenler için kısa tutun — genellikle 1–2 sayfa.` : '1–2 sayfada tutun.'}`,
     },
     {
@@ -538,11 +543,12 @@ function buildPtSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const faqs: Array<{ q: string; a: string }> = [
     {
-      q: city && skill
-        ? `O que deve incluir um CV de ${skillLabel} para empregos em ${city.label}?`
-        : skill
-        ? `O que deve incluir um CV de ${skillLabel}?`
-        : `Que secções deve ter um CV?`,
+      q:
+        city && skill
+          ? `O que deve incluir um CV de ${skillLabel} para empregos em ${city.label}?`
+          : skill
+            ? `O que deve incluir um CV de ${skillLabel}?`
+            : `Que secções deve ter um CV?`,
       a: `Um bom CV deve incluir um resumo profissional, experiência profissional com resultados mensuráveis, formação, competências e dados de contacto. ${city ? `Para empregadores em ${city.label}, seja conciso — normalmente 1–2 páginas.` : 'Limite-o a 1–2 páginas.'}`,
     },
     {

@@ -1,5 +1,14 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { CVData, DEFAULT_CV_DATA, WorkExperience, Education, Skill, Language, Project, TemplateType } from '../types/cv';
+import {
+  CVData,
+  DEFAULT_CV_DATA,
+  WorkExperience,
+  Education,
+  Skill,
+  Language,
+  Project,
+  TemplateType,
+} from '../types/cv';
 
 const STORAGE_KEY = 'cv-builder-data';
 const TEMPLATE_KEY = 'cv-builder-template';
@@ -46,14 +55,14 @@ export function useCV() {
   }, [cvData, template]);
 
   const updatePersonal = useCallback((field: string, value: string) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
       personal: { ...prev.personal, [field]: value },
     }));
   }, []);
 
   const updateSummary = useCallback((value: string) => {
-    setCvData(prev => ({ ...prev, summary: value }));
+    setCvData((prev) => ({ ...prev, summary: value }));
   }, []);
 
   const addExperience = useCallback(() => {
@@ -67,22 +76,20 @@ export function useCV() {
       current: false,
       description: '',
     };
-    setCvData(prev => ({ ...prev, experience: [...prev.experience, newExp] }));
+    setCvData((prev) => ({ ...prev, experience: [...prev.experience, newExp] }));
   }, []);
 
   const updateExperience = useCallback((id: string, field: string, value: string | boolean) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
-      experience: prev.experience.map(exp =>
-        exp.id === id ? { ...exp, [field]: value } : exp
-      ),
+      experience: prev.experience.map((exp) => (exp.id === id ? { ...exp, [field]: value } : exp)),
     }));
   }, []);
 
   const removeExperience = useCallback((id: string) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
-      experience: prev.experience.filter(exp => exp.id !== id),
+      experience: prev.experience.filter((exp) => exp.id !== id),
     }));
   }, []);
 
@@ -94,77 +101,71 @@ export function useCV() {
       year: '',
       description: '',
     };
-    setCvData(prev => ({ ...prev, education: [...prev.education, newEdu] }));
+    setCvData((prev) => ({ ...prev, education: [...prev.education, newEdu] }));
   }, []);
 
   const updateEducation = useCallback((id: string, field: string, value: string) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
-      education: prev.education.map(edu =>
-        edu.id === id ? { ...edu, [field]: value } : edu
-      ),
+      education: prev.education.map((edu) => (edu.id === id ? { ...edu, [field]: value } : edu)),
     }));
   }, []);
 
   const removeEducation = useCallback((id: string) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
-      education: prev.education.filter(edu => edu.id !== id),
+      education: prev.education.filter((edu) => edu.id !== id),
     }));
   }, []);
 
   const addSkill = useCallback((name: string) => {
     if (!name.trim()) return;
     const newSkill: Skill = { id: generateId(), name: name.trim() };
-    setCvData(prev => ({ ...prev, skills: [...prev.skills, newSkill] }));
+    setCvData((prev) => ({ ...prev, skills: [...prev.skills, newSkill] }));
   }, []);
 
   const removeSkill = useCallback((id: string) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
-      skills: prev.skills.filter(s => s.id !== id),
+      skills: prev.skills.filter((s) => s.id !== id),
     }));
   }, []);
 
   const addLanguage = useCallback(() => {
     const newLang: Language = { id: generateId(), language: '', level: 'Conversational' };
-    setCvData(prev => ({ ...prev, languages: [...prev.languages, newLang] }));
+    setCvData((prev) => ({ ...prev, languages: [...prev.languages, newLang] }));
   }, []);
 
   const updateLanguage = useCallback((id: string, field: string, value: string) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
-      languages: prev.languages.map(l =>
-        l.id === id ? { ...l, [field]: value } : l
-      ),
+      languages: prev.languages.map((l) => (l.id === id ? { ...l, [field]: value } : l)),
     }));
   }, []);
 
   const removeLanguage = useCallback((id: string) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
-      languages: prev.languages.filter(l => l.id !== id),
+      languages: prev.languages.filter((l) => l.id !== id),
     }));
   }, []);
 
   const addProject = useCallback(() => {
     const newProj: Project = { id: generateId(), name: '', description: '', link: '' };
-    setCvData(prev => ({ ...prev, projects: [...prev.projects, newProj] }));
+    setCvData((prev) => ({ ...prev, projects: [...prev.projects, newProj] }));
   }, []);
 
   const updateProject = useCallback((id: string, field: string, value: string) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
-      projects: prev.projects.map(p =>
-        p.id === id ? { ...p, [field]: value } : p
-      ),
+      projects: prev.projects.map((p) => (p.id === id ? { ...p, [field]: value } : p)),
     }));
   }, []);
 
   const removeProject = useCallback((id: string) => {
-    setCvData(prev => ({
+    setCvData((prev) => ({
       ...prev,
-      projects: prev.projects.filter(p => p.id !== id),
+      projects: prev.projects.filter((p) => p.id !== id),
     }));
   }, []);
 

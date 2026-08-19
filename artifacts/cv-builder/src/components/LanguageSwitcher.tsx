@@ -18,13 +18,13 @@ export default function LanguageSwitcher() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  const current = languages.find(l => l.code === currentLang) ?? languages[0];
+  const current = languages.find((l) => l.code === currentLang) ?? languages[0];
 
   return (
     <div className="lang-switcher" ref={ref}>
       <button
         className="lang-switcher-btn"
-        onClick={() => setOpen(o => !o)}
+        onClick={() => setOpen((o) => !o)}
         aria-label={t('languageSwitcher.label')}
         aria-expanded={open}
       >
@@ -36,7 +36,7 @@ export default function LanguageSwitcher() {
 
       {open && (
         <ul className="lang-dropdown" role="listbox" aria-label={t('languageSwitcher.label')}>
-          {languages.map(lang => (
+          {languages.map((lang) => (
             <li
               key={lang.code}
               role="option"

@@ -26,7 +26,11 @@ export default function ModernTemplate({ data }: Props) {
       <div className="cv-modern-sidebar">
         {personal.profilePicture && (
           <div className="cv-photo-modern-wrap">
-            <img src={personal.profilePicture} alt={personal.fullName ? `${personal.fullName}'s profile photo` : 'Profile photo'} className="cv-photo-modern" />
+            <img
+              src={personal.profilePicture}
+              alt={personal.fullName ? `${personal.fullName}'s profile photo` : 'Profile photo'}
+              className="cv-photo-modern"
+            />
           </div>
         )}
         <div className="cv-modern-name">
@@ -35,18 +39,47 @@ export default function ModernTemplate({ data }: Props) {
         </div>
 
         <div className="cv-modern-contact">
-          {personal.email && <div className="cv-contact-item"><span className="icon">✉</span>{personal.email}</div>}
-          {personal.phone && <div className="cv-contact-item"><span className="icon">✆</span>{personal.phone}</div>}
-          {personal.location && <div className="cv-contact-item"><span className="icon">⚲</span>{personal.location}</div>}
-          {personal.linkedin && <div className="cv-contact-item"><span className="icon">in</span>{personal.linkedin}</div>}
-          {personal.portfolio && <div className="cv-contact-item"><span className="icon">⊕</span>{personal.portfolio}</div>}
+          {personal.email && (
+            <div className="cv-contact-item">
+              <span className="icon">✉</span>
+              {personal.email}
+            </div>
+          )}
+          {personal.phone && (
+            <div className="cv-contact-item">
+              <span className="icon">✆</span>
+              {personal.phone}
+            </div>
+          )}
+          {personal.location && (
+            <div className="cv-contact-item">
+              <span className="icon">⚲</span>
+              {personal.location}
+            </div>
+          )}
+          {personal.linkedin && (
+            <div className="cv-contact-item">
+              <span className="icon">in</span>
+              {personal.linkedin}
+            </div>
+          )}
+          {personal.portfolio && (
+            <div className="cv-contact-item">
+              <span className="icon">⊕</span>
+              {personal.portfolio}
+            </div>
+          )}
         </div>
 
         {skills.length > 0 && (
           <div className="cv-modern-section">
             <div className="cv-modern-section-title">{t('cv.skills')}</div>
             <div className="cv-modern-skills">
-              {skills.map(s => <div key={s.id} className="cv-modern-skill-item">{s.name}</div>)}
+              {skills.map((s) => (
+                <div key={s.id} className="cv-modern-skill-item">
+                  {s.name}
+                </div>
+              ))}
             </div>
           </div>
         )}
@@ -54,10 +87,12 @@ export default function ModernTemplate({ data }: Props) {
         {languages.length > 0 && (
           <div className="cv-modern-section">
             <div className="cv-modern-section-title">{t('cv.languages')}</div>
-            {languages.map(l => (
+            {languages.map((l) => (
               <div key={l.id} className="cv-modern-lang">
                 <span>{l.language}</span>
-                <span className="cv-modern-lang-level">{t(`languageLevels.${l.level}`, { defaultValue: l.level })}</span>
+                <span className="cv-modern-lang-level">
+                  {t(`languageLevels.${l.level}`, { defaultValue: l.level })}
+                </span>
               </div>
             ))}
           </div>
@@ -75,17 +110,24 @@ export default function ModernTemplate({ data }: Props) {
         {experience.length > 0 && (
           <div className="cv-modern-main-section">
             <div className="cv-modern-main-title">{t('cv.experience')}</div>
-            {experience.map(exp => (
+            {experience.map((exp) => (
               <div key={exp.id} className="cv-modern-exp-item">
                 <div className="cv-modern-exp-dot" />
                 <div className="cv-modern-exp-content">
                   <div className="cv-modern-exp-header">
                     <strong>{exp.jobTitle}</strong>
                     <span className="cv-modern-date">
-                      {formatDate(exp.startDate)}{exp.startDate && ' – '}{exp.current ? t('cv.present') : formatDate(exp.endDate)}
+                      {formatDate(exp.startDate)}
+                      {exp.startDate && ' – '}
+                      {exp.current ? t('cv.present') : formatDate(exp.endDate)}
                     </span>
                   </div>
-                  {exp.company && <div className="cv-modern-exp-company">{exp.company}{exp.location && ` · ${exp.location}`}</div>}
+                  {exp.company && (
+                    <div className="cv-modern-exp-company">
+                      {exp.company}
+                      {exp.location && ` · ${exp.location}`}
+                    </div>
+                  )}
                   {exp.description && <p className="cv-modern-exp-desc">{exp.description}</p>}
                 </div>
               </div>
@@ -96,7 +138,7 @@ export default function ModernTemplate({ data }: Props) {
         {education.length > 0 && (
           <div className="cv-modern-main-section">
             <div className="cv-modern-main-title">{t('cv.education')}</div>
-            {education.map(edu => (
+            {education.map((edu) => (
               <div key={edu.id} className="cv-modern-exp-item">
                 <div className="cv-modern-exp-dot" />
                 <div className="cv-modern-exp-content">
@@ -115,13 +157,22 @@ export default function ModernTemplate({ data }: Props) {
         {projects.length > 0 && (
           <div className="cv-modern-main-section">
             <div className="cv-modern-main-title">{t('cv.projects')}</div>
-            {projects.map(proj => (
+            {projects.map((proj) => (
               <div key={proj.id} className="cv-modern-exp-item">
                 <div className="cv-modern-exp-dot" />
                 <div className="cv-modern-exp-content">
                   <div className="cv-modern-exp-header">
                     <strong>{proj.name}</strong>
-                    {proj.link && <a href={proj.link} className="cv-link-small" target="_blank" rel="noopener noreferrer">View</a>}
+                    {proj.link && (
+                      <a
+                        href={proj.link}
+                        className="cv-link-small"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View
+                      </a>
+                    )}
                   </div>
                   {proj.description && <p className="cv-modern-exp-desc">{proj.description}</p>}
                 </div>

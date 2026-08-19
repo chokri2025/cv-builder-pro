@@ -65,10 +65,7 @@ export interface SeoPageData {
   prefilledJobTitle: string;
 }
 
-export function buildSeoPageData(
-  skill: SeoSkill | null,
-  city: SeoCity | null
-): SeoPageData {
+export function buildSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPageData {
   const skillLabel = skill?.label ?? 'Professional';
   const cityLabel = city ? `${city.label}, ${city.country}` : null;
   const cityShort = city?.label ?? null;
@@ -122,11 +119,12 @@ export function buildSeoPageData(
 
   const faqs: Array<{ q: string; a: string }> = [
     {
-      q: city && skill
-        ? `What should a ${skillLabel} CV include for jobs in ${city.label}?`
-        : skill
-        ? `What should a ${skillLabel} CV include?`
-        : `What sections should a CV include?`,
+      q:
+        city && skill
+          ? `What should a ${skillLabel} CV include for jobs in ${city.label}?`
+          : skill
+            ? `What should a ${skillLabel} CV include?`
+            : `What sections should a CV include?`,
       a: `A strong CV should include a professional summary, work experience with measurable results, education, skills, and contact details. ${city ? `For ${city.label} employers, keep it concise — typically 1–2 pages.` : 'Keep it to 1–2 pages.'}`,
     },
     {
@@ -173,9 +171,9 @@ export function parseSlug(slug: string): { skill: SeoSkill | null; city: SeoCity
       if (slug === `${skill.slug}-${city.slug}`) return { skill, city };
     }
   }
-  const skill = SEO_SKILLS.find(s => s.slug === slug) ?? null;
+  const skill = SEO_SKILLS.find((s) => s.slug === slug) ?? null;
   if (skill) return { skill, city: null };
-  const city = SEO_CITIES.find(c => c.slug === slug) ?? null;
+  const city = SEO_CITIES.find((c) => c.slug === slug) ?? null;
   if (city) return { skill: null, city };
   return { skill: null, city: null };
 }

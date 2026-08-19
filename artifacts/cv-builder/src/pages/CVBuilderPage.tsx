@@ -26,7 +26,7 @@ export default function CVBuilderPage() {
     title: t('seo.homeTitle'),
     description: t('seo.homeDescription'),
     canonical,
-    alternateLangs: SUPPORTED_LANG_CODES.map(l => ({
+    alternateLangs: SUPPORTED_LANG_CODES.map((l) => ({
       lang: l,
       href: `${SITE_URL}/${l}`,
     })),
@@ -79,10 +79,7 @@ export default function CVBuilderPage() {
       <div className={`preview-side ${!showPreview ? 'hidden-mobile' : ''}`}>
         <CVPreview data={cv.cvData} template={cv.template} />
       </div>
-      <button
-        className="mobile-toggle-btn"
-        onClick={() => setShowPreview(p => !p)}
-      >
+      <button className="mobile-toggle-btn" onClick={() => setShowPreview((p) => !p)}>
         {showPreview ? t('builder.editLabel') : t('builder.previewLabel')}
       </button>
     </div>
