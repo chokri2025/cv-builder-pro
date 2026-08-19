@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CVData, TemplateType } from '../types/cv';
 import LanguageSwitcher from './LanguageSwitcher';
+import { compressImageFile } from '../lib/image';
 
 const TEMPLATE_KEYS: TemplateType[] = ['minimal', 'modern', 'creative'];
 
@@ -85,9 +86,13 @@ export default function FormPanel(props: FormPanelProps) {
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => updatePersonal('profilePicture', reader.result as string);
-    reader.readAsDataURL(file);
+    compressImageFile(file)
+      .then((dataUrl) => updatePersonal('profilePicture', dataUrl))
+      .catch(() => {
+        const reader = new FileReader();
+        reader.onload = () => updatePersonal('profilePicture', reader.result as string);
+        reader.readAsDataURL(file);
+      });
   };
 
   const handleSkillKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

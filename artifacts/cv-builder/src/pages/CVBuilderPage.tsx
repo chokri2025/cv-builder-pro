@@ -49,8 +49,8 @@ export default function CVBuilderPage() {
   }, []);
 
   return (
-    <div className="app-layout">
-      <div className={`form-side ${showPreview ? 'hidden-mobile' : ''}`}>
+    <main className="app-layout">
+      <section className={`form-side ${showPreview ? 'hidden-mobile' : ''}`} aria-label={t('builder.editLabel')}>
         <FormPanel
           cvData={cv.cvData}
           template={cv.template}
@@ -75,13 +75,13 @@ export default function CVBuilderPage() {
           updateProject={cv.updateProject}
           removeProject={cv.removeProject}
         />
-      </div>
-      <div className={`preview-side ${!showPreview ? 'hidden-mobile' : ''}`}>
+      </section>
+      <section className={`preview-side ${!showPreview ? 'hidden-mobile' : ''}`} aria-label={t('builder.previewLabel')}>
         <CVPreview data={cv.cvData} template={cv.template} />
-      </div>
+      </section>
       <button className="mobile-toggle-btn" onClick={() => setShowPreview((p) => !p)}>
         {showPreview ? t('builder.editLabel') : t('builder.previewLabel')}
       </button>
-    </div>
+    </main>
   );
 }

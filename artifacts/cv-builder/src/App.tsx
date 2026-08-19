@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
-import CVBuilderPage from './pages/CVBuilderPage';
-import LandingPage from './pages/LandingPage';
-import SitemapPage from './pages/SitemapPage';
+import { useEffect, lazy, Suspense } from 'react';
 import { isRTL } from './i18n';
+
+const CVBuilderPage = lazy(() => import('./pages/CVBuilderPage'));
+const LandingPage = lazy(() => import('./pages/LandingPage'));
+const SitemapPage = lazy(() => import('./pages/SitemapPage'));
 
 function AppRoutes() {
   const { i18n } = useTranslation();
@@ -16,15 +17,17 @@ function AppRoutes() {
   }, [lang]);
 
   return (
-    <Routes>
-      <Route path="/" element={<CVBuilderPage />} />
-      <Route path="/resume/:slug" element={<LandingPage />} />
-      <Route path="/sitemap" element={<SitemapPage />} />
-      <Route path="/:lang" element={<CVBuilderPage />} />
-      <Route path="/:lang/resume/:slug" element={<LandingPage />} />
-      <Route path="/:lang/sitemap" element={<SitemapPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/" element={<CVBuilderPage />} />
+        <Route path="/resume/:slug" element={<LandingPage />} />
+        <Route path="/sitemap" element={<SitemapPage />} />
+        <Route path="/:lang" element={<CVBuilderPage />} />
+        <Route path="/:lang/resume/:slug" element={<LandingPage />} />
+        <Route path="/:lang/sitemap" element={<SitemapPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </Suspense>
   );
 }
 

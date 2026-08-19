@@ -51,8 +51,8 @@ export default function CVPreview({ data, template }: Props) {
       <head>
         <meta charset="UTF-8">
         <title>CV - ${data.personal.fullName || 'Resume'}</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap">
         <style>
-          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
           * { box-sizing: border-box; }
           body { margin: 0; padding: 0; background: #fff; }
           @page { size: A4; margin: 0; }
