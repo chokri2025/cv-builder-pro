@@ -4,6 +4,7 @@ import { useSEO } from '../hooks/useSEO';
 import { useLanguage } from '../hooks/useLanguage';
 import { parseSlug } from '../data/seo-data';
 import { buildLocalizedSeoPageData } from '../data/localized-seo-data';
+import { buildLandingSeoProps } from '../lib/landing-seo';
 import { SITE_URL } from '../lib/site';
 import type { SupportedLang } from '../i18n';
 
@@ -21,36 +22,7 @@ export default function LandingPage() {
   const { skill, city } = parseSlug(slug ?? '');
   const page = buildLocalizedSeoPageData(skill, city, effectiveLang);
 
-  const canonicalBase = SITE_URL;
-  const canonical = urlLang
-    ? `${canonicalBase}/${effectiveLang}/resume/${slug}`
-    : `${canonicalBase}/resume/${slug}`;
-
-  useSEO({
-    title: page.pageTitle,
-    description: page.metaDescription,
-    canonical,
-    lang: effectiveLang,
-    alternateLangs: SUPPORTED_LANG_CODES.map((l) => ({
-      lang: l,
-      href: `${canonicalBase}/${l}/resume/${slug}`,
-    })),
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      name: page.pageTitle,
-      description: page.metaDescription,
-      url: canonical,
-      inLanguage: effectiveLang,
-      breadcrumb: {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'CV Builder Pro', item: canonicalBase },
-          { '@type': 'ListItem', position: 2, name: page.h1, item: canonical },
-        ],
-      },
-    },
-  });
+  useSEO(buildLandingSeoProps(page, slug ?? '', urlLang, effectiveLang, SITE_URL));
 
   const handleStart = () => {
     const target = urlLang ? `/${urlLang}` : '/';
