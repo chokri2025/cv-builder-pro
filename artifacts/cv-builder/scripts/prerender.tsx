@@ -34,7 +34,7 @@ const templatePath = path.join(distDir, 'index.html');
 const siteUrl = (
   process.env.VITE_APP_URL ||
   process.env.APP_URL ||
-  'https://cv-builderpro.vercel.app'
+  'https://www.cvbuilder-pro.online'
 ).replace(/\/$/, '');
 
 type LangCode = (typeof LANGUAGES)[number];

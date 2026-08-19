@@ -11,7 +11,7 @@ import { LANGUAGES, NON_EN_LANGS, getAllSeoSlugs } from './seo-routes.mjs';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const appUrl =
-  process.env.VITE_APP_URL || process.env.APP_URL || 'https://cv-builderpro.vercel.app';
+  process.env.VITE_APP_URL || process.env.APP_URL || 'https://www.cvbuilder-pro.online';
 const base = appUrl.replace(/\/$/, '');
 const slugs = getAllSeoSlugs();
 const today = new Date().toISOString().split('T')[0];
