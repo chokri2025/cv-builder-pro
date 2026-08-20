@@ -5,21 +5,35 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
-    "build": "vite build --config vite.config.ts && node scripts/generate-sitemap.mjs",
+    "build": "vite build --config vite.config.ts && node scripts/generate-sitemap.mjs && tsx scripts/prerender.tsx",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
     "@replit/vite-plugin-cartographer": "catalog:",
     "@replit/vite-plugin-dev-banner": "catalog:",
     "@replit/vite-plugin-runtime-error-modal": "catalog:",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.4",
+    "globals": "^16.5.0",
+    "jsdom": "^27.0.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "vite": "catalog:"
+    "tsx": "catalog:",
+    "typescript-eslint": "^8.47.0",
+    "vite": "catalog:",
+    "vitest": "^4.1.11"
   },
   "dependencies": {
     "html2pdf.js": "^0.14.0",

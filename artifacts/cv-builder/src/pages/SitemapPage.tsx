@@ -18,7 +18,13 @@ export default function SitemapPage() {
       <nav className="seo-nav">
         <Link to={langPrefix || '/'} className="seo-nav-logo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="#0ea5e9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              stroke="#0ea5e9"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
           {t('nav.logo')} <span className="seo-nav-pro">{t('nav.pro')}</span>
         </Link>
@@ -31,8 +37,12 @@ export default function SitemapPage() {
         <section>
           <h2>CV Builder by Skill</h2>
           <div className="sitemap-grid">
-            {SEO_SKILLS.map(skill => (
-              <Link key={skill.slug} to={`${langPrefix}/resume/${skill.slug}`} className="sitemap-link">
+            {SEO_SKILLS.map((skill) => (
+              <Link
+                key={skill.slug}
+                to={`${langPrefix}/resume/${skill.slug}`}
+                className="sitemap-link"
+              >
                 {skill.label} CV Builder
               </Link>
             ))}
@@ -42,8 +52,12 @@ export default function SitemapPage() {
         <section>
           <h2>CV Builder by City</h2>
           <div className="sitemap-grid">
-            {SEO_CITIES.map(city => (
-              <Link key={city.slug} to={`${langPrefix}/resume/${city.slug}`} className="sitemap-link">
+            {SEO_CITIES.map((city) => (
+              <Link
+                key={city.slug}
+                to={`${langPrefix}/resume/${city.slug}`}
+                className="sitemap-link"
+              >
                 CV Builder – {city.label}
               </Link>
             ))}
@@ -53,8 +67,8 @@ export default function SitemapPage() {
         <section>
           <h2>CV Builder by Skill &amp; City</h2>
           <div className="sitemap-grid">
-            {SEO_SKILLS.slice(0, 8).map(skill =>
-              SEO_CITIES.slice(0, 8).map(city => (
+            {SEO_SKILLS.slice(0, 8).map((skill) =>
+              SEO_CITIES.slice(0, 8).map((city) => (
                 <Link
                   key={`${skill.slug}-${city.slug}`}
                   to={`${langPrefix}/resume/${skill.slug}-${city.slug}`}
@@ -62,7 +76,7 @@ export default function SitemapPage() {
                 >
                   {skill.label} CV – {city.label}
                 </Link>
-              ))
+              )),
             )}
           </div>
         </section>

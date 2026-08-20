@@ -5,7 +5,7 @@ interface HreflangEntry {
   href: string;
 }
 
-interface SEOProps {
+export interface SEOProps {
   title: string;
   description: string;
   canonical?: string;
@@ -14,48 +14,94 @@ interface SEOProps {
   jsonLd?: Record<string, unknown>;
 }
 
-export function useSEO({ title, description, canonical, lang, alternateLangs, jsonLd }: SEOProps) {
+interface MetaTag {
+  attrName: 'name' | 'property';
+  attrValue: string;
+  content: string;
+}
+
+interface LinkTag {
+  rel: string;
+  href: string;
+  hreflang?: string;
+}
+
+export interface HeadTags {
+  title: string;
+  metas: MetaTag[];
+  links: LinkTag[];
+  jsonLd?: Record<string, unknown>;
+}
+
+/** Pure computation of the per-page <head> tags, shared between the client-side
+ * useSEO effect and the build-time prerender script so they can never drift. */
+export function buildHeadTags({
+  title,
+  description,
+  canonical,
+  lang,
+  alternateLangs,
+  jsonLd,
+}: SEOProps): HeadTags {
+  const metas: MetaTag[] = [
+    { attrName: 'name', attrValue: 'description', content: description },
+    { attrName: 'property', attrValue: 'og:title', content: title },
+    { attrName: 'property', attrValue: 'og:description', content: description },
+    { attrName: 'property', attrValue: 'og:type', content: 'website' },
+  ];
+  const links: LinkTag[] = [];
+
+  if (canonical) {
+    links.push({ rel: 'canonical', href: canonical });
+    metas.push({ attrName: 'property', attrValue: 'og:url', content: canonical });
+  }
+
+  if (lang) {
+    metas.push({ attrName: 'property', attrValue: 'og:locale', content: lang });
+  }
+
+  if (alternateLangs && alternateLangs.length > 0) {
+    alternateLangs.forEach(({ lang: hLang, href }) => {
+      links.push({ rel: 'alternate', hreflang: hLang, href });
+    });
+    const xDefaultHref =
+      alternateLangs.find((l) => l.lang === 'en')?.href ?? alternateLangs[0]?.href ?? '';
+    links.push({ rel: 'alternate', hreflang: 'x-default', href: xDefaultHref });
+  }
+
+  return { title, metas, links, jsonLd };
+}
+
+export function useSEO(props: SEOProps) {
+  const { title, description, canonical, lang, alternateLangs, jsonLd } = props;
+
   useEffect(() => {
-    document.title = title;
+    const head = buildHeadTags({ title, description, canonical, lang, alternateLangs, jsonLd });
 
-    setMeta('name', 'description', description);
-    setMeta('property', 'og:title', title);
-    setMeta('property', 'og:description', description);
-    setMeta('property', 'og:type', 'website');
+    document.title = head.title;
+    head.metas.forEach(({ attrName, attrValue, content }) => setMeta(attrName, attrValue, content));
 
-    if (canonical) {
-      setLink('canonical', canonical);
-      setMeta('property', 'og:url', canonical);
-    }
-
-    if (lang) {
-      setMeta('property', 'og:locale', lang);
-    }
+    const canonicalLink = head.links.find((l) => l.rel === 'canonical');
+    if (canonicalLink) setLink('canonical', canonicalLink.href);
 
     removeOldHreflangs();
-    if (alternateLangs && alternateLangs.length > 0) {
-      alternateLangs.forEach(({ lang: hLang, href }) => {
+    head.links
+      .filter((l) => l.hreflang)
+      .forEach(({ href, hreflang }) => {
         const link = document.createElement('link');
         link.rel = 'alternate';
-        link.hreflang = hLang;
+        link.hreflang = hreflang!;
         link.href = href;
         link.setAttribute('data-i18n-hreflang', 'true');
         document.head.appendChild(link);
       });
-      const xDefault = document.createElement('link');
-      xDefault.rel = 'alternate';
-      xDefault.hreflang = 'x-default';
-      xDefault.href = alternateLangs.find(l => l.lang === 'en')?.href ?? alternateLangs[0]?.href ?? '';
-      xDefault.setAttribute('data-i18n-hreflang', 'true');
-      document.head.appendChild(xDefault);
-    }
 
     removeOldJsonLd();
-    if (jsonLd) {
+    if (head.jsonLd) {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
       script.setAttribute('data-i18n-jsonld', 'true');
-      script.textContent = JSON.stringify(jsonLd);
+      script.textContent = JSON.stringify(head.jsonLd);
       document.head.appendChild(script);
     }
 
@@ -87,9 +133,9 @@ function setLink(rel: string, href: string) {
 }
 
 function removeOldHreflangs() {
-  document.querySelectorAll('link[data-i18n-hreflang]').forEach(el => el.remove());
+  document.querySelectorAll('link[data-i18n-hreflang]').forEach((el) => el.remove());
 }
 
 function removeOldJsonLd() {
-  document.querySelectorAll('script[data-i18n-jsonld]').forEach(el => el.remove());
+  document.querySelectorAll('script[data-i18n-jsonld]').forEach((el) => el.remove());
 }

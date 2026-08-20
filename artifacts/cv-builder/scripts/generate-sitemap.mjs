@@ -6,41 +6,12 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { LANGUAGES, NON_EN_LANGS, getAllSeoSlugs } from './seo-routes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const SEO_SKILL_SLUGS = [
-  'software-engineer','web-developer','data-analyst','project-manager',
-  'graphic-designer','marketing-manager','accountant','nurse','teacher',
-  'sales-manager','ux-designer','product-manager','devops-engineer',
-  'business-analyst','hr-manager','financial-analyst','content-writer',
-  'customer-service','electrician','civil-engineer',
-];
-
-const SEO_CITY_SLUGS = [
-  'new-york','london','paris','toronto','sydney','berlin','dubai',
-  'singapore','chicago','san-francisco','los-angeles','amsterdam',
-  'madrid','melbourne','montreal',
-];
-
-const LANGUAGES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
-const NON_EN_LANGS = LANGUAGES.filter(l => l !== 'en');
-
-function getAllSeoSlugs() {
-  const slugs = [];
-  for (const skill of SEO_SKILL_SLUGS) {
-    slugs.push(skill);
-    for (const city of SEO_CITY_SLUGS) {
-      slugs.push(`${skill}-${city}`);
-    }
-  }
-  for (const city of SEO_CITY_SLUGS) {
-    slugs.push(city);
-  }
-  return slugs;
-}
-
-const appUrl = process.env.VITE_APP_URL || process.env.APP_URL || 'https://cvbuilder.replit.app';
+const appUrl =
+  process.env.VITE_APP_URL || process.env.APP_URL || 'https://www.cvbuilder-pro.online';
 const base = appUrl.replace(/\/$/, '');
 const slugs = getAllSeoSlugs();
 const today = new Date().toISOString().split('T')[0];
@@ -56,18 +27,16 @@ const urls = [
   entry('/sitemap', '0.5', 'monthly', false),
 
   // ── Language homepages (/en, /fr, /es, /ar, /tr, /pt) ────────────────────
-  ...LANGUAGES.map(lang => entry(`/${lang}`, '0.9', 'weekly')),
+  ...LANGUAGES.map((lang) => entry(`/${lang}`, '0.9', 'weekly')),
 
   // ── Language sitemap pages ────────────────────────────────────────────────
-  ...LANGUAGES.map(lang => entry(`/${lang}/sitemap`, '0.5', 'monthly', false)),
+  ...LANGUAGES.map((lang) => entry(`/${lang}/sitemap`, '0.5', 'monthly', false)),
 
   // ── English SEO landing pages ─────────────────────────────────────────────
-  ...slugs.map(slug => entry(`/resume/${slug}`, '0.8')),
+  ...slugs.map((slug) => entry(`/resume/${slug}`, '0.8')),
 
   // ── Localized SEO landing pages (fr, es, ar, tr, pt) ─────────────────────
-  ...NON_EN_LANGS.flatMap(lang =>
-    slugs.map(slug => entry(`/${lang}/resume/${slug}`, '0.7'))
-  ),
+  ...NON_EN_LANGS.flatMap((lang) => slugs.map((slug) => entry(`/${lang}/resume/${slug}`, '0.7'))),
 ];
 
 const xml = [
@@ -99,4 +68,6 @@ console.log(`  Core pages:                   2`);
 console.log(`  Language homepages:           ${LANGUAGES.length}`);
 console.log(`  Language sitemap pages:       ${LANGUAGES.length}`);
 console.log(`  English SEO landing pages:    ${slugs.length}`);
-console.log(`  Localized SEO pages (×${NON_EN_LANGS.length}):   ${NON_EN_LANGS.length * slugs.length}`);
+console.log(
+  `  Localized SEO pages (×${NON_EN_LANGS.length}):   ${NON_EN_LANGS.length * slugs.length}`,
+);

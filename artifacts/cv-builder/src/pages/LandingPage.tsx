@@ -4,6 +4,8 @@ import { useSEO } from '../hooks/useSEO';
 import { useLanguage } from '../hooks/useLanguage';
 import { parseSlug } from '../data/seo-data';
 import { buildLocalizedSeoPageData } from '../data/localized-seo-data';
+import { buildLandingSeoProps } from '../lib/landing-seo';
+import { SITE_URL } from '../lib/site';
 import type { SupportedLang } from '../i18n';
 
 const SUPPORTED_LANG_CODES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
@@ -15,43 +17,12 @@ export default function LandingPage() {
   const { currentLang } = useLanguage();
 
   const effectiveLang: SupportedLang =
-    urlLang && SUPPORTED_LANG_CODES.includes(urlLang)
-      ? (urlLang as SupportedLang)
-      : currentLang;
+    urlLang && SUPPORTED_LANG_CODES.includes(urlLang) ? (urlLang as SupportedLang) : currentLang;
 
   const { skill, city } = parseSlug(slug ?? '');
   const page = buildLocalizedSeoPageData(skill, city, effectiveLang);
 
-  const canonicalBase = 'https://cvbuilder.replit.app';
-  const canonical = urlLang
-    ? `${canonicalBase}/${effectiveLang}/resume/${slug}`
-    : `${canonicalBase}/resume/${slug}`;
-
-  useSEO({
-    title: page.pageTitle,
-    description: page.metaDescription,
-    canonical,
-    lang: effectiveLang,
-    alternateLangs: SUPPORTED_LANG_CODES.map(l => ({
-      lang: l,
-      href: `${canonicalBase}/${l}/resume/${slug}`,
-    })),
-    jsonLd: {
-      '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      name: page.pageTitle,
-      description: page.metaDescription,
-      url: canonical,
-      inLanguage: effectiveLang,
-      breadcrumb: {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'CV Builder Pro', item: canonicalBase },
-          { '@type': 'ListItem', position: 2, name: page.h1, item: canonical },
-        ],
-      },
-    },
-  });
+  useSEO(buildLandingSeoProps(page, slug ?? '', urlLang, effectiveLang, SITE_URL));
 
   const handleStart = () => {
     const target = urlLang ? `/${urlLang}` : '/';
@@ -63,7 +34,9 @@ export default function LandingPage() {
       <div className="seo-not-found">
         <div className="seo-not-found-inner">
           <h1>{t('seo.notFound')}</h1>
-          <p>{t('seo.notFoundDesc')} <Link to="/">{t('seo.notFoundLink')}</Link>.</p>
+          <p>
+            {t('seo.notFoundDesc')} <Link to="/">{t('seo.notFoundLink')}</Link>.
+          </p>
         </div>
       </div>
     );
@@ -76,7 +49,13 @@ export default function LandingPage() {
       <nav className="seo-nav">
         <Link to={langPrefix || '/'} className="seo-nav-logo">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-            <path d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="#0ea5e9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M9 12h6M9 16h6M17 21H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              stroke="#0ea5e9"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
           {t('nav.logo')} <span className="seo-nav-pro">{t('nav.pro')}</span>
         </Link>
@@ -169,17 +148,33 @@ export default function LandingPage() {
           <div className="seo-related-links">
             {skill ? (
               <>
-                <Link to={`${langPrefix}/resume/new-york`} className="seo-related-link">{t('seo.related.newYork')}</Link>
-                <Link to={`${langPrefix}/resume/london`} className="seo-related-link">{t('seo.related.london')}</Link>
-                <Link to={`${langPrefix}/resume/toronto`} className="seo-related-link">{t('seo.related.toronto')}</Link>
-                <Link to={`${langPrefix}/resume/sydney`} className="seo-related-link">{t('seo.related.sydney')}</Link>
+                <Link to={`${langPrefix}/resume/new-york`} className="seo-related-link">
+                  {t('seo.related.newYork')}
+                </Link>
+                <Link to={`${langPrefix}/resume/london`} className="seo-related-link">
+                  {t('seo.related.london')}
+                </Link>
+                <Link to={`${langPrefix}/resume/toronto`} className="seo-related-link">
+                  {t('seo.related.toronto')}
+                </Link>
+                <Link to={`${langPrefix}/resume/sydney`} className="seo-related-link">
+                  {t('seo.related.sydney')}
+                </Link>
               </>
             ) : (
               <>
-                <Link to={`${langPrefix}/resume/software-engineer`} className="seo-related-link">{t('seo.related.softwareEngineer')}</Link>
-                <Link to={`${langPrefix}/resume/nurse`} className="seo-related-link">{t('seo.related.nurse')}</Link>
-                <Link to={`${langPrefix}/resume/teacher`} className="seo-related-link">{t('seo.related.teacher')}</Link>
-                <Link to={`${langPrefix}/resume/project-manager`} className="seo-related-link">{t('seo.related.projectManager')}</Link>
+                <Link to={`${langPrefix}/resume/software-engineer`} className="seo-related-link">
+                  {t('seo.related.softwareEngineer')}
+                </Link>
+                <Link to={`${langPrefix}/resume/nurse`} className="seo-related-link">
+                  {t('seo.related.nurse')}
+                </Link>
+                <Link to={`${langPrefix}/resume/teacher`} className="seo-related-link">
+                  {t('seo.related.teacher')}
+                </Link>
+                <Link to={`${langPrefix}/resume/project-manager`} className="seo-related-link">
+                  {t('seo.related.projectManager')}
+                </Link>
               </>
             )}
           </div>
@@ -188,7 +183,9 @@ export default function LandingPage() {
 
       <footer className="seo-footer">
         <div className="seo-footer-inner">
-          <Link to={langPrefix || '/'} className="seo-footer-logo">{t('nav.logo')} {t('nav.pro')}</Link>
+          <Link to={langPrefix || '/'} className="seo-footer-logo">
+            {t('nav.logo')} {t('nav.pro')}
+          </Link>
           <p>{t('seo.footerTagline')}</p>
           <div className="seo-footer-links">
             <Link to={langPrefix || '/'}>{t('seo.home')}</Link>

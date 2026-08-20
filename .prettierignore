@@ -1,0 +1,14 @@
+dist
+node_modules
+pnpm-lock.yaml
+artifacts/cv-builder/public/sitemap.xml
+artifacts/cv-builder/public/google10312dcad9f7918c.html
+
+# Unused/experimental workspace scaffolding, intentionally left untouched
+artifacts/api-server
+artifacts/mockup-sandbox
+lib/api-client-react
+lib/api-spec
+lib/api-zod
+lib/db
+attached_assets

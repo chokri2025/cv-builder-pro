@@ -97,7 +97,20 @@
     "languages": "Langues",
     "projects": "Projets",
     "present": "Présent",
-    "months": ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"]
+    "months": [
+      "Jan",
+      "Fév",
+      "Mar",
+      "Avr",
+      "Mai",
+      "Juin",
+      "Juil",
+      "Août",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Déc"
+    ]
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Créateur de CV & Resume Gratuit en Ligne",
