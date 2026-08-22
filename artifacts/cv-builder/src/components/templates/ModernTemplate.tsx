@@ -34,7 +34,7 @@ export default function ModernTemplate({ data }: Props) {
           </div>
         )}
         <div className="cv-modern-name">
-          <h1>{personal.fullName || 'Your Name'}</h1>
+          <p className="cv-name">{personal.fullName || 'Your Name'}</p>
           {personal.jobTitle && <p className="cv-modern-title">{personal.jobTitle}</p>}
         </div>
 

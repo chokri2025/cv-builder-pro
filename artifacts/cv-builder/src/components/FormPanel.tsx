@@ -153,6 +153,11 @@ export default function FormPanel(props: FormPanelProps) {
         </div>
       </div>
 
+      <div className="form-intro">
+        <h1 className="form-h1">{t('builder.pageHeading')}</h1>
+        <p className="form-tagline">{t('builder.pageTagline')}</p>
+      </div>
+
       <div className="lang-bar">
         <span className="lang-bar-label">{t('languageSwitcher.label')}</span>
         <LanguageSwitcher />

@@ -11,7 +11,7 @@
     <title>CV Builder Pro – Free Online Resume & CV Maker</title>
     <meta
       name="description"
-      content="Create a professional CV or resume in minutes. Choose from 3 beautiful templates, add your experience, skills, education and download as PDF. Free, no sign-up required."
+      content="Create a professional CV in minutes. Pick from 3 free templates, add your experience & skills, and download as a polished PDF — no sign-up needed."
     />
     <meta
       name="keywords"
@@ -20,6 +20,15 @@
     <meta name="author" content="CV Builder Pro" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://www.cvbuilder-pro.online/" />
+
+    <!-- hreflang alternates (one per supported locale + x-default) -->
+    <link rel="alternate" hreflang="en" href="https://www.cvbuilder-pro.online/" />
+    <link rel="alternate" hreflang="fr" href="https://www.cvbuilder-pro.online/fr" />
+    <link rel="alternate" hreflang="es" href="https://www.cvbuilder-pro.online/es" />
+    <link rel="alternate" hreflang="ar" href="https://www.cvbuilder-pro.online/ar" />
+    <link rel="alternate" hreflang="tr" href="https://www.cvbuilder-pro.online/tr" />
+    <link rel="alternate" hreflang="pt" href="https://www.cvbuilder-pro.online/pt" />
+    <link rel="alternate" hreflang="x-default" href="https://www.cvbuilder-pro.online/" />
 
     <!-- Open Graph (Facebook / LinkedIn) -->
     <meta property="og:type" content="website" />
@@ -46,24 +55,51 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "CV Builder Pro",
-        "url": "https://www.cvbuilder-pro.online/",
-        "description": "Free online CV and resume builder with professional templates and PDF export.",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "Any",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "featureList": [
-          "3 professional CV templates",
-          "PDF download",
-          "Print support",
-          "Real-time preview",
-          "Auto-save",
-          "Photo upload"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://www.cvbuilder-pro.online/#organization",
+            "name": "CV Builder Pro",
+            "url": "https://www.cvbuilder-pro.online/",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://www.cvbuilder-pro.online/#logo",
+              "url": "https://www.cvbuilder-pro.online/opengraph.jpg",
+              "caption": "CV Builder Pro"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.cvbuilder-pro.online/#website",
+            "name": "CV Builder Pro",
+            "url": "https://www.cvbuilder-pro.online/",
+            "description": "Free online CV and resume builder with professional templates and PDF export.",
+            "publisher": { "@id": "https://www.cvbuilder-pro.online/#organization" },
+            "inLanguage": ["en", "fr", "es", "ar", "tr", "pt"]
+          },
+          {
+            "@type": "WebApplication",
+            "@id": "https://www.cvbuilder-pro.online/#webapp",
+            "name": "CV Builder Pro",
+            "url": "https://www.cvbuilder-pro.online/",
+            "description": "Free online CV and resume builder with professional templates and PDF export.",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "isPartOf": { "@id": "https://www.cvbuilder-pro.online/#website" },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "3 professional CV templates",
+              "PDF download",
+              "Print support",
+              "Real-time preview",
+              "Auto-save",
+              "Photo upload"
+            ]
+          }
         ]
       }
     </script>

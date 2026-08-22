@@ -3,6 +3,14 @@
   "outputDirectory": "artifacts/cv-builder/dist/public",
   "installCommand": "pnpm install",
   "framework": "vite",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "cvbuilder-pro.online" }],
+      "destination": "https://www.cvbuilder-pro.online/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ],

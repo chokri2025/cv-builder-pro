@@ -10,6 +10,10 @@ import {
   TemplateType,
 } from '../types/cv';
 
+/** The build-time prerender renders this page in Node, where there is no
+ * localStorage; reads and writes are no-ops there and pick up on hydration. */
+const canUseStorage = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+
 const STORAGE_KEY = 'cv-builder-data';
 const TEMPLATE_KEY = 'cv-builder-template';
 const AUTOSAVE_DELAY_MS = 1500;
@@ -20,6 +24,7 @@ function generateId(): string {
 
 export function useCV() {
   const [cvData, setCvData] = useState<CVData>(() => {
+    if (!canUseStorage) return DEFAULT_CV_DATA;
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       return saved ? JSON.parse(saved) : DEFAULT_CV_DATA;
@@ -29,6 +34,7 @@ export function useCV() {
   });
 
   const [template, setTemplate] = useState<TemplateType>(() => {
+    if (!canUseStorage) return 'minimal';
     return (localStorage.getItem(TEMPLATE_KEY) as TemplateType) || 'minimal';
   });
 
@@ -36,6 +42,7 @@ export function useCV() {
   const autoSaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
+    if (!canUseStorage) return;
     if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
     autoSaveTimer.current = setTimeout(() => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(cvData));

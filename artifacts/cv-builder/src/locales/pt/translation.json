@@ -18,7 +18,9 @@
       "creative": "Criativo"
     },
     "editLabel": "← Editar",
-    "previewLabel": "Pré-visualizar →"
+    "previewLabel": "Pré-visualizar →",
+    "pageHeading": "Criador de CV e currículo grátis online",
+    "pageTagline": "Crie um CV profissional em minutos: preencha o formulário, escolha um dos três modelos e descarregue um PDF pronto a imprimir. Grátis e sem registo."
   },
   "sections": {
     "personal": "Informações pessoais",
@@ -125,17 +127,30 @@
     "tipsSkillTitle": "Dicas para um excelente CV de {{skill}}",
     "tipsCityTitle": "Dicas para o seu CV em {{city}}",
     "related": {
-      "newYork": "CV Builder – Nova Iorque",
-      "london": "CV Builder – Londres",
-      "toronto": "CV Builder – Toronto",
-      "sydney": "CV Builder – Sydney",
-      "softwareEngineer": "CV Engenheiro de Software",
-      "nurse": "CV Enfermeiro/a",
-      "teacher": "CV Professor/a",
-      "projectManager": "CV Gestor de Projetos"
+      "skillCity": "CV de {{skill}} em {{city}}",
+      "skill": "CV de {{skill}}",
+      "city": "Criador de CV – {{city}}"
     }
   },
   "languageSwitcher": {
     "label": "Idioma"
+  },
+  "home": {
+    "faqTitle": "Perguntas frequentes",
+    "guidesTitle": "Guias de CV populares",
+    "faqs": [
+      {
+        "q": "O CV Builder Pro é mesmo gratuito?",
+        "a": "Sim. Todos os modelos e a transferência em PDF são gratuitos, sem conta e sem marca de água no seu CV."
+      },
+      {
+        "q": "O meu CV passa nos filtros ATS?",
+        "a": "Os nossos modelos usam um layout de uma coluna, com texto real e cabeçalhos de secção padrão, que os sistemas de recrutamento interpretam de forma fiável. Use no título da função e nas competências as palavras do anúncio."
+      },
+      {
+        "q": "Onde ficam guardados os meus dados?",
+        "a": "Apenas no seu navegador. O seu CV é guardado no armazenamento local deste dispositivo e nunca é enviado para um servidor."
+      }
+    ]
   }
 }

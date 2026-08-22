@@ -27,7 +27,7 @@ export default function CreativeTemplate({ data }: Props) {
         <div className="cv-creative-accent-bar" />
         <div className="cv-creative-hero">
           <div className="cv-creative-hero-text">
-            <h1>{personal.fullName || 'Your Name'}</h1>
+            <p className="cv-name">{personal.fullName || 'Your Name'}</p>
             {personal.jobTitle && <p className="cv-creative-subtitle">{personal.jobTitle}</p>}
           </div>
           {personal.profilePicture && (

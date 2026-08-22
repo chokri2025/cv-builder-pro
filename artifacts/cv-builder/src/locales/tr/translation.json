@@ -18,7 +18,9 @@
       "creative": "Yaratıcı"
     },
     "editLabel": "← Düzenle",
-    "previewLabel": "Önizleme →"
+    "previewLabel": "Önizleme →",
+    "pageHeading": "Ücretsiz Çevrimiçi CV ve Özgeçmiş Oluşturucu",
+    "pageTagline": "Dakikalar içinde profesyonel bir CV hazırlayın: formu doldurun, üç şablondan birini seçin ve baskıya hazır PDF'i indirin. Ücretsiz, kayıt gerekmez."
   },
   "sections": {
     "personal": "Kişisel Bilgiler",
@@ -125,17 +127,30 @@
     "tipsSkillTitle": "Harika bir {{skill}} CV'si için ipuçları",
     "tipsCityTitle": "{{city}}'deki CV'niz için ipuçları",
     "related": {
-      "newYork": "CV Builder – New York",
-      "london": "CV Builder – Londra",
-      "toronto": "CV Builder – Toronto",
-      "sydney": "CV Builder – Sidney",
-      "softwareEngineer": "Yazılım Mühendisi CV",
-      "nurse": "Hemşire CV",
-      "teacher": "Öğretmen CV",
-      "projectManager": "Proje Yöneticisi CV"
+      "skillCity": "{{city}}'de {{skill}} CV'si",
+      "skill": "{{skill}} CV'si",
+      "city": "CV Oluşturucu – {{city}}"
     }
   },
   "languageSwitcher": {
     "label": "Dil"
+  },
+  "home": {
+    "faqTitle": "Sık sorulan sorular",
+    "guidesTitle": "Popüler CV rehberleri",
+    "faqs": [
+      {
+        "q": "CV Builder Pro gerçekten ücretsiz mi?",
+        "a": "Evet. Tüm şablonlar ve PDF indirme ücretsizdir; hesap gerekmez ve CV’nizde filigran olmaz."
+      },
+      {
+        "q": "CV’m ATS taramasından geçer mi?",
+        "a": "Şablonlarımız tek sütunlu, gerçek metne dayalı ve standart bölüm başlıkları olan bir düzen kullanır; işe alım yazılımları bunu güvenilir biçimde okur. Pozisyon adını ve becerileri ilandaki sözcüklerle yazın."
+      },
+      {
+        "q": "Verilerim nerede saklanıyor?",
+        "a": "Yalnızca tarayıcınızda. CV’niz bu cihazın yerel depolamasına kaydedilir ve hiçbir sunucuya yüklenmez."
+      }
+    ]
   }
 }

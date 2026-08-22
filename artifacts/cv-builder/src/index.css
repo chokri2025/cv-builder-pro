@@ -724,7 +724,7 @@ body {
   border: 2px solid #0ea5e9;
 }
 
-.cv-header-text h1 {
+.cv-header-text .cv-name {
   font-size: 18pt;
   font-weight: 700;
   color: #0f172a;
@@ -732,7 +732,7 @@ body {
   margin-bottom: 0.2rem;
 }
 
-.cv-header-text h2 {
+.cv-header-text .cv-job-title {
   font-size: 10.5pt;
   font-weight: 400;
   color: #0ea5e9;
@@ -893,7 +893,7 @@ body {
   margin-bottom: 0.75rem;
 }
 
-.cv-modern-name h1 {
+.cv-modern-name .cv-name {
   font-size: 12pt;
   font-weight: 700;
   color: #f8fafc;
@@ -1095,7 +1095,7 @@ body {
   padding: 1.5rem 2rem 0.75rem;
 }
 
-.cv-creative-hero-text h1 {
+.cv-creative-hero-text .cv-name {
   font-size: 20pt;
   font-weight: 700;
   color: #fff;
@@ -1474,6 +1474,7 @@ body {
 }
 
 /* SECTIONS */
+.seo-local-section,
 .seo-tips-section,
 .seo-how-section,
 .seo-faq-section,
@@ -1482,6 +1483,9 @@ body {
   border-bottom: 1px solid #e0f2fe;
 }
 
+.seo-local-section {
+  background: #f8fafc;
+}
 .seo-tips-section {
   background: #fff;
 }
@@ -1505,6 +1509,32 @@ body {
   font-weight: 700;
   color: #0f172a;
   margin-bottom: 1.5rem;
+}
+
+.seo-local-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.seo-local-item {
+  position: relative;
+  padding-inline-start: 1.25rem;
+  font-size: 0.92rem;
+  color: #334155;
+  line-height: 1.65;
+}
+
+.seo-local-item::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0369a1, #0ea5e9);
 }
 
 .seo-tips-list {
@@ -1758,6 +1788,7 @@ body {
   .seo-hero {
     padding: 2.5rem 1.25rem;
   }
+  .seo-local-section,
   .seo-tips-section,
   .seo-how-section,
   .seo-faq-section,
@@ -1767,6 +1798,86 @@ body {
 }
 
 /* ─── Language Switcher ─────────────────────────────────── */
+/* ── Crawlable homepage content at the end of the form column ────── */
+.home-seo {
+  padding: 1.25rem 1.25rem 2rem;
+  border-top: 1px solid #bae6fd;
+  background: #f8fafc;
+}
+
+.home-seo-block + .home-seo-block {
+  margin-top: 1.5rem;
+}
+
+.home-seo-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+}
+
+.home-seo-faq + .home-seo-faq {
+  margin-top: 0.75rem;
+}
+
+.home-seo-faqs dt {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.2rem;
+}
+
+.home-seo-faqs dd {
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.55;
+}
+
+.home-seo-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+}
+
+.home-seo-links a {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  background: #fff;
+  border: 1px solid #bae6fd;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: #0369a1;
+  text-decoration: none;
+}
+
+.home-seo-links a:hover {
+  background: #e0f2fe;
+}
+
+/* ── Page heading (the builder page's H1, above the language bar) ── */
+.form-intro {
+  padding: 0.9rem 1.25rem 0.7rem;
+  background: #f0f9ff;
+  border-bottom: 1px solid #bae6fd;
+}
+
+.form-h1 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 0.3rem;
+}
+
+.form-tagline {
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
 /* ── Language bar (dedicated row below header) ──────────────────── */
 .lang-bar {
   display: flex;

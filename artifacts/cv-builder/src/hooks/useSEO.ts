@@ -11,6 +11,10 @@ export interface SEOProps {
   canonical?: string;
   lang?: string;
   alternateLangs?: HreflangEntry[];
+  /** Absolute URL of the social preview image (og:image / twitter:image). */
+  image?: string;
+  /** Site name for og:site_name. */
+  siteName?: string;
   jsonLd?: Record<string, unknown>;
 }
 
@@ -41,6 +45,8 @@ export function buildHeadTags({
   canonical,
   lang,
   alternateLangs,
+  image,
+  siteName,
   jsonLd,
 }: SEOProps): HeadTags {
   const metas: MetaTag[] = [
@@ -49,6 +55,22 @@ export function buildHeadTags({
     { attrName: 'property', attrValue: 'og:description', content: description },
     { attrName: 'property', attrValue: 'og:type', content: 'website' },
   ];
+
+  if (siteName) {
+    metas.push({ attrName: 'property', attrValue: 'og:site_name', content: siteName });
+  }
+
+  // The prerender replaces the shell's social tags with these, so every page has
+  // to carry a full card of its own rather than inheriting the generic one.
+  if (image) {
+    metas.push(
+      { attrName: 'property', attrValue: 'og:image', content: image },
+      { attrName: 'name', attrValue: 'twitter:card', content: 'summary_large_image' },
+      { attrName: 'name', attrValue: 'twitter:title', content: title },
+      { attrName: 'name', attrValue: 'twitter:description', content: description },
+      { attrName: 'name', attrValue: 'twitter:image', content: image },
+    );
+  }
   const links: LinkTag[] = [];
 
   if (canonical) {
@@ -73,10 +95,19 @@ export function buildHeadTags({
 }
 
 export function useSEO(props: SEOProps) {
-  const { title, description, canonical, lang, alternateLangs, jsonLd } = props;
+  const { title, description, canonical, lang, alternateLangs, image, siteName, jsonLd } = props;
 
   useEffect(() => {
-    const head = buildHeadTags({ title, description, canonical, lang, alternateLangs, jsonLd });
+    const head = buildHeadTags({
+      title,
+      description,
+      canonical,
+      lang,
+      alternateLangs,
+      image,
+      siteName,
+      jsonLd,
+    });
 
     document.title = head.title;
     head.metas.forEach(({ attrName, attrValue, content }) => setMeta(attrName, attrValue, content));
@@ -109,7 +140,16 @@ export function useSEO(props: SEOProps) {
       removeOldHreflangs();
       removeOldJsonLd();
     };
-  }, [title, description, canonical, lang, JSON.stringify(alternateLangs), JSON.stringify(jsonLd)]);
+  }, [
+    title,
+    description,
+    canonical,
+    lang,
+    image,
+    siteName,
+    JSON.stringify(alternateLangs),
+    JSON.stringify(jsonLd),
+  ]);
 }
 
 function setMeta(attrName: string, attrValue: string, content: string) {

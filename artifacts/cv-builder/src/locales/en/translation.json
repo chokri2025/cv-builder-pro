@@ -18,7 +18,9 @@
       "creative": "Creative"
     },
     "editLabel": "← Edit",
-    "previewLabel": "Preview →"
+    "previewLabel": "Preview →",
+    "pageHeading": "Free Online CV & Resume Builder",
+    "pageTagline": "Build a professional CV in minutes: fill in the form, pick one of three templates and download a print-ready PDF. Free, no sign-up."
   },
   "sections": {
     "personal": "Personal Information",
@@ -101,7 +103,7 @@
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Free Online Resume & CV Maker",
-    "homeDescription": "Create a professional CV or resume in minutes. Choose from 3 beautiful templates and download as PDF. Free, no sign-up required.",
+    "homeDescription": "Create a professional CV in minutes. Pick from 3 free templates, add your experience & skills, and download as a polished PDF — no sign-up needed.",
     "notFound": "Page not found",
     "notFoundDesc": "This page doesn't exist. Try our",
     "notFoundLink": "free CV builder",
@@ -125,17 +127,30 @@
     "tipsSkillTitle": "Tips for a great {{skill}} CV",
     "tipsCityTitle": "Tips for your CV in {{city}}",
     "related": {
-      "newYork": "CV Builder – New York",
-      "london": "CV Builder – London",
-      "toronto": "CV Builder – Toronto",
-      "sydney": "CV Builder – Sydney",
-      "softwareEngineer": "Software Engineer CV",
-      "nurse": "Nurse CV",
-      "teacher": "Teacher CV",
-      "projectManager": "Project Manager CV"
+      "skillCity": "{{skill}} CV in {{city}}",
+      "skill": "{{skill}} CV",
+      "city": "CV Builder – {{city}}"
     }
   },
   "languageSwitcher": {
     "label": "Language"
+  },
+  "home": {
+    "faqTitle": "Common questions",
+    "guidesTitle": "Popular CV guides",
+    "faqs": [
+      {
+        "q": "Is CV Builder Pro really free?",
+        "a": "Yes. Every template and the PDF download are free, with no account and no watermark on your CV."
+      },
+      {
+        "q": "Will my CV pass an ATS screen?",
+        "a": "Our templates use a single-column, text-based layout with standard section headings, which applicant tracking systems parse reliably. Keep your job title and skills in the words the advert uses."
+      },
+      {
+        "q": "Where is my data stored?",
+        "a": "In your browser only. Your CV is saved to this device’s local storage and is never uploaded to a server."
+      }
+    ]
   }
 }

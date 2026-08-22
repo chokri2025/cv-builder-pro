@@ -18,7 +18,9 @@
       "creative": "Créatif"
     },
     "editLabel": "← Modifier",
-    "previewLabel": "Aperçu →"
+    "previewLabel": "Aperçu →",
+    "pageHeading": "Créateur de CV et de résumé gratuit en ligne",
+    "pageTagline": "Créez un CV professionnel en quelques minutes : remplissez le formulaire, choisissez l’un des trois modèles et téléchargez un PDF prêt à imprimer. Gratuit, sans inscription."
   },
   "sections": {
     "personal": "Informations personnelles",
@@ -138,17 +140,30 @@
     "tipsSkillTitle": "Conseils pour un excellent CV {{skill}}",
     "tipsCityTitle": "Conseils pour votre CV à {{city}}",
     "related": {
-      "newYork": "CV Builder – New York",
-      "london": "CV Builder – Londres",
-      "toronto": "CV Builder – Toronto",
-      "sydney": "CV Builder – Sydney",
-      "softwareEngineer": "CV Ingénieur Logiciel",
-      "nurse": "CV Infirmier",
-      "teacher": "CV Enseignant",
-      "projectManager": "CV Chef de projet"
+      "skillCity": "CV de {{skill}} à {{city}}",
+      "skill": "CV de {{skill}}",
+      "city": "Créateur de CV – {{city}}"
     }
   },
   "languageSwitcher": {
     "label": "Langue"
+  },
+  "home": {
+    "faqTitle": "Questions fréquentes",
+    "guidesTitle": "Guides de CV populaires",
+    "faqs": [
+      {
+        "q": "CV Builder Pro est-il vraiment gratuit ?",
+        "a": "Oui. Tous les modèles et le téléchargement PDF sont gratuits, sans compte et sans filigrane sur votre CV."
+      },
+      {
+        "q": "Mon CV passera-t-il les filtres ATS ?",
+        "a": "Nos modèles utilisent une mise en page en une colonne, en texte réel, avec des intitulés de sections standard, que les logiciels de recrutement analysent de façon fiable. Reprenez les mots de l’annonce pour votre intitulé et vos compétences."
+      },
+      {
+        "q": "Où sont stockées mes données ?",
+        "a": "Uniquement dans votre navigateur. Votre CV est enregistré dans le stockage local de cet appareil et n’est jamais envoyé à un serveur."
+      }
+    ]
   }
 }
