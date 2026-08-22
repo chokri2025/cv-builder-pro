@@ -143,7 +143,12 @@
       "skillCity": "سيرة ذاتية لـ {{skill}} في {{city}}",
       "skill": "سيرة ذاتية لـ {{skill}}",
       "city": "منشئ السيرة الذاتية – {{city}}"
-    }
+    },
+    "sitemapIntro": "جميع أدلة CV Builder Pro، مرتبة حسب المهنة وحسب المدينة وحسب المهنة والمدينة معاً.",
+    "sitemapBySkill": "أدلة السيرة الذاتية حسب المهنة",
+    "sitemapByCity": "أدلة السيرة الذاتية حسب المدينة",
+    "sitemapBySkillCity": "أدلة السيرة الذاتية حسب المهنة والمدينة",
+    "sitemapDescription": "تصفّح جميع أدلة CV Builder Pro حسب المهنة والمدينة — قوالب سيرة ذاتية مجانية وتحميل PDF دون تسجيل."
   },
   "languageSwitcher": {
     "label": "اللغة"

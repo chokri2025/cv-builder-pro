@@ -10,7 +10,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { LANGUAGES, NON_EN_LANGS, getAllSeoSlugs } from './seo-routes.mjs';
+import { LANGUAGES, NON_EN_LANGS, getAllSeoSlugs, getSitemapEntries } from './seo-routes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -31,40 +31,17 @@ function alternatesFor(suffix) {
   return [...links, { lang: 'x-default', href: `${base}${suffix || '/'}` }];
 }
 
-function entry(loc, priority, changefreq = 'monthly', includeLastmod = true, alternates = []) {
+function entry({ path: loc, priority, changefreq, lastmod: includeLastmod, altSuffix }) {
   const lastmod = includeLastmod ? `\n    <lastmod>${today}</lastmod>` : '';
-  const links = alternates
+  const links = alternatesFor(altSuffix)
     .map((a) => `\n    <xhtml:link rel="alternate" hreflang="${a.lang}" href="${a.href}" />`)
     .join('');
   return `  <url>\n    <loc>${base}${loc}</loc>${lastmod}\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>${links}\n  </url>`;
 }
 
-const urls = [
-  // ── Core ───────────────────────────────────────────────────────────────────
-  entry('/', '1.0', 'weekly', true, alternatesFor('')),
-  entry('/sitemap', '0.5', 'monthly', false, alternatesFor('/sitemap')),
-
-  // ── Language homepages (/fr, /es, /ar, /tr, /pt) ──────────────────────────
-  //    English is the root "/" above; /en canonicalizes to it, so it is not listed.
-  ...NON_EN_LANGS.map((lang) => entry(`/${lang}`, '0.9', 'weekly', true, alternatesFor(''))),
-
-  // ── Language sitemap pages ────────────────────────────────────────────────
-  ...NON_EN_LANGS.map((lang) =>
-    entry(`/${lang}/sitemap`, '0.5', 'monthly', false, alternatesFor('/sitemap')),
-  ),
-
-  // ── English SEO landing pages ─────────────────────────────────────────────
-  ...slugs.map((slug) =>
-    entry(`/resume/${slug}`, '0.8', 'monthly', true, alternatesFor(`/resume/${slug}`)),
-  ),
-
-  // ── Localized SEO landing pages (fr, es, ar, tr, pt) ─────────────────────
-  ...NON_EN_LANGS.flatMap((lang) =>
-    slugs.map((slug) =>
-      entry(`/${lang}/resume/${slug}`, '0.7', 'monthly', true, alternatesFor(`/resume/${slug}`)),
-    ),
-  ),
-];
+// The route list is shared with the prerender step, so the sitemap can never
+// advertise a URL that has no static HTML behind it.
+const urls = getSitemapEntries().map(entry);
 
 const xml = [
   '<?xml version="1.0" encoding="UTF-8"?>',

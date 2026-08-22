@@ -13,6 +13,10 @@
  * <slug>/index.html for non-English locales) per route, plus the homepage itself —
  * dist/public/index.html and dist/public/<lang>/index.html — so the page carrying
  * the most authority is not the one page a crawler sees empty.
+ *
+ * Routes come from getPrerenderRoutes(), the same enumeration the sitemap is built
+ * from. Anything advertised in the sitemap without a file here would fall through
+ * to the SPA rewrite and be served the homepage HTML, canonical tag included.
  */
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -23,13 +27,15 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import i18n from '../src/i18n';
 import LandingPage from '../src/pages/LandingPage';
+import SitemapPage from '../src/pages/SitemapPage';
 import CVBuilderPage from '../src/pages/CVBuilderPage';
 import { buildHomeFaqJsonLd, getHomeFaqs } from '../src/lib/home-seo';
+import { buildSitemapSeoProps } from '../src/lib/sitemap-seo';
 import { parseSlug } from '../src/data/seo-data';
 import { buildLocalizedSeoPageData } from '../src/data/localized-seo-data';
 import { buildLandingSeoProps } from '../src/lib/landing-seo';
 import { buildHeadTags, type HeadTags } from '../src/hooks/useSEO';
-import { LANGUAGES, NON_EN_LANGS, getAllSeoSlugs } from './seo-routes.mjs';
+import { LANGUAGES, getPrerenderRoutes } from './seo-routes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.resolve(__dirname, '../dist/public');
@@ -142,6 +148,32 @@ async function renderHomeRoute(lang: LangCode, urlLang: string | undefined) {
   return { headTags, bodyHtml };
 }
 
+async function renderSitemapRoute(lang: LangCode, urlLang: string | undefined) {
+  await i18n.changeLanguage(lang);
+
+  const seoProps = buildSitemapSeoProps(
+    urlLang,
+    lang,
+    siteUrl,
+    `${i18n.t('seo.sitemap')} – CV Builder Pro`,
+    i18n.t('seo.sitemapDescription'),
+  );
+  const headTags = buildHeadTags(seoProps);
+
+  const bodyHtml = renderToStaticMarkup(
+    <StaticRouter location={urlLang ? `/${urlLang}/sitemap` : '/sitemap'}>
+      <I18nextProvider i18n={i18n}>
+        <Routes>
+          <Route path="/sitemap" element={<SitemapPage />} />
+          <Route path="/:lang/sitemap" element={<SitemapPage />} />
+        </Routes>
+      </I18nextProvider>
+    </StaticRouter>,
+  );
+
+  return { headTags, bodyHtml };
+}
+
 function assembleHtml(
   template: string,
   headTags: HeadTags,
@@ -165,45 +197,43 @@ async function main() {
   }
 
   const template = fs.readFileSync(templatePath, 'utf8');
-  const slugs = getAllSeoSlugs();
 
-  const routes: { slug: string; lang: LangCode; urlLang: string | undefined }[] = [
-    ...slugs.map((slug: string) => ({ slug, lang: 'en' as LangCode, urlLang: undefined })),
-    ...NON_EN_LANGS.flatMap((lang: string) =>
-      slugs.map((slug: string) => ({ slug, lang: lang as LangCode, urlLang: lang })),
-    ),
-  ];
+  // One list, shared with the sitemap generator: every advertised URL gets a file.
+  const routes = getPrerenderRoutes();
 
-  let written = 0;
-  for (const { slug, lang, urlLang } of routes) {
-    const { headTags, bodyHtml, routePath } = await renderRoute(slug, lang, urlLang);
+  const counts = { home: 0, sitemap: 0, landing: 0 };
 
-    const html = assembleHtml(template, headTags, bodyHtml, lang, false);
+  for (const route of routes) {
+    const { kind, lang, urlLang } = route;
 
-    const outDir = path.join(distDir, routePath.replace(/^\//, ''));
+    const rendered =
+      kind === 'landing'
+        ? await renderRoute(route.slug!, lang, urlLang)
+        : kind === 'sitemap'
+          ? await renderSitemapRoute(lang, urlLang)
+          : await renderHomeRoute(lang, urlLang);
+
+    // Homepages keep the shell's Organization/WebSite graph; the other page types
+    // ship their own, so the shell's is stripped for them.
+    const html = assembleHtml(
+      template,
+      rendered.headTags,
+      rendered.bodyHtml,
+      lang,
+      kind === 'home',
+    );
+
+    const outDir = path.join(distDir, route.path.replace(/^\//, ''));
     fs.mkdirSync(outDir, { recursive: true });
     fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
-    written += 1;
+    counts[kind] += 1;
   }
 
-  // Homepage: "/" overwrites the shell itself, plus one per /<lang> route.
-  const homeRoutes: { lang: LangCode; urlLang: string | undefined }[] = [
-    { lang: 'en', urlLang: undefined },
-    ...LANGUAGES.map((lang: string) => ({ lang: lang as LangCode, urlLang: lang })),
-  ];
-
-  for (const { lang, urlLang } of homeRoutes) {
-    const { headTags, bodyHtml } = await renderHomeRoute(lang, urlLang);
-    const html = assembleHtml(template, headTags, bodyHtml, lang, true);
-
-    const outDir = urlLang ? path.join(distDir, urlLang) : distDir;
-    fs.mkdirSync(outDir, { recursive: true });
-    fs.writeFileSync(path.join(outDir, 'index.html'), html, 'utf8');
-    written += 1;
-  }
+  const written = counts.home + counts.sitemap + counts.landing;
 
   console.log(
-    `[prerender] ✓ Prerendered ${written} pages (${homeRoutes.length} homepage routes + ${routes.length} SEO landing pages)`,
+    `[prerender] ✓ Prerendered ${written} pages ` +
+      `(${counts.home} homepage, ${counts.sitemap} sitemap, ${counts.landing} landing)`,
   );
 }
 

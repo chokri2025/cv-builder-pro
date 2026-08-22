@@ -130,7 +130,12 @@
       "skillCity": "CV de {{skill}} em {{city}}",
       "skill": "CV de {{skill}}",
       "city": "Criador de CV – {{city}}"
-    }
+    },
+    "sitemapIntro": "Todos os guias do CV Builder Pro, por profissão, por cidade e por profissão e cidade.",
+    "sitemapBySkill": "Guias de CV por profissão",
+    "sitemapByCity": "Guias de CV por cidade",
+    "sitemapBySkillCity": "Guias de CV por profissão e cidade",
+    "sitemapDescription": "Explore todos os guias do CV Builder Pro por profissão e cidade — modelos de CV gratuitos, exportação em PDF e sem registo."
   },
   "languageSwitcher": {
     "label": "Idioma"

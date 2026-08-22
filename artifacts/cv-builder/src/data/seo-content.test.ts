@@ -5,11 +5,14 @@ import { getAllSlugs, parseSlug } from './seo-data';
 import {
   buildLocalizedSeoPageData,
   clampMetaDescription,
+  clampTitle,
   MAX_META_DESCRIPTION,
+  MAX_TITLE,
 } from './localized-seo-data';
 import { buildLandingSeoProps } from '../lib/landing-seo';
 import { buildHomeFaqJsonLd } from '../lib/home-seo';
 import { buildRelatedLinks } from '../lib/related-links';
+import { buildSitemapSeoProps } from '../lib/sitemap-seo';
 
 const LANGS = ['en', 'fr', 'es', 'ar', 'tr', 'pt'] as const;
 const SITE = 'https://www.cvbuilder-pro.online';
@@ -64,6 +67,87 @@ describe('landing page copy', () => {
       expect(page.localTitle.length, slug).toBeGreaterThan(0);
       expect(page.faqs.length, slug).toBe(4);
     }
+  });
+});
+
+describe('page titles', () => {
+  it.each(LANGS)('keeps %s titles within the width search results render', (lang) => {
+    const lengths = pagesFor(lang).map(({ page }) => page.pageTitle.length);
+    // A handful of the longest role × city combinations still run a few characters
+    // over; nothing may exceed the hard cap, and the bulk must fit outright.
+    expect(Math.max(...lengths)).toBeLessThanOrEqual(MAX_TITLE + 5);
+    const fitting = lengths.filter((l) => l <= MAX_TITLE).length;
+    expect(fitting / lengths.length).toBeGreaterThan(0.9);
+  });
+
+  it('keeps the brand suffix when the title still fits', () => {
+    const page = buildLocalizedSeoPageData(...withSlug('nurse'), 'en');
+    expect(page.pageTitle).toContain('| CV Builder Pro');
+    expect(page.pageTitle.length).toBeLessThanOrEqual(MAX_TITLE);
+  });
+
+  it('drops the brand suffix rather than overflowing', () => {
+    const page = buildLocalizedSeoPageData(...withSlug('marketing-manager-san-francisco'), 'en');
+    expect(page.pageTitle).not.toContain('| CV Builder Pro');
+  });
+
+  it.each(LANGS)('gives every %s page a unique title', (lang) => {
+    const titles = pagesFor(lang).map(({ page }) => page.pageTitle);
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+});
+
+describe('clampTitle', () => {
+  it('appends the brand when the result fits', () => {
+    expect(clampTitle('Free Nurse CV Builder')).toBe('Free Nurse CV Builder | CV Builder Pro');
+  });
+
+  it('returns the bare title when the brand would overflow', () => {
+    const core = 'A'.repeat(50);
+    expect(clampTitle(core)).toBe(core);
+  });
+
+  it('honours a custom limit', () => {
+    expect(clampTitle('Short', 100)).toBe('Short | CV Builder Pro');
+    expect(clampTitle('Short', 10)).toBe('Short');
+  });
+});
+
+describe('sitemap hub pages', () => {
+  const title = 'Sitemap – CV Builder Pro';
+  const description = 'Browse every guide.';
+
+  it('canonicalizes /en/sitemap to the unprefixed hub', () => {
+    const bare = buildSitemapSeoProps(undefined, 'en', SITE, title, description);
+    const prefixed = buildSitemapSeoProps('en', 'en', SITE, title, description);
+
+    expect(bare.canonical).toBe(`${SITE}/sitemap`);
+    expect(prefixed.canonical).toBe(bare.canonical);
+  });
+
+  it('canonicalizes localized hubs to their own path', () => {
+    const fr = buildSitemapSeoProps('fr', 'fr', SITE, title, description);
+    expect(fr.canonical).toBe(`${SITE}/fr/sitemap`);
+  });
+
+  it('declares the full hreflang cluster with English unprefixed', () => {
+    const props = buildSitemapSeoProps('fr', 'fr', SITE, title, description);
+    expect(props.alternateLangs?.map((a) => a.lang).sort()).toEqual([
+      'ar',
+      'en',
+      'es',
+      'fr',
+      'pt',
+      'tr',
+    ]);
+    expect(props.alternateLangs?.find((a) => a.lang === 'en')?.href).toBe(`${SITE}/sitemap`);
+  });
+
+  it('ships CollectionPage structured data tied to the site graph', () => {
+    const props = buildSitemapSeoProps(undefined, 'en', SITE, title, description);
+    const jsonLd = props.jsonLd as { '@type': string; isPartOf: { '@id': string } };
+    expect(jsonLd['@type']).toBe('CollectionPage');
+    expect(jsonLd.isPartOf['@id']).toBe(`${SITE}/#website`);
   });
 });
 
@@ -196,6 +280,19 @@ describe('homepage content', () => {
 
   it.each(locales)('has $lang label patterns for the contextual related links', ({ json }) => {
     expect(Object.keys(json.seo.related).sort()).toEqual(['city', 'skill', 'skillCity']);
+  });
+
+  it.each(locales)('translates the $lang sitemap hub page', ({ json }) => {
+    for (const key of [
+      'sitemapIntro',
+      'sitemapBySkill',
+      'sitemapByCity',
+      'sitemapBySkillCity',
+      'sitemapDescription',
+    ] as const) {
+      expect(json.seo[key]?.length, key).toBeGreaterThan(0);
+    }
+    expect(json.seo.sitemapDescription!.length).toBeLessThanOrEqual(MAX_META_DESCRIPTION);
   });
 
   it('builds FAQPage schema from the rendered questions', () => {

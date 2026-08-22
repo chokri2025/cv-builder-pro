@@ -130,7 +130,12 @@
       "skillCity": "{{city}}'de {{skill}} CV'si",
       "skill": "{{skill}} CV'si",
       "city": "CV Oluşturucu – {{city}}"
-    }
+    },
+    "sitemapIntro": "Tüm CV Builder Pro rehberleri: mesleğe göre, şehre göre ve meslek ile şehir birlikte.",
+    "sitemapBySkill": "Mesleğe göre CV rehberleri",
+    "sitemapByCity": "Şehre göre CV rehberleri",
+    "sitemapBySkillCity": "Meslek ve şehre göre CV rehberleri",
+    "sitemapDescription": "Tüm CV Builder Pro rehberlerine mesleğe ve şehre göre göz atın — ücretsiz CV şablonları, PDF indirme, kayıt yok."
   },
   "languageSwitcher": {
     "label": "Dil"

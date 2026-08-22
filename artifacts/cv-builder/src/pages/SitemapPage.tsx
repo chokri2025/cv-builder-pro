@@ -1,17 +1,32 @@
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSEO } from '../hooks/useSEO';
+import { useLanguage } from '../hooks/useLanguage';
 import { SEO_SKILLS, SEO_CITIES } from '../data/seo-data';
+import { buildSitemapSeoProps } from '../lib/sitemap-seo';
+import { SITE_URL } from '../lib/site';
+import type { SupportedLang } from '../i18n';
+
+const SUPPORTED_LANG_CODES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
 
 export default function SitemapPage() {
   const { t } = useTranslation();
-  const { lang } = useParams<{ lang?: string }>();
-  const langPrefix = lang ? `/${lang}` : '';
+  const { lang: urlLang } = useParams<{ lang?: string }>();
+  const { currentLang } = useLanguage();
 
-  useSEO({
-    title: `${t('seo.sitemap')} – CV Builder Pro`,
-    description: 'Browse all CV builder landing pages by skill and city.',
-  });
+  const effectiveLang: SupportedLang =
+    urlLang && SUPPORTED_LANG_CODES.includes(urlLang) ? (urlLang as SupportedLang) : currentLang;
+  const langPrefix = urlLang ? `/${urlLang}` : '';
+
+  useSEO(
+    buildSitemapSeoProps(
+      urlLang,
+      effectiveLang,
+      SITE_URL,
+      `${t('seo.sitemap')} – CV Builder Pro`,
+      t('seo.sitemapDescription'),
+    ),
+  );
 
   return (
     <div className="seo-page">
@@ -32,10 +47,10 @@ export default function SitemapPage() {
 
       <div className="sitemap-page">
         <h1>{t('seo.sitemap')}</h1>
-        <p className="sitemap-intro">All CV builder pages, organized by skill and city.</p>
+        <p className="sitemap-intro">{t('seo.sitemapIntro')}</p>
 
         <section>
-          <h2>CV Builder by Skill</h2>
+          <h2>{t('seo.sitemapBySkill')}</h2>
           <div className="sitemap-grid">
             {SEO_SKILLS.map((skill) => (
               <Link
@@ -43,14 +58,14 @@ export default function SitemapPage() {
                 to={`${langPrefix}/resume/${skill.slug}`}
                 className="sitemap-link"
               >
-                {skill.label} CV Builder
+                {t('seo.related.skill', { skill: skill.label })}
               </Link>
             ))}
           </div>
         </section>
 
         <section>
-          <h2>CV Builder by City</h2>
+          <h2>{t('seo.sitemapByCity')}</h2>
           <div className="sitemap-grid">
             {SEO_CITIES.map((city) => (
               <Link
@@ -58,23 +73,26 @@ export default function SitemapPage() {
                 to={`${langPrefix}/resume/${city.slug}`}
                 className="sitemap-link"
               >
-                CV Builder – {city.label}
+                {t('seo.related.city', { city: city.label })}
               </Link>
             ))}
           </div>
         </section>
 
         <section>
-          <h2>CV Builder by Skill &amp; City</h2>
+          <h2>{t('seo.sitemapBySkillCity')}</h2>
+          {/* Every combination, not a sample: this page is the crawl path into the
+              job × city cluster, so a partial list leaves pages discoverable only
+              through the XML sitemap. */}
           <div className="sitemap-grid">
-            {SEO_SKILLS.slice(0, 8).map((skill) =>
-              SEO_CITIES.slice(0, 8).map((city) => (
+            {SEO_SKILLS.map((skill) =>
+              SEO_CITIES.map((city) => (
                 <Link
                   key={`${skill.slug}-${city.slug}`}
                   to={`${langPrefix}/resume/${skill.slug}-${city.slug}`}
                   className="sitemap-link"
                 >
-                  {skill.label} CV – {city.label}
+                  {t('seo.related.skillCity', { skill: skill.label, city: city.label })}
                 </Link>
               )),
             )}

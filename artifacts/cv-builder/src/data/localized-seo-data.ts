@@ -18,6 +18,25 @@ type PageBase = Omit<SeoPageData, 'intro' | 'tips' | 'faqs' | 'localTitle' | 'lo
 /** Google truncates search snippets past roughly this width. */
 export const MAX_META_DESCRIPTION = 155;
 
+/** Titles wider than this are truncated in search results. */
+export const MAX_TITLE = 60;
+
+const BRAND_SUFFIX = ' | CV Builder Pro';
+
+/**
+ * Appends the brand to a page title, but only when the result still fits.
+ *
+ * Appending it unconditionally pushed 84% of titles past the width Google renders
+ * — worst in Turkish, where "San Francisco'de Marketing Managerlar için Ücretsiz
+ * CV Oluşturucu" already fills the line before the brand is added. The page's own
+ * keywords are worth more of that width than a brand a search result already shows
+ * as the domain.
+ */
+export function clampTitle(core: string, max: number = MAX_TITLE): string {
+  const withBrand = `${core}${BRAND_SUFFIX}`;
+  return withBrand.length <= max ? withBrand : core;
+}
+
 /**
  * Keeps a meta description inside the width Google renders. Whole trailing
  * sentences are dropped first so the snippet still ends cleanly; only if that is
@@ -52,6 +71,7 @@ function withMarketCopy(base: PageBase, lang: LangCode): SeoPageData {
 
   return {
     ...base,
+    pageTitle: clampTitle(base.pageTitle),
     metaDescription: clampMetaDescription(base.metaDescription),
     intro: copy.intro,
     tips: copy.tips,
@@ -81,9 +101,9 @@ function buildEnSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const pageTitle = city
     ? skill
-      ? `Free CV Builder for ${skillLabel}s in ${city.label} | CV Builder Pro`
-      : `Free CV Builder in ${city.label} | CV Builder Pro`
-    : `Free ${skillLabel} CV Builder & Resume Template | CV Builder Pro`;
+      ? `Free CV Builder for ${skillLabel}s in ${city.label}`
+      : `Free CV Builder in ${city.label}`
+    : `Free ${skillLabel} CV Builder & Resume Template`;
 
   const metaDescription = city
     ? skill
@@ -125,9 +145,9 @@ function buildFrSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const pageTitle = city
     ? skill
-      ? `Créateur de CV gratuit pour ${skillLabel}s à ${city.label} | CV Builder Pro`
-      : `Créateur de CV gratuit à ${city.label} | CV Builder Pro`
-    : `Créateur de CV ${skillLabel} gratuit | CV Builder Pro`;
+      ? `Créateur de CV gratuit pour ${skillLabel}s à ${city.label}`
+      : `Créateur de CV gratuit à ${city.label}`
+    : `Créateur de CV ${skillLabel} gratuit`;
 
   const metaDescription = city
     ? skill
@@ -169,9 +189,9 @@ function buildEsSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const pageTitle = city
     ? skill
-      ? `Creador de CV gratis para ${skillLabel}s en ${city.label} | CV Builder Pro`
-      : `Creador de CV gratis en ${city.label} | CV Builder Pro`
-    : `Creador de CV de ${skillLabel} gratis | CV Builder Pro`;
+      ? `Creador de CV gratis para ${skillLabel}s en ${city.label}`
+      : `Creador de CV gratis en ${city.label}`
+    : `Creador de CV de ${skillLabel} gratis`;
 
   const metaDescription = city
     ? skill
@@ -213,9 +233,9 @@ function buildArSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const pageTitle = city
     ? skill
-      ? `منشئ سيرة ذاتية مجاني لـ ${skillLabel} في ${city.label} | CV Builder Pro`
-      : `منشئ سيرة ذاتية مجاني في ${city.label} | CV Builder Pro`
-    : `منشئ سيرة ذاتية ${skillLabel} مجاني | CV Builder Pro`;
+      ? `منشئ سيرة ذاتية مجاني لـ ${skillLabel} في ${city.label}`
+      : `منشئ سيرة ذاتية مجاني في ${city.label}`
+    : `منشئ سيرة ذاتية ${skillLabel} مجاني`;
 
   const metaDescription = city
     ? skill
@@ -257,9 +277,9 @@ function buildTrSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const pageTitle = city
     ? skill
-      ? `${city.label}'de ${skillLabel}lar için Ücretsiz CV Oluşturucu | CV Builder Pro`
-      : `${city.label}'de Ücretsiz CV Oluşturucu | CV Builder Pro`
-    : `Ücretsiz ${skillLabel} CV Oluşturucu | CV Builder Pro`;
+      ? `${city.label}'de ${skillLabel}lar için Ücretsiz CV Oluşturucu`
+      : `${city.label}'de Ücretsiz CV Oluşturucu`
+    : `Ücretsiz ${skillLabel} CV Oluşturucu`;
 
   const metaDescription = city
     ? skill
@@ -301,9 +321,9 @@ function buildPtSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
 
   const pageTitle = city
     ? skill
-      ? `Criador de CV grátis para ${skillLabel}s em ${city.label} | CV Builder Pro`
-      : `Criador de CV grátis em ${city.label} | CV Builder Pro`
-    : `Criador de CV de ${skillLabel} grátis | CV Builder Pro`;
+      ? `Criador de CV grátis para ${skillLabel}s em ${city.label}`
+      : `Criador de CV grátis em ${city.label}`
+    : `Criador de CV de ${skillLabel} grátis`;
 
   const metaDescription = city
     ? skill
