@@ -151,6 +151,84 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cvbuilder-pro.online/sitemap" />
   </url>
   <url>
+    <loc>https://www.cvbuilder-pro.online/europass-cv</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.cvbuilder-pro.online/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.cvbuilder-pro.online/fr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.cvbuilder-pro.online/es/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.cvbuilder-pro.online/ar/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.cvbuilder-pro.online/tr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.cvbuilder-pro.online/pt/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cvbuilder-pro.online/europass-cv" />
+  </url>
+  <url>
+    <loc>https://www.cvbuilder-pro.online/fr/europass-cv</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.cvbuilder-pro.online/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.cvbuilder-pro.online/fr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.cvbuilder-pro.online/es/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.cvbuilder-pro.online/ar/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.cvbuilder-pro.online/tr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.cvbuilder-pro.online/pt/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cvbuilder-pro.online/europass-cv" />
+  </url>
+  <url>
+    <loc>https://www.cvbuilder-pro.online/es/europass-cv</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.cvbuilder-pro.online/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.cvbuilder-pro.online/fr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.cvbuilder-pro.online/es/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.cvbuilder-pro.online/ar/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.cvbuilder-pro.online/tr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.cvbuilder-pro.online/pt/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cvbuilder-pro.online/europass-cv" />
+  </url>
+  <url>
+    <loc>https://www.cvbuilder-pro.online/ar/europass-cv</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.cvbuilder-pro.online/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.cvbuilder-pro.online/fr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.cvbuilder-pro.online/es/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.cvbuilder-pro.online/ar/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.cvbuilder-pro.online/tr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.cvbuilder-pro.online/pt/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cvbuilder-pro.online/europass-cv" />
+  </url>
+  <url>
+    <loc>https://www.cvbuilder-pro.online/tr/europass-cv</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.cvbuilder-pro.online/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.cvbuilder-pro.online/fr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.cvbuilder-pro.online/es/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.cvbuilder-pro.online/ar/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.cvbuilder-pro.online/tr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.cvbuilder-pro.online/pt/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cvbuilder-pro.online/europass-cv" />
+  </url>
+  <url>
+    <loc>https://www.cvbuilder-pro.online/pt/europass-cv</loc>
+    <lastmod>2026-08-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.cvbuilder-pro.online/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.cvbuilder-pro.online/fr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.cvbuilder-pro.online/es/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.cvbuilder-pro.online/ar/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://www.cvbuilder-pro.online/tr/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.cvbuilder-pro.online/pt/europass-cv" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.cvbuilder-pro.online/europass-cv" />
+  </url>
+  <url>
     <loc>https://www.cvbuilder-pro.online/resume/software-engineer</loc>
     <lastmod>2026-08-23</lastmod>
     <changefreq>monthly</changefreq>

@@ -1299,6 +1299,43 @@ body {
   }
 }
 
+.seo-europass-body {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.seo-cefr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.seo-cefr-row {
+  display: flex;
+  gap: 0.9rem;
+  align-items: baseline;
+}
+
+.seo-cefr-row dt {
+  flex: 0 0 2.6rem;
+  font-weight: 700;
+  color: #003399;
+  font-size: 0.92rem;
+}
+
+.seo-cefr-row dd {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+[dir='rtl'] .seo-cefr-row {
+  flex-direction: row-reverse;
+}
+
 /* ========================
    EUROPASS TEMPLATE
    Layout European employers recognise: identity block, then dated entries with

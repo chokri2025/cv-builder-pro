@@ -186,5 +186,78 @@
       "skills": "At least three skills listed",
       "education": "Education section filled in"
     }
+  },
+  "europass": {
+    "title": "Free Europass CV Builder — Create a Europass CV Online",
+    "description": "Build a Europass CV free online: the EU standard layout, CEFR language levels, PDF or Word download. No sign-up.",
+    "h1": "Free Europass CV Builder",
+    "h2": "The EU standard CV format, filled in and downloaded in minutes",
+    "intro": "Europass is the curriculum vitae format defined by the European Union. It sets a fixed order of sections and one shared way of stating language ability, so a recruiter in Lisbon reads a CV from Tallinn without having to decode its layout first. Our builder produces that format free, with no account.",
+    "whoTitle": "Who asks for a Europass CV",
+    "whoBody": "It is the expected format across most EU public-sector recruitment, for many university and research posts, for EU institutions and agencies, and for mobility and traineeship programmes. Private employers in several member states accept it as a matter of course. Outside those cases a conventional CV usually reads better — Europass is a standard, not an upgrade.",
+    "sectionsTitle": "What a Europass CV contains",
+    "sections": [
+      "Personal information — name, contact details, and the city and country you are based in",
+      "Work experience — reverse chronological, each entry with its period, employer and what you actually did",
+      "Education and training — qualifications with the awarding institution and dates",
+      "Language skills — your mother tongue plus every other language, stated on the CEFR scale",
+      "Digital skills — the tools and systems you work with",
+      "Other — driving licence, publications, certifications and volunteering, where relevant"
+    ],
+    "cefrTitle": "Language levels on the CEFR scale",
+    "cefrIntro": "This is the part of Europass employers compare directly, and the part candidates most often overstate. The scale runs from A1 to C2. Pick the level you could defend in an interview conducted in that language.",
+    "stepsTitle": "How to build yours",
+    "steps": [
+      "Fill in the form — experience, education, skills and languages.",
+      "Pick the Europass template; the layout and section order follow the standard.",
+      "Download as PDF, or as .docx when the employer asks for Word."
+    ],
+    "faqTitle": "Frequently asked questions",
+    "faqs": [
+      {
+        "q": "Is a Europass CV free to make?",
+        "a": "Yes. This builder produces one free, with no sign-up and no watermark, and exports to PDF or Word."
+      },
+      {
+        "q": "Do I have to use Europass?",
+        "a": "Only where it is asked for — EU public-sector roles, research posts, EU institutions and mobility programmes. Elsewhere a conventional CV usually reads better."
+      },
+      {
+        "q": "Should I send PDF or Word?",
+        "a": "Send what the advert asks for. If it does not say, PDF preserves the layout; .docx is parsed more reliably by some recruitment systems."
+      },
+      {
+        "q": "How do I choose my CEFR level?",
+        "a": "Take the level you could sustain in an interview held in that language. Overstating it is exposed in the first minutes of a call."
+      }
+    ],
+    "cta": "Build my Europass CV",
+    "relatedTitle": "Other CV guides",
+    "cefr": [
+      {
+        "level": "A1",
+        "description": "Basic phrases, introductions, simple questions about familiar things."
+      },
+      {
+        "level": "A2",
+        "description": "Routine exchanges on familiar topics: shopping, directions, your own background."
+      },
+      {
+        "level": "B1",
+        "description": "Handles most situations while travelling; can describe experiences and plans."
+      },
+      {
+        "level": "B2",
+        "description": "Fluent enough for technical discussion in your own field, with little strain on either side."
+      },
+      {
+        "level": "C1",
+        "description": "Flexible, effective use for professional and academic purposes; implicit meaning understood."
+      },
+      {
+        "level": "C2",
+        "description": "Everything read or heard is understood; expression is precise even in complex situations."
+      }
+    ]
   }
 }

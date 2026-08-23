@@ -186,5 +186,78 @@
       "skills": "Al menos tres habilidades listadas",
       "education": "Sección de formación rellenada"
     }
+  },
+  "europass": {
+    "title": "Creador de CV Europass gratis — CV Europass online",
+    "description": "Crea un CV Europass gratis: formato estándar de la UE, niveles de idioma MCER y descarga en PDF o Word. Sin registro.",
+    "h1": "Creador de CV Europass gratis",
+    "h2": "El formato de CV estándar de la UE, rellenado y descargado en minutos",
+    "intro": "Europass es el formato de currículum definido por la Unión Europea. Fija el orden de las secciones y una forma común de indicar el nivel de idiomas, de modo que un reclutador en Lisboa lee un CV llegado de Tallin sin tener que descifrar primero su maquetación. Nuestra herramienta produce ese formato gratis y sin cuenta.",
+    "whoTitle": "Quién pide un CV Europass",
+    "whoBody": "Es el formato esperado en la mayoría de procesos del sector público europeo, en muchos puestos universitarios y de investigación, en las instituciones y agencias de la UE, y en los programas de movilidad y prácticas. Empleadores privados de varios Estados miembros lo aceptan con normalidad. Fuera de esos casos, un CV convencional suele leerse mejor: Europass es un estándar, no una mejora.",
+    "sectionsTitle": "Qué contiene un CV Europass",
+    "sections": [
+      "Información personal — nombre, datos de contacto y ciudad y país de residencia",
+      "Experiencia laboral — orden cronológico inverso, cada puesto con su periodo, la empresa y lo que hiciste realmente",
+      "Educación y formación — titulaciones con el centro que las expide y las fechas",
+      "Competencias lingüísticas — lengua materna y todas las demás, en la escala MCER",
+      "Competencias digitales — las herramientas y sistemas que manejas",
+      "Otros — carné de conducir, publicaciones, certificaciones y voluntariado, si procede"
+    ],
+    "cefrTitle": "Niveles de idioma en la escala MCER",
+    "cefrIntro": "Es la parte que los empleadores comparan directamente y la que más se exagera. La escala va de A1 a C2. Elige el nivel que podrías defender en una entrevista realizada en ese idioma.",
+    "stepsTitle": "Cómo crear el tuyo",
+    "steps": [
+      "Rellena el formulario: experiencia, formación, habilidades e idiomas.",
+      "Elige la plantilla Europass; el diseño y el orden de secciones siguen el estándar.",
+      "Descarga en PDF, o en .docx si el empleador pide Word."
+    ],
+    "faqTitle": "Preguntas frecuentes",
+    "faqs": [
+      {
+        "q": "¿Es gratis crear un CV Europass?",
+        "a": "Sí. Esta herramienta lo crea gratis, sin registro ni marca de agua, y exporta a PDF o Word."
+      },
+      {
+        "q": "¿Estoy obligado a usar Europass?",
+        "a": "Solo donde se pide: sector público europeo, puestos de investigación, instituciones de la UE y programas de movilidad. En el resto, un CV convencional suele leerse mejor."
+      },
+      {
+        "q": "¿PDF o Word?",
+        "a": "Envía lo que pida la oferta. Si no lo indica, el PDF conserva el diseño; el .docx lo interpretan mejor algunos sistemas de selección."
+      },
+      {
+        "q": "¿Cómo elijo mi nivel MCER?",
+        "a": "El nivel que podrías sostener en una entrevista en ese idioma. Exagerarlo se nota en los primeros minutos."
+      }
+    ],
+    "cta": "Crear mi CV Europass",
+    "relatedTitle": "Otras guías de CV",
+    "cefr": [
+      {
+        "level": "A1",
+        "description": "Expresiones básicas, presentaciones y preguntas sencillas sobre temas conocidos."
+      },
+      {
+        "level": "A2",
+        "description": "Intercambios cotidianos sobre temas conocidos: compras, indicaciones, tu trayectoria."
+      },
+      {
+        "level": "B1",
+        "description": "Se desenvuelve en la mayoría de situaciones de viaje; describe experiencias y planes."
+      },
+      {
+        "level": "B2",
+        "description": "Suficiente fluidez para una discusión técnica en tu campo, sin esfuerzo por ninguna parte."
+      },
+      {
+        "level": "C1",
+        "description": "Uso flexible y eficaz con fines profesionales y académicos; capta el sentido implícito."
+      },
+      {
+        "level": "C2",
+        "description": "Comprende todo lo que lee o escucha; se expresa con precisión incluso en situaciones complejas."
+      }
+    ]
   }
 }

@@ -6,6 +6,7 @@ import { isRTL } from './i18n';
 const CVBuilderPage = lazy(() => import('./pages/CVBuilderPage'));
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const SitemapPage = lazy(() => import('./pages/SitemapPage'));
+const EuropassPage = lazy(() => import('./pages/EuropassPage'));
 
 function AppRoutes() {
   const { i18n } = useTranslation();
@@ -22,9 +23,11 @@ function AppRoutes() {
         <Route path="/" element={<CVBuilderPage />} />
         <Route path="/resume/:slug" element={<LandingPage />} />
         <Route path="/sitemap" element={<SitemapPage />} />
+        <Route path="/europass-cv" element={<EuropassPage />} />
         <Route path="/:lang" element={<CVBuilderPage />} />
         <Route path="/:lang/resume/:slug" element={<LandingPage />} />
         <Route path="/:lang/sitemap" element={<SitemapPage />} />
+        <Route path="/:lang/europass-cv" element={<EuropassPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>

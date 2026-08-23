@@ -97,6 +97,23 @@ export function getSitemapEntries() {
       altSuffix: '/sitemap',
     })),
 
+    // Europass is asked for by name across EU public-sector and academic
+    // recruitment, so the guide gets one page per locale.
+    {
+      path: '/europass-cv',
+      priority: '0.8',
+      changefreq: 'monthly',
+      lastmod: true,
+      altSuffix: '/europass-cv',
+    },
+    ...NON_EN_LANGS.map((lang) => ({
+      path: `/${lang}/europass-cv`,
+      priority: '0.7',
+      changefreq: 'monthly',
+      lastmod: true,
+      altSuffix: '/europass-cv',
+    })),
+
     ...slugs.map((slug) => ({
       path: `/resume/${slug}`,
       priority: '0.8',
@@ -142,6 +159,16 @@ export function getPrerenderRoutes() {
     })),
   ];
 
+  const europass = [
+    { kind: 'europass', path: '/europass-cv', lang: 'en', urlLang: undefined },
+    ...LANGUAGES.map((lang) => ({
+      kind: 'europass',
+      path: `/${lang}/europass-cv`,
+      lang,
+      urlLang: lang,
+    })),
+  ];
+
   const landing = [
     ...slugs.map((slug) => ({
       kind: 'landing',
@@ -161,5 +188,5 @@ export function getPrerenderRoutes() {
     ),
   ];
 
-  return [...home, ...sitemap, ...landing];
+  return [...home, ...sitemap, ...europass, ...landing];
 }

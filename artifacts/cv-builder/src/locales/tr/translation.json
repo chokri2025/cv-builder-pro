@@ -186,5 +186,78 @@
       "skills": "En az üç beceri listelenmiş",
       "education": "Eğitim bölümü doldurulmuş"
     }
+  },
+  "europass": {
+    "title": "Ücretsiz Europass CV Oluşturucu — Online Europass CV",
+    "description": "Europass CV’nizi ücretsiz hazırlayın: AB standart formatı, CEFR dil seviyeleri, PDF veya Word indirme. Kayıt yok.",
+    "h1": "Ücretsiz Europass CV Oluşturucu",
+    "h2": "AB’nin standart CV formatı, dakikalar içinde doldurulup indirilir",
+    "intro": "Europass, Avrupa Birliği tarafından tanımlanan özgeçmiş formatıdır. Bölümlerin sırasını ve dil seviyesini belirtmenin ortak bir yolunu sabitler; böylece Lizbon’daki bir işe alım uzmanı Tallinn’den gelen bir CV’yi önce düzenini çözmek zorunda kalmadan okur. Aracımız bu formatı ücretsiz ve hesapsız üretir.",
+    "whoTitle": "Europass CV’yi kim ister",
+    "whoBody": "Avrupa kamu sektörü alımlarının çoğunda, birçok üniversite ve araştırma pozisyonunda, AB kurum ve ajanslarında, hareketlilik ve staj programlarında beklenen formattır. Birçok üye ülkede özel işverenler de doğal olarak kabul eder. Bunların dışında klasik bir CV genellikle daha iyi okunur: Europass bir standarttır, bir üst sürüm değil.",
+    "sectionsTitle": "Europass CV neleri içerir",
+    "sections": [
+      "Kişisel bilgiler — ad, iletişim bilgileri, yaşadığınız şehir ve ülke",
+      "İş deneyimi — tersten kronolojik; her görev için dönem, işveren ve gerçekte ne yaptığınız",
+      "Eğitim ve öğretim — dereceler, veren kurum ve tarihlerle",
+      "Dil becerileri — ana diliniz ve diğer tüm diller, CEFR ölçeğinde",
+      "Dijital beceriler — kullandığınız araçlar ve sistemler",
+      "Diğer — ehliyet, yayınlar, sertifikalar ve gönüllülük, ilgiliyse"
+    ],
+    "cefrTitle": "CEFR ölçeğinde dil seviyeleri",
+    "cefrIntro": "İşverenlerin doğrudan karşılaştırdığı ve adayların en çok abarttığı kısım budur. Ölçek A1’den C2’ye uzanır. O dilde yapılacak bir mülakatta savunabileceğiniz seviyeyi seçin.",
+    "stepsTitle": "Kendinizinkini nasıl hazırlarsınız",
+    "steps": [
+      "Formu doldurun: deneyim, eğitim, beceriler ve diller.",
+      "Europass şablonunu seçin; düzen ve bölüm sırası standardı izler.",
+      "PDF olarak indirin, işveren Word isterse .docx olarak."
+    ],
+    "faqTitle": "Sık sorulan sorular",
+    "faqs": [
+      {
+        "q": "Europass CV hazırlamak ücretsiz mi?",
+        "a": "Evet. Bu araç ücretsiz üretir, kayıt ve filigran olmadan, PDF veya Word olarak dışa aktarır."
+      },
+      {
+        "q": "Europass kullanmak zorunda mıyım?",
+        "a": "Yalnızca istendiği yerlerde: Avrupa kamu sektörü, araştırma pozisyonları, AB kurumları ve hareketlilik programları. Diğer durumlarda klasik bir CV genellikle daha iyi okunur."
+      },
+      {
+        "q": "PDF mi Word mü?",
+        "a": "İlan ne istiyorsa onu gönderin. Belirtilmemişse PDF düzeni korur; .docx bazı işe alım sistemlerince daha güvenilir okunur."
+      },
+      {
+        "q": "CEFR seviyemi nasıl seçerim?",
+        "a": "O dilde yapılan bir mülakatta sürdürebileceğiniz seviyeyi. Abartma ilk dakikalarda ortaya çıkar."
+      }
+    ],
+    "cta": "Europass CV’mi hazırla",
+    "relatedTitle": "Diğer CV rehberleri",
+    "cefr": [
+      {
+        "level": "A1",
+        "description": "Temel ifadeler, tanışma ve bildik konularda basit sorular."
+      },
+      {
+        "level": "A2",
+        "description": "Bildik konularda günlük iletişim: alışveriş, yol tarifi, kendi geçmişiniz."
+      },
+      {
+        "level": "B1",
+        "description": "Seyahatte çoğu durumu idare eder; deneyim ve planları anlatabilir."
+      },
+      {
+        "level": "B2",
+        "description": "Kendi alanınızda teknik tartışmaya yetecek akıcılık, iki taraf için de zorlanmadan."
+      },
+      {
+        "level": "C1",
+        "description": "Mesleki ve akademik amaçlarla esnek ve etkili kullanım; örtük anlamı kavrar."
+      },
+      {
+        "level": "C2",
+        "description": "Okunan ve duyulan her şeyi anlar; karmaşık durumlarda bile kendini tam olarak ifade eder."
+      }
+    ]
   }
 }

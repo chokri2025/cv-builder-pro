@@ -28,9 +28,11 @@ import { fileURLToPath } from 'url';
 import i18n from '../src/i18n';
 import LandingPage from '../src/pages/LandingPage';
 import SitemapPage from '../src/pages/SitemapPage';
+import EuropassPage from '../src/pages/EuropassPage';
 import CVBuilderPage from '../src/pages/CVBuilderPage';
 import { buildHomeFaqJsonLd, getHomeFaqs } from '../src/lib/home-seo';
 import { buildSitemapSeoProps } from '../src/lib/sitemap-seo';
+import { buildEuropassSeoProps } from '../src/lib/europass-seo';
 import { parseSlug } from '../src/data/seo-data';
 import { buildLocalizedSeoPageData } from '../src/data/localized-seo-data';
 import { buildLandingSeoProps } from '../src/lib/landing-seo';
@@ -174,6 +176,37 @@ async function renderSitemapRoute(lang: LangCode, urlLang: string | undefined) {
   return { headTags, bodyHtml };
 }
 
+async function renderEuropassRoute(lang: LangCode, urlLang: string | undefined) {
+  await i18n.changeLanguage(lang);
+
+  const seoProps = buildEuropassSeoProps(urlLang, lang, siteUrl, {
+    title: i18n.t('europass.title'),
+    description: i18n.t('europass.description'),
+    h1: i18n.t('europass.h1'),
+    intro: i18n.t('europass.intro'),
+    stepsTitle: i18n.t('europass.stepsTitle'),
+    steps: i18n.t('europass.steps', { returnObjects: true }) as unknown as string[],
+    faqs: i18n.t('europass.faqs', { returnObjects: true }) as unknown as {
+      q: string;
+      a: string;
+    }[],
+  });
+  const headTags = buildHeadTags(seoProps);
+
+  const bodyHtml = renderToStaticMarkup(
+    <StaticRouter location={urlLang ? `/${urlLang}/europass-cv` : '/europass-cv'}>
+      <I18nextProvider i18n={i18n}>
+        <Routes>
+          <Route path="/europass-cv" element={<EuropassPage />} />
+          <Route path="/:lang/europass-cv" element={<EuropassPage />} />
+        </Routes>
+      </I18nextProvider>
+    </StaticRouter>,
+  );
+
+  return { headTags, bodyHtml };
+}
+
 function assembleHtml(
   template: string,
   headTags: HeadTags,
@@ -201,7 +234,7 @@ async function main() {
   // One list, shared with the sitemap generator: every advertised URL gets a file.
   const routes = getPrerenderRoutes();
 
-  const counts = { home: 0, sitemap: 0, landing: 0 };
+  const counts = { home: 0, sitemap: 0, europass: 0, landing: 0 };
 
   for (const route of routes) {
     const { kind, lang, urlLang } = route;
@@ -211,7 +244,9 @@ async function main() {
         ? await renderRoute(route.slug!, lang, urlLang)
         : kind === 'sitemap'
           ? await renderSitemapRoute(lang, urlLang)
-          : await renderHomeRoute(lang, urlLang);
+          : kind === 'europass'
+            ? await renderEuropassRoute(lang, urlLang)
+            : await renderHomeRoute(lang, urlLang);
 
     // Homepages keep the shell's Organization/WebSite graph; the other page types
     // ship their own, so the shell's is stripped for them.
@@ -229,11 +264,11 @@ async function main() {
     counts[kind] += 1;
   }
 
-  const written = counts.home + counts.sitemap + counts.landing;
+  const written = counts.home + counts.sitemap + counts.europass + counts.landing;
 
   console.log(
     `[prerender] ✓ Prerendered ${written} pages ` +
-      `(${counts.home} homepage, ${counts.sitemap} sitemap, ${counts.landing} landing)`,
+      `(${counts.home} homepage, ${counts.sitemap} sitemap, ${counts.europass} europass, ${counts.landing} landing)`,
   );
 }
 

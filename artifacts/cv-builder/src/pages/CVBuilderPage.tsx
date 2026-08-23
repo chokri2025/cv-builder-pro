@@ -11,6 +11,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { SITE_URL } from '../lib/site';
 import { buildHomeFaqJsonLd, getHomeFaqs } from '../lib/home-seo';
 import type { SupportedLang } from '../i18n';
+import type { TemplateType } from '../types/cv';
 
 const SUPPORTED_LANG_CODES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
 
@@ -51,9 +52,15 @@ export default function CVBuilderPage() {
   }, [params.lang]);
 
   useEffect(() => {
-    const state = location.state as { prefilledJobTitle?: string } | null;
+    const state = location.state as { prefilledJobTitle?: string; template?: TemplateType } | null;
     if (state?.prefilledJobTitle) {
       cv.updatePersonal('jobTitle', state.prefilledJobTitle);
+    }
+    // The Europass guide hands over with its own template already chosen.
+    if (state?.template) {
+      cv.setTemplate(state.template);
+    }
+    if (state?.prefilledJobTitle || state?.template) {
       window.history.replaceState({}, '', window.location.pathname);
     }
   }, []);

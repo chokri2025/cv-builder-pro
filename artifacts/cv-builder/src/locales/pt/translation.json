@@ -186,5 +186,78 @@
       "skills": "Pelo menos três competências listadas",
       "education": "Secção de formação preenchida"
     }
+  },
+  "europass": {
+    "title": "Criador de CV Europass grátis — CV Europass online",
+    "description": "Crie um CV Europass grátis: formato padrão da UE, níveis de língua QECR e descarga em PDF ou Word. Sem registo.",
+    "h1": "Criador de CV Europass grátis",
+    "h2": "O formato de CV padrão da UE, preenchido e descarregado em minutos",
+    "intro": "O Europass é o formato de currículo definido pela União Europeia. Fixa a ordem das secções e uma forma comum de indicar o nível de línguas, de modo que um recrutador em Lisboa lê um CV vindo de Taline sem ter de decifrar primeiro a sua disposição. A nossa ferramenta produz esse formato grátis e sem conta.",
+    "whoTitle": "Quem pede um CV Europass",
+    "whoBody": "É o formato esperado na maioria dos concursos do setor público europeu, em muitos lugares universitários e de investigação, nas instituições e agências da UE e nos programas de mobilidade e estágio. Empregadores privados de vários Estados-Membros aceitam-no com naturalidade. Fora desses casos, um CV convencional costuma ler-se melhor: o Europass é uma norma, não uma melhoria.",
+    "sectionsTitle": "O que contém um CV Europass",
+    "sections": [
+      "Informação pessoal — nome, contactos e cidade e país onde reside",
+      "Experiência profissional — ordem cronológica inversa, cada função com o período, o empregador e o que fez de facto",
+      "Educação e formação — habilitações com a instituição e as datas",
+      "Competências linguísticas — língua materna e todas as outras, na escala QECR",
+      "Competências digitais — as ferramentas e sistemas que utiliza",
+      "Outros — carta de condução, publicações, certificações e voluntariado, quando aplicável"
+    ],
+    "cefrTitle": "Níveis de língua na escala QECR",
+    "cefrIntro": "É a parte que os empregadores comparam diretamente e a que mais se exagera. A escala vai de A1 a C2. Escolha o nível que conseguiria defender numa entrevista feita nessa língua.",
+    "stepsTitle": "Como criar o seu",
+    "steps": [
+      "Preencha o formulário: experiência, formação, competências e línguas.",
+      "Escolha o modelo Europass; a disposição e a ordem das secções seguem a norma.",
+      "Descarregue em PDF, ou em .docx se o empregador pedir Word."
+    ],
+    "faqTitle": "Perguntas frequentes",
+    "faqs": [
+      {
+        "q": "É grátis criar um CV Europass?",
+        "a": "Sim. Esta ferramenta cria-o grátis, sem registo e sem marca de água, com exportação para PDF ou Word."
+      },
+      {
+        "q": "Sou obrigado a usar o Europass?",
+        "a": "Apenas onde é pedido: setor público europeu, lugares de investigação, instituições da UE e programas de mobilidade. Nos restantes casos, um CV convencional costuma ler-se melhor."
+      },
+      {
+        "q": "PDF ou Word?",
+        "a": "Envie o que o anúncio pedir. Se não indicar, o PDF preserva a disposição; o .docx é interpretado de forma mais fiável por alguns sistemas de recrutamento."
+      },
+      {
+        "q": "Como escolho o meu nível QECR?",
+        "a": "O nível que conseguiria sustentar numa entrevista nessa língua. Exagerar nota-se nos primeiros minutos."
+      }
+    ],
+    "cta": "Criar o meu CV Europass",
+    "relatedTitle": "Outros guias de CV",
+    "cefr": [
+      {
+        "level": "A1",
+        "description": "Expressões básicas, apresentações e perguntas simples sobre temas familiares."
+      },
+      {
+        "level": "A2",
+        "description": "Trocas do dia a dia sobre temas familiares: compras, direções, o seu percurso."
+      },
+      {
+        "level": "B1",
+        "description": "Lida com a maioria das situações em viagem; descreve experiências e planos."
+      },
+      {
+        "level": "B2",
+        "description": "Fluência suficiente para discussão técnica na sua área, sem esforço de parte a parte."
+      },
+      {
+        "level": "C1",
+        "description": "Uso flexível e eficaz para fins profissionais e académicos; capta o sentido implícito."
+      },
+      {
+        "level": "C2",
+        "description": "Compreende tudo o que lê ou ouve; exprime-se com precisão mesmo em situações complexas."
+      }
+    ]
   }
 }

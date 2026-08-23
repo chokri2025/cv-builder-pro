@@ -199,5 +199,78 @@
       "skills": "Au moins trois compétences listées",
       "education": "Rubrique formation remplie"
     }
+  },
+  "europass": {
+    "title": "Créateur de CV Europass gratuit — CV Europass en ligne",
+    "description": "Créez un CV Europass gratuitement : format standard de l’UE, niveaux de langue CECRL, export PDF ou Word. Sans inscription.",
+    "h1": "Créateur de CV Europass gratuit",
+    "h2": "Le format de CV standard de l’UE, rempli et téléchargé en quelques minutes",
+    "intro": "Europass est le format de curriculum vitae défini par l’Union européenne. Il fixe l’ordre des rubriques et une manière commune d’indiquer le niveau de langue, si bien qu’un recruteur à Lisbonne lit un CV venu de Tallinn sans avoir à en décoder la mise en page. Notre outil produit ce format gratuitement, sans compte.",
+    "whoTitle": "Qui demande un CV Europass",
+    "whoBody": "C’est le format attendu dans la plupart des recrutements du secteur public européen, pour de nombreux postes universitaires et de recherche, dans les institutions et agences de l’UE, et pour les programmes de mobilité et de stage. Des employeurs privés de plusieurs États membres l’acceptent couramment. En dehors de ces cas, un CV classique se lit généralement mieux : Europass est une norme, pas une amélioration.",
+    "sectionsTitle": "Ce que contient un CV Europass",
+    "sections": [
+      "Informations personnelles — nom, coordonnées, ville et pays de résidence",
+      "Expérience professionnelle — antéchronologique, chaque poste avec sa période, l’employeur et ce que vous avez réellement fait",
+      "Formation — diplômes avec l’établissement et les dates",
+      "Compétences linguistiques — langue maternelle et toutes les autres, sur l’échelle CECRL",
+      "Compétences numériques — les outils et systèmes que vous utilisez",
+      "Autres — permis de conduire, publications, certifications et bénévolat, le cas échéant"
+    ],
+    "cefrTitle": "Niveaux de langue sur l’échelle CECRL",
+    "cefrIntro": "C’est la partie que les employeurs comparent directement, et celle que les candidats surestiment le plus souvent. L’échelle va de A1 à C2. Choisissez le niveau que vous pourriez défendre lors d’un entretien mené dans cette langue.",
+    "stepsTitle": "Comment créer le vôtre",
+    "steps": [
+      "Remplissez le formulaire : expérience, formation, compétences et langues.",
+      "Choisissez le modèle Europass ; la mise en page et l’ordre des rubriques suivent la norme.",
+      "Téléchargez en PDF, ou en .docx si l’employeur demande du Word."
+    ],
+    "faqTitle": "Questions fréquentes",
+    "faqs": [
+      {
+        "q": "Le CV Europass est-il gratuit à créer ?",
+        "a": "Oui. Cet outil le produit gratuitement, sans inscription ni filigrane, avec export PDF ou Word."
+      },
+      {
+        "q": "Suis-je obligé d’utiliser Europass ?",
+        "a": "Seulement là où il est demandé : fonction publique européenne, postes de recherche, institutions de l’UE et programmes de mobilité. Ailleurs, un CV classique se lit généralement mieux."
+      },
+      {
+        "q": "PDF ou Word ?",
+        "a": "Envoyez ce que demande l’annonce. À défaut de précision, le PDF préserve la mise en page ; le .docx est mieux analysé par certains logiciels de recrutement."
+      },
+      {
+        "q": "Comment choisir mon niveau CECRL ?",
+        "a": "Prenez le niveau que vous tiendriez lors d’un entretien mené dans cette langue. Une surestimation se voit dès les premières minutes."
+      }
+    ],
+    "cta": "Créer mon CV Europass",
+    "relatedTitle": "Autres guides de CV",
+    "cefr": [
+      {
+        "level": "A1",
+        "description": "Expressions de base, présentations, questions simples sur des sujets familiers."
+      },
+      {
+        "level": "A2",
+        "description": "Échanges courants sur des sujets familiers : achats, itinéraires, votre parcours."
+      },
+      {
+        "level": "B1",
+        "description": "Gère la plupart des situations en voyage ; sait décrire expériences et projets."
+      },
+      {
+        "level": "B2",
+        "description": "Assez à l’aise pour une discussion technique dans votre domaine, sans effort de part et d’autre."
+      },
+      {
+        "level": "C1",
+        "description": "Usage souple et efficace à des fins professionnelles et universitaires ; comprend l’implicite."
+      },
+      {
+        "level": "C2",
+        "description": "Comprend tout ce qui est lu ou entendu ; s’exprime avec précision même en situation complexe."
+      }
+    ]
   }
 }
