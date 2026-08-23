@@ -89,7 +89,8 @@
   "preview": {
     "livePreview": "Canlı Önizleme",
     "print": "Yazdır",
-    "downloadPdf": "PDF İndir"
+    "downloadPdf": "PDF indir",
+    "pdfHint": "«PDF olarak kaydet»i seçin — CV'niz gerçek metin olarak kalır, ATS sistemleri okuyabilir."
   },
   "cv": {
     "profile": "Profil",

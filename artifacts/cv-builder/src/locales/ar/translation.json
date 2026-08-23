@@ -89,7 +89,8 @@
   "preview": {
     "livePreview": "معاينة مباشرة",
     "print": "طباعة",
-    "downloadPdf": "تحميل PDF"
+    "downloadPdf": "تحميل PDF",
+    "pdfHint": "اختر «حفظ بصيغة PDF» — تبقى سيرتك نصاً حقيقياً يمكن لأنظمة تتبع المتقدمين (ATS) قراءته."
   },
   "cv": {
     "profile": "الملف الشخصي",

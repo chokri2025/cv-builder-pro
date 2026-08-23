@@ -557,6 +557,8 @@ body {
 
 .preview-actions {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 0.625rem;
 }
 
@@ -1471,6 +1473,22 @@ body {
   font-size: 0.82rem;
   color: #475569;
   flex-wrap: wrap;
+}
+
+/* Hint under the export buttons: the print dialog is where the real-text PDF
+   comes from, so the extra step needs explaining. */
+.preview-hint {
+  flex-basis: 100%;
+  font-size: 0.72rem;
+  color: #475569;
+  line-height: 1.4;
+  margin-top: 0.35rem;
+}
+
+.print-btn[disabled],
+.pdf-btn[disabled] {
+  opacity: 0.6;
+  cursor: progress;
 }
 
 /* SECTIONS */

@@ -89,7 +89,8 @@
   "preview": {
     "livePreview": "Aperçu en direct",
     "print": "Imprimer",
-    "downloadPdf": "Télécharger PDF"
+    "downloadPdf": "Télécharger le PDF",
+    "pdfHint": "Choisissez « Enregistrer au format PDF » — votre CV reste en texte réel, lisible par les logiciels de recrutement (ATS)."
   },
   "cv": {
     "profile": "Profil",

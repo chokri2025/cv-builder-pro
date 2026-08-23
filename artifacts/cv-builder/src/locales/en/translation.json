@@ -89,7 +89,8 @@
   "preview": {
     "livePreview": "Live Preview",
     "print": "Print",
-    "downloadPdf": "Download PDF"
+    "downloadPdf": "Download PDF",
+    "pdfHint": "Choose “Save as PDF” — keeps your CV as real text, so applicant tracking systems can read it."
   },
   "cv": {
     "profile": "Profile",

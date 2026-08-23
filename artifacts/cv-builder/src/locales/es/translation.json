@@ -89,7 +89,8 @@
   "preview": {
     "livePreview": "Vista previa en vivo",
     "print": "Imprimir",
-    "downloadPdf": "Descargar PDF"
+    "downloadPdf": "Descargar PDF",
+    "pdfHint": "Elige «Guardar como PDF»: tu CV se mantiene como texto real, legible por los sistemas ATS."
   },
   "cv": {
     "profile": "Perfil",
