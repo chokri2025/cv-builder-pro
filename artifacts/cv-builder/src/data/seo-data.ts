@@ -62,100 +62,11 @@ export interface SeoPageData {
   intro: string;
   tips: string[];
   faqs: Array<{ q: string; a: string }>;
+  /** Heading for the "what local employers expect" block. */
+  localTitle: string;
+  /** Credential, CV-convention, sector and job-board lines for this city/role. */
+  localLines: string[];
   prefilledJobTitle: string;
-}
-
-export function buildSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPageData {
-  const skillLabel = skill?.label ?? 'Professional';
-  const cityLabel = city ? `${city.label}, ${city.country}` : null;
-  const cityShort = city?.label ?? null;
-  const jobTitle = skill?.title ?? 'Professional';
-
-  const pageTitle = city
-    ? skill
-      ? `Free CV Builder for ${skillLabel}s in ${city.label} | CV Builder Pro`
-      : `Free CV Builder in ${city.label} | CV Builder Pro`
-    : `Free ${skillLabel} CV Builder & Resume Template | CV Builder Pro`;
-
-  const metaDescription = city
-    ? skill
-      ? `Create a professional ${skillLabel} CV tailored for jobs in ${cityLabel}. Download as PDF in minutes. Free, no sign-up required.`
-      : `Build a professional CV for job seekers in ${cityLabel}. 3 templates, PDF export, free online CV maker.`
-    : `Build a standout ${skillLabel} resume or CV with our free online builder. Choose from 3 templates and download as PDF instantly.`;
-
-  const h1 = city
-    ? skill
-      ? `Free CV Builder for ${skillLabel}s in ${city.label}`
-      : `Free CV Builder for Job Seekers in ${city.label}`
-    : `Free ${skillLabel} CV Builder`;
-
-  const h2 = city
-    ? skill
-      ? `Land your next ${skillLabel} role in ${city.label} with a professional CV`
-      : `Stand out in ${city.label}'s job market with a professional CV`
-    : `Create a professional ${skillLabel} resume in minutes`;
-
-  const intro = city
-    ? skill
-      ? `The job market for ${skillLabel}s in ${cityLabel} is competitive. A polished, well-structured CV is your first step to standing out. Our free CV builder lets you create a professional ${skillLabel} resume in minutes — with templates designed to impress ${city.label} hiring managers.`
-      : `Looking for work in ${cityLabel}? A strong CV is the difference between getting an interview and being ignored. Our free online CV builder gives you professional templates and PDF export — completely free, no account needed.`
-    : `Building a great ${skillLabel} CV doesn't have to be hard. Our free online tool walks you through every section — experience, skills, education and more — and produces a polished, ATS-friendly PDF in minutes.`;
-
-  const tips = skill
-    ? [
-        `Tailor your CV summary to highlight your ${skillLabel} expertise`,
-        `List measurable achievements, not just duties`,
-        `Include relevant technical skills and tools for ${skillLabel} roles`,
-        `Keep your CV to 1–2 pages and use a clean, readable layout`,
-        `Add a LinkedIn URL and portfolio link if you have one`,
-      ]
-    : [
-        `Match your CV keywords to the job description`,
-        `Lead with a strong professional summary`,
-        `Quantify your achievements with numbers and results`,
-        `Keep formatting consistent and avoid dense blocks of text`,
-        `Proofread carefully — typos cost interviews`,
-      ];
-
-  const faqs: Array<{ q: string; a: string }> = [
-    {
-      q:
-        city && skill
-          ? `What should a ${skillLabel} CV include for jobs in ${city.label}?`
-          : skill
-            ? `What should a ${skillLabel} CV include?`
-            : `What sections should a CV include?`,
-      a: `A strong CV should include a professional summary, work experience with measurable results, education, skills, and contact details. ${city ? `For ${city.label} employers, keep it concise — typically 1–2 pages.` : 'Keep it to 1–2 pages.'}`,
-    },
-    {
-      q: `Is this CV builder really free?`,
-      a: `Yes — completely free. No sign-up, no hidden fees. Fill in your details and download your CV as a PDF instantly.`,
-    },
-    {
-      q: `Can I download my CV as a PDF?`,
-      a: `Absolutely. Click "Download PDF" and your CV is saved to your device, ready to send to employers.`,
-    },
-    {
-      q: city
-        ? `Are these CV templates accepted by ${cityShort} employers?`
-        : `Are these CV templates ATS-friendly?`,
-      a: `Our templates are designed to be clean and readable — compatible with applicant tracking systems (ATS) used by recruiters worldwide.`,
-    },
-  ];
-
-  return {
-    slug: buildSlug(skill, city),
-    skill,
-    city,
-    pageTitle,
-    metaDescription,
-    h1,
-    h2,
-    intro,
-    tips,
-    faqs,
-    prefilledJobTitle: jobTitle,
-  };
 }
 
 export function buildSlug(skill: SeoSkill | null, city: SeoCity | null): string {

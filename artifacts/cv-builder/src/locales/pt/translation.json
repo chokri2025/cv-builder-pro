@@ -15,10 +15,13 @@
     "templates": {
       "minimal": "Minimalista",
       "modern": "Moderno",
-      "creative": "Criativo"
+      "creative": "Criativo",
+      "europass": "Europass"
     },
     "editLabel": "← Editar",
-    "previewLabel": "Pré-visualizar →"
+    "previewLabel": "Pré-visualizar →",
+    "pageHeading": "Criador de CV e currículo grátis online",
+    "pageTagline": "Crie um CV profissional em minutos: preencha o formulário, escolha um dos três modelos e descarregue um PDF pronto a imprimir. Grátis e sem registo."
   },
   "sections": {
     "personal": "Informações pessoais",
@@ -87,7 +90,10 @@
   "preview": {
     "livePreview": "Pré-visualização ao vivo",
     "print": "Imprimir",
-    "downloadPdf": "Descarregar PDF"
+    "downloadPdf": "Descarregar PDF",
+    "pdfHint": "Escolha «Guardar como PDF» — o seu CV fica em texto real, legível pelos sistemas ATS.",
+    "downloadDocx": "Descarregar .docx",
+    "docxHint": "O .docx é uma versão simples de uma coluna, para sistemas que leem Word melhor do que PDF."
   },
   "cv": {
     "profile": "Perfil",
@@ -97,7 +103,10 @@
     "languages": "Idiomas",
     "projects": "Projetos",
     "present": "Presente",
-    "months": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+    "months": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    "personalInformation": "Informação pessoal",
+    "educationAndTraining": "Educação e formação",
+    "languageSkills": "Competências linguísticas"
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Criador de CV e Currículo Grátis Online",
@@ -125,17 +134,130 @@
     "tipsSkillTitle": "Dicas para um excelente CV de {{skill}}",
     "tipsCityTitle": "Dicas para o seu CV em {{city}}",
     "related": {
-      "newYork": "CV Builder – Nova Iorque",
-      "london": "CV Builder – Londres",
-      "toronto": "CV Builder – Toronto",
-      "sydney": "CV Builder – Sydney",
-      "softwareEngineer": "CV Engenheiro de Software",
-      "nurse": "CV Enfermeiro/a",
-      "teacher": "CV Professor/a",
-      "projectManager": "CV Gestor de Projetos"
-    }
+      "skillCity": "CV de {{skill}} em {{city}}",
+      "skill": "CV de {{skill}}",
+      "city": "Criador de CV – {{city}}"
+    },
+    "sitemapIntro": "Todos os guias do CV Builder Pro, por profissão, por cidade e por profissão e cidade.",
+    "sitemapBySkill": "Guias de CV por profissão",
+    "sitemapByCity": "Guias de CV por cidade",
+    "sitemapBySkillCity": "Guias de CV por profissão e cidade",
+    "sitemapDescription": "Explore todos os guias do CV Builder Pro por profissão e cidade — modelos de CV gratuitos, exportação em PDF e sem registo."
   },
   "languageSwitcher": {
     "label": "Idioma"
+  },
+  "home": {
+    "faqTitle": "Perguntas frequentes",
+    "guidesTitle": "Guias de CV populares",
+    "faqs": [
+      {
+        "q": "O CV Builder Pro é mesmo gratuito?",
+        "a": "Sim. Todos os modelos e a transferência em PDF são gratuitos, sem conta e sem marca de água no seu CV."
+      },
+      {
+        "q": "O meu CV passa nos filtros ATS?",
+        "a": "Os nossos modelos usam um layout de uma coluna, com texto real e cabeçalhos de secção padrão, que os sistemas de recrutamento interpretam de forma fiável. Use no título da função e nas competências as palavras do anúncio."
+      },
+      {
+        "q": "Onde ficam guardados os meus dados?",
+        "a": "Apenas no seu navegador. O seu CV é guardado no armazenamento local deste dispositivo e nunca é enviado para um servidor."
+      }
+    ]
+  },
+  "ats": {
+    "title": "Teste ATS — compare o seu CV com um anúncio",
+    "intro": "Cole o anúncio de emprego. Tudo fica no seu navegador — nada é enviado.",
+    "placeholder": "Cole aqui o anúncio completo…",
+    "tooShort": "Cole um pouco mais do anúncio — algumas palavras não chegam para comparar.",
+    "scoreLabel": "dos termos-chave deste anúncio aparecem no seu CV",
+    "caveat": "Mede a sobreposição de vocabulário com este anúncio específico. Não prevê a classificação de nenhum empregador.",
+    "missingTitle": "Não encontrados no seu CV",
+    "missingHint": "Acrescente os que descrevem realmente a sua experiência, na secção adequada. Não reivindique competências que não tem — nota-se na entrevista.",
+    "matchedTitle": "Já no seu CV",
+    "partialHint": "As duas palavras aparecem, mas não juntas nesta expressão.",
+    "checksTitle": "Verificações de leitura",
+    "checks": {
+      "email": "Endereço de e-mail presente",
+      "phone": "Número de telefone presente",
+      "jobTitle": "Cargo preenchido",
+      "summary": "Resumo profissional escrito",
+      "experienceDates": "Cada função tem data de início",
+      "skills": "Pelo menos três competências listadas",
+      "education": "Secção de formação preenchida"
+    }
+  },
+  "europass": {
+    "title": "Criador de CV Europass grátis — CV Europass online",
+    "description": "Crie um CV Europass grátis: formato padrão da UE, níveis de língua QECR e descarga em PDF ou Word. Sem registo.",
+    "h1": "Criador de CV Europass grátis",
+    "h2": "O formato de CV padrão da UE, preenchido e descarregado em minutos",
+    "intro": "O Europass é o formato de currículo definido pela União Europeia. Fixa a ordem das secções e uma forma comum de indicar o nível de línguas, de modo que um recrutador em Lisboa lê um CV vindo de Taline sem ter de decifrar primeiro a sua disposição. A nossa ferramenta produz esse formato grátis e sem conta.",
+    "whoTitle": "Quem pede um CV Europass",
+    "whoBody": "É o formato esperado na maioria dos concursos do setor público europeu, em muitos lugares universitários e de investigação, nas instituições e agências da UE e nos programas de mobilidade e estágio. Empregadores privados de vários Estados-Membros aceitam-no com naturalidade. Fora desses casos, um CV convencional costuma ler-se melhor: o Europass é uma norma, não uma melhoria.",
+    "sectionsTitle": "O que contém um CV Europass",
+    "sections": [
+      "Informação pessoal — nome, contactos e cidade e país onde reside",
+      "Experiência profissional — ordem cronológica inversa, cada função com o período, o empregador e o que fez de facto",
+      "Educação e formação — habilitações com a instituição e as datas",
+      "Competências linguísticas — língua materna e todas as outras, na escala QECR",
+      "Competências digitais — as ferramentas e sistemas que utiliza",
+      "Outros — carta de condução, publicações, certificações e voluntariado, quando aplicável"
+    ],
+    "cefrTitle": "Níveis de língua na escala QECR",
+    "cefrIntro": "É a parte que os empregadores comparam diretamente e a que mais se exagera. A escala vai de A1 a C2. Escolha o nível que conseguiria defender numa entrevista feita nessa língua.",
+    "stepsTitle": "Como criar o seu",
+    "steps": [
+      "Preencha o formulário: experiência, formação, competências e línguas.",
+      "Escolha o modelo Europass; a disposição e a ordem das secções seguem a norma.",
+      "Descarregue em PDF, ou em .docx se o empregador pedir Word."
+    ],
+    "faqTitle": "Perguntas frequentes",
+    "faqs": [
+      {
+        "q": "É grátis criar um CV Europass?",
+        "a": "Sim. Esta ferramenta cria-o grátis, sem registo e sem marca de água, com exportação para PDF ou Word."
+      },
+      {
+        "q": "Sou obrigado a usar o Europass?",
+        "a": "Apenas onde é pedido: setor público europeu, lugares de investigação, instituições da UE e programas de mobilidade. Nos restantes casos, um CV convencional costuma ler-se melhor."
+      },
+      {
+        "q": "PDF ou Word?",
+        "a": "Envie o que o anúncio pedir. Se não indicar, o PDF preserva a disposição; o .docx é interpretado de forma mais fiável por alguns sistemas de recrutamento."
+      },
+      {
+        "q": "Como escolho o meu nível QECR?",
+        "a": "O nível que conseguiria sustentar numa entrevista nessa língua. Exagerar nota-se nos primeiros minutos."
+      }
+    ],
+    "cta": "Criar o meu CV Europass",
+    "relatedTitle": "Outros guias de CV",
+    "cefr": [
+      {
+        "level": "A1",
+        "description": "Expressões básicas, apresentações e perguntas simples sobre temas familiares."
+      },
+      {
+        "level": "A2",
+        "description": "Trocas do dia a dia sobre temas familiares: compras, direções, o seu percurso."
+      },
+      {
+        "level": "B1",
+        "description": "Lida com a maioria das situações em viagem; descreve experiências e planos."
+      },
+      {
+        "level": "B2",
+        "description": "Fluência suficiente para discussão técnica na sua área, sem esforço de parte a parte."
+      },
+      {
+        "level": "C1",
+        "description": "Uso flexível e eficaz para fins profissionais e académicos; capta o sentido implícito."
+      },
+      {
+        "level": "C2",
+        "description": "Compreende tudo o que lê ou ouve; exprime-se com precisão mesmo em situações complexas."
+      }
+    ]
   }
 }

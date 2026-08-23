@@ -4,7 +4,7 @@ import { CVData, TemplateType } from '../types/cv';
 import LanguageSwitcher from './LanguageSwitcher';
 import { compressImageFile } from '../lib/image';
 
-const TEMPLATE_KEYS: TemplateType[] = ['minimal', 'modern', 'creative'];
+const TEMPLATE_KEYS: TemplateType[] = ['minimal', 'modern', 'creative', 'europass'];
 
 type SectionKey =
   | 'personal'
@@ -151,6 +151,11 @@ export default function FormPanel(props: FormPanelProps) {
             {saved ? t('builder.saved') : t('builder.save')}
           </button>
         </div>
+      </div>
+
+      <div className="form-intro">
+        <h1 className="form-h1">{t('builder.pageHeading')}</h1>
+        <p className="form-tagline">{t('builder.pageTagline')}</p>
       </div>
 
       <div className="lang-bar">

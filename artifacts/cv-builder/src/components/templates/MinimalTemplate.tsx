@@ -32,8 +32,8 @@ export default function MinimalTemplate({ data }: Props) {
           />
         )}
         <div className="cv-header-text">
-          <h1>{personal.fullName || 'Your Name'}</h1>
-          {personal.jobTitle && <h2>{personal.jobTitle}</h2>}
+          <p className="cv-name">{personal.fullName || 'Your Name'}</p>
+          {personal.jobTitle && <p className="cv-job-title">{personal.jobTitle}</p>}
           <div className="cv-contact-row">
             {personal.email && <span>✉ {personal.email}</span>}
             {personal.phone && <span>✆ {personal.phone}</span>}

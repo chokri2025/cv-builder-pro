@@ -56,7 +56,7 @@ export interface CVData {
   projects: Project[];
 }
 
-export type TemplateType = 'minimal' | 'modern' | 'creative';
+export type TemplateType = 'minimal' | 'modern' | 'creative' | 'europass';
 
 export const DEFAULT_CV_DATA: CVData = {
   personal: {

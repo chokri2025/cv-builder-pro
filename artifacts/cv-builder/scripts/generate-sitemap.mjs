@@ -2,11 +2,15 @@
  * Sitemap generator for CV Builder Pro.
  * Writes sitemap.xml to public/ (dev) and dist/public/ (build).
  * Run: node artifacts/cv-builder/scripts/generate-sitemap.mjs
+ *
+ * Every URL that has translated equivalents also carries xhtml:link alternates,
+ * so the hreflang cluster is declared in the sitemap as well as in each page's
+ * <head> — the two must agree, and both are generated from this same route list.
  */
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { LANGUAGES, NON_EN_LANGS, getAllSeoSlugs } from './seo-routes.mjs';
+import { LANGUAGES, NON_EN_LANGS, getAllSeoSlugs, getSitemapEntries } from './seo-routes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -16,32 +20,32 @@ const base = appUrl.replace(/\/$/, '');
 const slugs = getAllSeoSlugs();
 const today = new Date().toISOString().split('T')[0];
 
-function entry(loc, priority, changefreq = 'monthly', includeLastmod = true) {
-  const lastmod = includeLastmod ? `\n    <lastmod>${today}</lastmod>` : '';
-  return `  <url>\n    <loc>${base}${loc}</loc>${lastmod}\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+/** English lives at the unprefixed path; other locales are prefixed with /<lang>. */
+function localizedPath(lang, suffix) {
+  return lang === 'en' ? suffix || '/' : `/${lang}${suffix}`;
 }
 
-const urls = [
-  // ── Core ───────────────────────────────────────────────────────────────────
-  entry('/', '1.0', 'weekly'),
-  entry('/sitemap', '0.5', 'monthly', false),
+/** hreflang cluster for a path that exists in every supported language. */
+function alternatesFor(suffix) {
+  const links = LANGUAGES.map((lang) => ({ lang, href: `${base}${localizedPath(lang, suffix)}` }));
+  return [...links, { lang: 'x-default', href: `${base}${suffix || '/'}` }];
+}
 
-  // ── Language homepages (/en, /fr, /es, /ar, /tr, /pt) ────────────────────
-  ...LANGUAGES.map((lang) => entry(`/${lang}`, '0.9', 'weekly')),
+function entry({ path: loc, priority, changefreq, lastmod: includeLastmod, altSuffix }) {
+  const lastmod = includeLastmod ? `\n    <lastmod>${today}</lastmod>` : '';
+  const links = alternatesFor(altSuffix)
+    .map((a) => `\n    <xhtml:link rel="alternate" hreflang="${a.lang}" href="${a.href}" />`)
+    .join('');
+  return `  <url>\n    <loc>${base}${loc}</loc>${lastmod}\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>${links}\n  </url>`;
+}
 
-  // ── Language sitemap pages ────────────────────────────────────────────────
-  ...LANGUAGES.map((lang) => entry(`/${lang}/sitemap`, '0.5', 'monthly', false)),
-
-  // ── English SEO landing pages ─────────────────────────────────────────────
-  ...slugs.map((slug) => entry(`/resume/${slug}`, '0.8')),
-
-  // ── Localized SEO landing pages (fr, es, ar, tr, pt) ─────────────────────
-  ...NON_EN_LANGS.flatMap((lang) => slugs.map((slug) => entry(`/${lang}/resume/${slug}`, '0.7'))),
-];
+// The route list is shared with the prerender step, so the sitemap can never
+// advertise a URL that has no static HTML behind it.
+const urls = getSitemapEntries().map(entry);
 
 const xml = [
   '<?xml version="1.0" encoding="UTF-8"?>',
-  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
   ...urls,
   '</urlset>',
 ].join('\n');
@@ -65,8 +69,8 @@ if (fs.existsSync(path.resolve(__dirname, '../dist'))) {
 const total = urls.length;
 console.log(`[sitemap] ✓ Generated sitemap.xml with ${total} URLs (base: ${base})`);
 console.log(`  Core pages:                   2`);
-console.log(`  Language homepages:           ${LANGUAGES.length}`);
-console.log(`  Language sitemap pages:       ${LANGUAGES.length}`);
+console.log(`  Language homepages:           ${NON_EN_LANGS.length}`);
+console.log(`  Language sitemap pages:       ${NON_EN_LANGS.length}`);
 console.log(`  English SEO landing pages:    ${slugs.length}`);
 console.log(
   `  Localized SEO pages (×${NON_EN_LANGS.length}):   ${NON_EN_LANGS.length * slugs.length}`,

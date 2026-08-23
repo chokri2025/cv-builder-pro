@@ -15,10 +15,13 @@
     "templates": {
       "minimal": "Minimal",
       "modern": "Modern",
-      "creative": "Yaratıcı"
+      "creative": "Yaratıcı",
+      "europass": "Europass"
     },
     "editLabel": "← Düzenle",
-    "previewLabel": "Önizleme →"
+    "previewLabel": "Önizleme →",
+    "pageHeading": "Ücretsiz Çevrimiçi CV ve Özgeçmiş Oluşturucu",
+    "pageTagline": "Dakikalar içinde profesyonel bir CV hazırlayın: formu doldurun, üç şablondan birini seçin ve baskıya hazır PDF'i indirin. Ücretsiz, kayıt gerekmez."
   },
   "sections": {
     "personal": "Kişisel Bilgiler",
@@ -87,7 +90,10 @@
   "preview": {
     "livePreview": "Canlı Önizleme",
     "print": "Yazdır",
-    "downloadPdf": "PDF İndir"
+    "downloadPdf": "PDF indir",
+    "pdfHint": "«PDF olarak kaydet»i seçin — CV'niz gerçek metin olarak kalır, ATS sistemleri okuyabilir.",
+    "downloadDocx": ".docx indir",
+    "docxHint": ".docx, Word'ü PDF'ten daha iyi okuyan sistemler için tek sütunlu sade bir sürümdür."
   },
   "cv": {
     "profile": "Profil",
@@ -97,7 +103,10 @@
     "languages": "Diller",
     "projects": "Projeler",
     "present": "Devam ediyor",
-    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"]
+    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+    "personalInformation": "Kişisel bilgiler",
+    "educationAndTraining": "Eğitim ve öğretim",
+    "languageSkills": "Dil becerileri"
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Ücretsiz Çevrimiçi CV & Resume Oluşturucu",
@@ -125,17 +134,130 @@
     "tipsSkillTitle": "Harika bir {{skill}} CV'si için ipuçları",
     "tipsCityTitle": "{{city}}'deki CV'niz için ipuçları",
     "related": {
-      "newYork": "CV Builder – New York",
-      "london": "CV Builder – Londra",
-      "toronto": "CV Builder – Toronto",
-      "sydney": "CV Builder – Sidney",
-      "softwareEngineer": "Yazılım Mühendisi CV",
-      "nurse": "Hemşire CV",
-      "teacher": "Öğretmen CV",
-      "projectManager": "Proje Yöneticisi CV"
-    }
+      "skillCity": "{{city}}'de {{skill}} CV'si",
+      "skill": "{{skill}} CV'si",
+      "city": "CV Oluşturucu – {{city}}"
+    },
+    "sitemapIntro": "Tüm CV Builder Pro rehberleri: mesleğe göre, şehre göre ve meslek ile şehir birlikte.",
+    "sitemapBySkill": "Mesleğe göre CV rehberleri",
+    "sitemapByCity": "Şehre göre CV rehberleri",
+    "sitemapBySkillCity": "Meslek ve şehre göre CV rehberleri",
+    "sitemapDescription": "Tüm CV Builder Pro rehberlerine mesleğe ve şehre göre göz atın — ücretsiz CV şablonları, PDF indirme, kayıt yok."
   },
   "languageSwitcher": {
     "label": "Dil"
+  },
+  "home": {
+    "faqTitle": "Sık sorulan sorular",
+    "guidesTitle": "Popüler CV rehberleri",
+    "faqs": [
+      {
+        "q": "CV Builder Pro gerçekten ücretsiz mi?",
+        "a": "Evet. Tüm şablonlar ve PDF indirme ücretsizdir; hesap gerekmez ve CV’nizde filigran olmaz."
+      },
+      {
+        "q": "CV’m ATS taramasından geçer mi?",
+        "a": "Şablonlarımız tek sütunlu, gerçek metne dayalı ve standart bölüm başlıkları olan bir düzen kullanır; işe alım yazılımları bunu güvenilir biçimde okur. Pozisyon adını ve becerileri ilandaki sözcüklerle yazın."
+      },
+      {
+        "q": "Verilerim nerede saklanıyor?",
+        "a": "Yalnızca tarayıcınızda. CV’niz bu cihazın yerel depolamasına kaydedilir ve hiçbir sunucuya yüklenmez."
+      }
+    ]
+  },
+  "ats": {
+    "title": "ATS testi — CV’nizi bir ilanla karşılaştırın",
+    "intro": "İş ilanını yapıştırın. Her şey tarayıcınızda kalır — hiçbir veri gönderilmez.",
+    "placeholder": "İlanın tamamını buraya yapıştırın…",
+    "tooShort": "İlandan biraz daha yapıştırın — birkaç kelime karşılaştırma için yeterli değil.",
+    "scoreLabel": "bu ilandaki anahtar terimlerin CV’nizde geçme oranı",
+    "caveat": "Bu, yalnızca bu ilanla sözcük örtüşmesini ölçer. Herhangi bir işverenin sıralamasını öngörmez.",
+    "missingTitle": "CV’nizde bulunmayanlar",
+    "missingHint": "Deneyiminizi gerçekten anlatanları, ait oldukları bölüme ekleyin. Sahip olmadığınız becerileri yazmayın — mülakatta ortaya çıkar.",
+    "matchedTitle": "CV’nizde mevcut",
+    "partialHint": "Her iki kelime de geçiyor ama bu ifade olarak bir arada değil.",
+    "checksTitle": "Okunabilirlik kontrolleri",
+    "checks": {
+      "email": "E-posta adresi var",
+      "phone": "Telefon numarası var",
+      "jobTitle": "Pozisyon adı girilmiş",
+      "summary": "Profesyonel özet yazılmış",
+      "experienceDates": "Her görevin başlangıç tarihi var",
+      "skills": "En az üç beceri listelenmiş",
+      "education": "Eğitim bölümü doldurulmuş"
+    }
+  },
+  "europass": {
+    "title": "Ücretsiz Europass CV Oluşturucu — Online Europass CV",
+    "description": "Europass CV’nizi ücretsiz hazırlayın: AB standart formatı, CEFR dil seviyeleri, PDF veya Word indirme. Kayıt yok.",
+    "h1": "Ücretsiz Europass CV Oluşturucu",
+    "h2": "AB’nin standart CV formatı, dakikalar içinde doldurulup indirilir",
+    "intro": "Europass, Avrupa Birliği tarafından tanımlanan özgeçmiş formatıdır. Bölümlerin sırasını ve dil seviyesini belirtmenin ortak bir yolunu sabitler; böylece Lizbon’daki bir işe alım uzmanı Tallinn’den gelen bir CV’yi önce düzenini çözmek zorunda kalmadan okur. Aracımız bu formatı ücretsiz ve hesapsız üretir.",
+    "whoTitle": "Europass CV’yi kim ister",
+    "whoBody": "Avrupa kamu sektörü alımlarının çoğunda, birçok üniversite ve araştırma pozisyonunda, AB kurum ve ajanslarında, hareketlilik ve staj programlarında beklenen formattır. Birçok üye ülkede özel işverenler de doğal olarak kabul eder. Bunların dışında klasik bir CV genellikle daha iyi okunur: Europass bir standarttır, bir üst sürüm değil.",
+    "sectionsTitle": "Europass CV neleri içerir",
+    "sections": [
+      "Kişisel bilgiler — ad, iletişim bilgileri, yaşadığınız şehir ve ülke",
+      "İş deneyimi — tersten kronolojik; her görev için dönem, işveren ve gerçekte ne yaptığınız",
+      "Eğitim ve öğretim — dereceler, veren kurum ve tarihlerle",
+      "Dil becerileri — ana diliniz ve diğer tüm diller, CEFR ölçeğinde",
+      "Dijital beceriler — kullandığınız araçlar ve sistemler",
+      "Diğer — ehliyet, yayınlar, sertifikalar ve gönüllülük, ilgiliyse"
+    ],
+    "cefrTitle": "CEFR ölçeğinde dil seviyeleri",
+    "cefrIntro": "İşverenlerin doğrudan karşılaştırdığı ve adayların en çok abarttığı kısım budur. Ölçek A1’den C2’ye uzanır. O dilde yapılacak bir mülakatta savunabileceğiniz seviyeyi seçin.",
+    "stepsTitle": "Kendinizinkini nasıl hazırlarsınız",
+    "steps": [
+      "Formu doldurun: deneyim, eğitim, beceriler ve diller.",
+      "Europass şablonunu seçin; düzen ve bölüm sırası standardı izler.",
+      "PDF olarak indirin, işveren Word isterse .docx olarak."
+    ],
+    "faqTitle": "Sık sorulan sorular",
+    "faqs": [
+      {
+        "q": "Europass CV hazırlamak ücretsiz mi?",
+        "a": "Evet. Bu araç ücretsiz üretir, kayıt ve filigran olmadan, PDF veya Word olarak dışa aktarır."
+      },
+      {
+        "q": "Europass kullanmak zorunda mıyım?",
+        "a": "Yalnızca istendiği yerlerde: Avrupa kamu sektörü, araştırma pozisyonları, AB kurumları ve hareketlilik programları. Diğer durumlarda klasik bir CV genellikle daha iyi okunur."
+      },
+      {
+        "q": "PDF mi Word mü?",
+        "a": "İlan ne istiyorsa onu gönderin. Belirtilmemişse PDF düzeni korur; .docx bazı işe alım sistemlerince daha güvenilir okunur."
+      },
+      {
+        "q": "CEFR seviyemi nasıl seçerim?",
+        "a": "O dilde yapılan bir mülakatta sürdürebileceğiniz seviyeyi. Abartma ilk dakikalarda ortaya çıkar."
+      }
+    ],
+    "cta": "Europass CV’mi hazırla",
+    "relatedTitle": "Diğer CV rehberleri",
+    "cefr": [
+      {
+        "level": "A1",
+        "description": "Temel ifadeler, tanışma ve bildik konularda basit sorular."
+      },
+      {
+        "level": "A2",
+        "description": "Bildik konularda günlük iletişim: alışveriş, yol tarifi, kendi geçmişiniz."
+      },
+      {
+        "level": "B1",
+        "description": "Seyahatte çoğu durumu idare eder; deneyim ve planları anlatabilir."
+      },
+      {
+        "level": "B2",
+        "description": "Kendi alanınızda teknik tartışmaya yetecek akıcılık, iki taraf için de zorlanmadan."
+      },
+      {
+        "level": "C1",
+        "description": "Mesleki ve akademik amaçlarla esnek ve etkili kullanım; örtük anlamı kavrar."
+      },
+      {
+        "level": "C2",
+        "description": "Okunan ve duyulan her şeyi anlar; karmaşık durumlarda bile kendini tam olarak ifade eder."
+      }
+    ]
   }
 }

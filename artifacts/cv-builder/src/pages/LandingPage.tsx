@@ -5,6 +5,7 @@ import { useLanguage } from '../hooks/useLanguage';
 import { parseSlug } from '../data/seo-data';
 import { buildLocalizedSeoPageData } from '../data/localized-seo-data';
 import { buildLandingSeoProps } from '../lib/landing-seo';
+import { buildRelatedLinks } from '../lib/related-links';
 import { SITE_URL } from '../lib/site';
 import type { SupportedLang } from '../i18n';
 
@@ -43,6 +44,7 @@ export default function LandingPage() {
   }
 
   const langPrefix = urlLang ? `/${urlLang}` : '';
+  const relatedLinks = buildRelatedLinks(skill, city);
 
   return (
     <div className="seo-page">
@@ -86,6 +88,19 @@ export default function LandingPage() {
           </div>
         </div>
       </header>
+
+      <section className="seo-local-section">
+        <div className="seo-section-inner">
+          <h2 className="seo-section-title">{page.localTitle}</h2>
+          <ul className="seo-local-list">
+            {page.localLines.map((line, i) => (
+              <li key={i} className="seo-local-item">
+                {line}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <section className="seo-tips-section">
         <div className="seo-section-inner">
@@ -146,37 +161,15 @@ export default function LandingPage() {
         <div className="seo-section-inner">
           <h2 className="seo-section-title">{t('seo.relatedTitle')}</h2>
           <div className="seo-related-links">
-            {skill ? (
-              <>
-                <Link to={`${langPrefix}/resume/new-york`} className="seo-related-link">
-                  {t('seo.related.newYork')}
-                </Link>
-                <Link to={`${langPrefix}/resume/london`} className="seo-related-link">
-                  {t('seo.related.london')}
-                </Link>
-                <Link to={`${langPrefix}/resume/toronto`} className="seo-related-link">
-                  {t('seo.related.toronto')}
-                </Link>
-                <Link to={`${langPrefix}/resume/sydney`} className="seo-related-link">
-                  {t('seo.related.sydney')}
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link to={`${langPrefix}/resume/software-engineer`} className="seo-related-link">
-                  {t('seo.related.softwareEngineer')}
-                </Link>
-                <Link to={`${langPrefix}/resume/nurse`} className="seo-related-link">
-                  {t('seo.related.nurse')}
-                </Link>
-                <Link to={`${langPrefix}/resume/teacher`} className="seo-related-link">
-                  {t('seo.related.teacher')}
-                </Link>
-                <Link to={`${langPrefix}/resume/project-manager`} className="seo-related-link">
-                  {t('seo.related.projectManager')}
-                </Link>
-              </>
-            )}
+            {relatedLinks.map((related) => (
+              <Link
+                key={related.slug}
+                to={`${langPrefix}/resume/${related.slug}`}
+                className="seo-related-link"
+              >
+                {t(`seo.related.${related.kind}`, { skill: related.skill, city: related.city })}
+              </Link>
+            ))}
           </div>
         </div>
       </section>

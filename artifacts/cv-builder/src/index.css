@@ -557,6 +557,8 @@ body {
 
 .preview-actions {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: 0.625rem;
 }
 
@@ -724,7 +726,7 @@ body {
   border: 2px solid #0ea5e9;
 }
 
-.cv-header-text h1 {
+.cv-header-text .cv-name {
   font-size: 18pt;
   font-weight: 700;
   color: #0f172a;
@@ -732,7 +734,7 @@ body {
   margin-bottom: 0.2rem;
 }
 
-.cv-header-text h2 {
+.cv-header-text .cv-job-title {
   font-size: 10.5pt;
   font-weight: 400;
   color: #0ea5e9;
@@ -893,7 +895,7 @@ body {
   margin-bottom: 0.75rem;
 }
 
-.cv-modern-name h1 {
+.cv-modern-name .cv-name {
   font-size: 12pt;
   font-weight: 700;
   color: #f8fafc;
@@ -1095,7 +1097,7 @@ body {
   padding: 1.5rem 2rem 0.75rem;
 }
 
-.cv-creative-hero-text h1 {
+.cv-creative-hero-text .cv-name {
   font-size: 20pt;
   font-weight: 700;
   color: #fff;
@@ -1297,6 +1299,171 @@ body {
   }
 }
 
+.seo-europass-body {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.seo-cefr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.seo-cefr-row {
+  display: flex;
+  gap: 0.9rem;
+  align-items: baseline;
+}
+
+.seo-cefr-row dt {
+  flex: 0 0 2.6rem;
+  font-weight: 700;
+  color: #003399;
+  font-size: 0.92rem;
+}
+
+.seo-cefr-row dd {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+[dir='rtl'] .seo-cefr-row {
+  flex-direction: row-reverse;
+}
+
+/* ========================
+   EUROPASS TEMPLATE
+   Layout European employers recognise: identity block, then dated entries with
+   the period in a left column. Stays single-column in DOM order so a parser
+   reading raw text still gets "period, role, employer" in sequence.
+======================== */
+.cv-europass {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 9.5pt;
+  line-height: 1.5;
+  color: #1f2937;
+  padding: 2rem 2.25rem;
+  background: #fff;
+}
+
+.cv-europass-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #003399;
+  margin-bottom: 1.25rem;
+}
+
+.cv-photo-europass {
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.cv-europass-identity .cv-name {
+  font-size: 19pt;
+  font-weight: 700;
+  color: #003399;
+  line-height: 1.15;
+}
+
+.cv-europass-identity .cv-job-title {
+  font-size: 10.5pt;
+  color: #475569;
+  margin-top: 0.15rem;
+}
+
+.cv-europass-section {
+  margin-bottom: 1.1rem;
+  break-inside: avoid;
+}
+
+.cv-europass-title {
+  font-size: 8.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #003399;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #c7d2fe;
+  margin-bottom: 0.55rem;
+}
+
+.cv-europass-contact-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+
+.cv-europass-contact-row dt {
+  flex: 0 0 6.5rem;
+  color: #64748b;
+}
+
+.cv-europass-contact-row dd {
+  margin: 0;
+}
+
+.cv-europass-entry {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+  break-inside: avoid;
+}
+
+.cv-europass-period {
+  flex: 0 0 6.5rem;
+  color: #64748b;
+  font-size: 8.5pt;
+  padding-top: 0.1rem;
+  word-break: break-word;
+}
+
+.cv-europass-body {
+  flex: 1;
+}
+
+.cv-europass-org {
+  color: #334155;
+}
+
+.cv-europass-place {
+  color: #64748b;
+}
+
+.cv-europass-desc,
+.cv-europass-summary,
+.cv-europass-skills {
+  margin-top: 0.2rem;
+  color: #374151;
+  white-space: pre-wrap;
+}
+
+.cv-europass-languages {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cv-europass-level {
+  color: #475569;
+}
+
+[dir='rtl'] .cv-europass-entry,
+[dir='rtl'] .cv-europass-contact-row,
+[dir='rtl'] .cv-europass-header {
+  flex-direction: row-reverse;
+}
+
 /* ========================
    SEO LANDING PAGES
 ======================== */
@@ -1473,7 +1640,42 @@ body {
   flex-wrap: wrap;
 }
 
+.docx-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  background: #fff;
+  color: #0369a1;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.docx-btn:hover {
+  background: #e0f2fe;
+}
+
+/* Hint under the export buttons: the print dialog is where the real-text PDF
+   comes from, so the extra step needs explaining. */
+.preview-hint {
+  flex-basis: 100%;
+  font-size: 0.72rem;
+  color: #475569;
+  line-height: 1.4;
+  margin-top: 0.35rem;
+}
+
+.print-btn[disabled],
+.pdf-btn[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+
 /* SECTIONS */
+.seo-local-section,
 .seo-tips-section,
 .seo-how-section,
 .seo-faq-section,
@@ -1482,6 +1684,9 @@ body {
   border-bottom: 1px solid #e0f2fe;
 }
 
+.seo-local-section {
+  background: #f8fafc;
+}
 .seo-tips-section {
   background: #fff;
 }
@@ -1505,6 +1710,32 @@ body {
   font-weight: 700;
   color: #0f172a;
   margin-bottom: 1.5rem;
+}
+
+.seo-local-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.seo-local-item {
+  position: relative;
+  padding-inline-start: 1.25rem;
+  font-size: 0.92rem;
+  color: #334155;
+  line-height: 1.65;
+}
+
+.seo-local-item::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0369a1, #0ea5e9);
 }
 
 .seo-tips-list {
@@ -1758,6 +1989,7 @@ body {
   .seo-hero {
     padding: 2.5rem 1.25rem;
   }
+  .seo-local-section,
   .seo-tips-section,
   .seo-how-section,
   .seo-faq-section,
@@ -1767,6 +1999,248 @@ body {
 }
 
 /* ─── Language Switcher ─────────────────────────────────── */
+/* ── ATS check panel, at the end of the form column ───────────────── */
+.ats-checker {
+  border-top: 1px solid #bae6fd;
+  background: #fff;
+}
+
+.ats-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: start;
+}
+
+.ats-toggle:hover {
+  background: #f0f9ff;
+}
+
+.ats-toggle-icon {
+  color: #0ea5e9;
+  font-size: 0.6rem;
+}
+
+.ats-body {
+  padding: 0 1.25rem 1.5rem;
+}
+
+.ats-intro,
+.ats-hint,
+.ats-caveat,
+.ats-group-hint {
+  font-size: 0.74rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.ats-textarea {
+  width: 100%;
+  margin: 0.6rem 0;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.ats-textarea:focus {
+  outline: 2px solid #0ea5e9;
+  outline-offset: -1px;
+}
+
+.ats-score {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 8px;
+  margin-bottom: 0.4rem;
+}
+
+.ats-score-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ats-score-label {
+  font-size: 0.72rem;
+  line-height: 1.35;
+}
+
+.ats-score-high {
+  background: #ecfdf5;
+  color: #065f46;
+}
+.ats-score-mid {
+  background: #fffbeb;
+  color: #92400e;
+}
+.ats-score-low {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.ats-group {
+  margin-top: 1rem;
+}
+
+.ats-group-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #0f172a;
+  margin-bottom: 0.3rem;
+}
+
+.ats-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.45rem;
+}
+
+.ats-chip {
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  border: 1px solid transparent;
+}
+
+.ats-chip-missing {
+  background: #fef2f2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+.ats-chip-full {
+  background: #ecfdf5;
+  color: #065f46;
+  border-color: #a7f3d0;
+}
+
+.ats-chip-partial {
+  background: #fffbeb;
+  color: #92400e;
+  border-color: #fde68a;
+}
+
+.ats-checks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+}
+
+.ats-checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  line-height: 1.45;
+}
+
+.ats-check-ok {
+  color: #047857;
+}
+
+.ats-check-fail {
+  color: #b45309;
+}
+
+/* ── Crawlable homepage content at the end of the form column ────── */
+.home-seo {
+  padding: 1.25rem 1.25rem 2rem;
+  border-top: 1px solid #bae6fd;
+  background: #f8fafc;
+}
+
+.home-seo-block + .home-seo-block {
+  margin-top: 1.5rem;
+}
+
+.home-seo-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+}
+
+.home-seo-faq + .home-seo-faq {
+  margin-top: 0.75rem;
+}
+
+.home-seo-faqs dt {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.2rem;
+}
+
+.home-seo-faqs dd {
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.55;
+}
+
+.home-seo-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+}
+
+.home-seo-links a {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  background: #fff;
+  border: 1px solid #bae6fd;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: #0369a1;
+  text-decoration: none;
+}
+
+.home-seo-links a:hover {
+  background: #e0f2fe;
+}
+
+/* ── Page heading (the builder page's H1, above the language bar) ── */
+.form-intro {
+  padding: 0.9rem 1.25rem 0.7rem;
+  background: #f0f9ff;
+  border-bottom: 1px solid #bae6fd;
+}
+
+.form-h1 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  margin-bottom: 0.3rem;
+}
+
+.form-tagline {
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
 /* ── Language bar (dedicated row below header) ──────────────────── */
 .lang-bar {
   display: flex;
