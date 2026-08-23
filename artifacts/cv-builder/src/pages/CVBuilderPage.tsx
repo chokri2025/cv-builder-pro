@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import FormPanel from '../components/FormPanel';
 import HomeSeoContent from '../components/HomeSeoContent';
+import AtsChecker from '../components/AtsChecker';
 import CVPreview from '../components/CVPreview';
 import { useCV } from '../hooks/useCV';
 import { useSEO } from '../hooks/useSEO';
@@ -87,6 +88,7 @@ export default function CVBuilderPage() {
           updateProject={cv.updateProject}
           removeProject={cv.removeProject}
         />
+        <AtsChecker data={cv.cvData} />
         <HomeSeoContent langPrefix={urlLang ? `/${urlLang}` : ''} />
       </section>
       <section

@@ -162,5 +162,27 @@
         "a": "Solo en tu navegador. Tu CV se guarda en el almacenamiento local de este dispositivo y nunca se sube a un servidor."
       }
     ]
+  },
+  "ats": {
+    "title": "Test ATS — compara tu CV con una oferta",
+    "intro": "Pega la oferta de empleo. Todo se queda en tu navegador: no se envía nada.",
+    "placeholder": "Pega aquí la oferta completa…",
+    "tooShort": "Pega un poco más de la oferta: unas pocas palabras no bastan para comparar.",
+    "scoreLabel": "de los términos clave de esta oferta aparecen en tu CV",
+    "caveat": "Mide la coincidencia de vocabulario con esta oferta concreta. No predice la clasificación de ningún empleador.",
+    "missingTitle": "No aparecen en tu CV",
+    "missingHint": "Añade los que describan de verdad tu experiencia, en la sección que corresponda. No declares competencias que no tienes: se nota en la entrevista.",
+    "matchedTitle": "Ya están en tu CV",
+    "partialHint": "Ambas palabras aparecen, pero no juntas como esta expresión.",
+    "checksTitle": "Comprobaciones de lectura",
+    "checks": {
+      "email": "Correo electrónico presente",
+      "phone": "Teléfono presente",
+      "jobTitle": "Puesto indicado",
+      "summary": "Resumen profesional redactado",
+      "experienceDates": "Cada puesto tiene fecha de inicio",
+      "skills": "Al menos tres habilidades listadas",
+      "education": "Sección de formación rellenada"
+    }
   }
 }

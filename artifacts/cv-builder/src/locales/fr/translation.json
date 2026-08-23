@@ -175,5 +175,27 @@
         "a": "Uniquement dans votre navigateur. Votre CV est enregistré dans le stockage local de cet appareil et n’est jamais envoyé à un serveur."
       }
     ]
+  },
+  "ats": {
+    "title": "Test ATS — comparez votre CV à une annonce",
+    "intro": "Collez l'annonce. Tout reste dans votre navigateur — rien n'est envoyé.",
+    "placeholder": "Collez ici l'annonce complète…",
+    "tooShort": "Collez un peu plus de l'annonce — quelques mots ne suffisent pas pour comparer.",
+    "scoreLabel": "des termes clés de cette annonce figurent dans votre CV",
+    "caveat": "Cela mesure le recouvrement de vocabulaire avec cette annonce précise. Ce n'est pas une prédiction du classement d'un employeur.",
+    "missingTitle": "Absents de votre CV",
+    "missingHint": "Ajoutez ceux qui décrivent réellement votre expérience, dans la rubrique appropriée. Ne revendiquez pas des compétences que vous n'avez pas — cela se voit en entretien.",
+    "matchedTitle": "Déjà dans votre CV",
+    "partialHint": "Les deux mots apparaissent, mais pas ensemble sous cette forme.",
+    "checksTitle": "Contrôles de lisibilité",
+    "checks": {
+      "email": "Adresse e-mail présente",
+      "phone": "Numéro de téléphone présent",
+      "jobTitle": "Intitulé de poste renseigné",
+      "summary": "Résumé professionnel rédigé",
+      "experienceDates": "Chaque poste a une date de début",
+      "skills": "Au moins trois compétences listées",
+      "education": "Rubrique formation remplie"
+    }
   }
 }

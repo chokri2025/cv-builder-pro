@@ -162,5 +162,27 @@
         "a": "Apenas no seu navegador. O seu CV é guardado no armazenamento local deste dispositivo e nunca é enviado para um servidor."
       }
     ]
+  },
+  "ats": {
+    "title": "Teste ATS — compare o seu CV com um anúncio",
+    "intro": "Cole o anúncio de emprego. Tudo fica no seu navegador — nada é enviado.",
+    "placeholder": "Cole aqui o anúncio completo…",
+    "tooShort": "Cole um pouco mais do anúncio — algumas palavras não chegam para comparar.",
+    "scoreLabel": "dos termos-chave deste anúncio aparecem no seu CV",
+    "caveat": "Mede a sobreposição de vocabulário com este anúncio específico. Não prevê a classificação de nenhum empregador.",
+    "missingTitle": "Não encontrados no seu CV",
+    "missingHint": "Acrescente os que descrevem realmente a sua experiência, na secção adequada. Não reivindique competências que não tem — nota-se na entrevista.",
+    "matchedTitle": "Já no seu CV",
+    "partialHint": "As duas palavras aparecem, mas não juntas nesta expressão.",
+    "checksTitle": "Verificações de leitura",
+    "checks": {
+      "email": "Endereço de e-mail presente",
+      "phone": "Número de telefone presente",
+      "jobTitle": "Cargo preenchido",
+      "summary": "Resumo profissional escrito",
+      "experienceDates": "Cada função tem data de início",
+      "skills": "Pelo menos três competências listadas",
+      "education": "Secção de formação preenchida"
+    }
   }
 }

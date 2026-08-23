@@ -162,5 +162,27 @@
         "a": "In your browser only. Your CV is saved to this device’s local storage and is never uploaded to a server."
       }
     ]
+  },
+  "ats": {
+    "title": "ATS check — match your CV to a job ad",
+    "intro": "Paste the job advert. Everything stays in your browser — nothing is uploaded.",
+    "placeholder": "Paste the full job advert here…",
+    "tooShort": "Paste a bit more of the advert — a few words are not enough to compare against.",
+    "scoreLabel": "of this ad’s key terms appear in your CV",
+    "caveat": "This measures wording overlap with this one advert. It is not a prediction of any employer’s ranking.",
+    "missingTitle": "Not found in your CV",
+    "missingHint": "Add the ones that genuinely describe your experience, in the section where they belong. Do not claim skills you do not have — it fails at interview.",
+    "matchedTitle": "Already in your CV",
+    "partialHint": "Both words appear, but not together as this phrase.",
+    "checksTitle": "Parsing checks",
+    "checks": {
+      "email": "Email address present",
+      "phone": "Phone number present",
+      "jobTitle": "Job title filled in",
+      "summary": "Professional summary written",
+      "experienceDates": "Every role has a start date",
+      "skills": "At least three skills listed",
+      "education": "Education section filled in"
+    }
   }
 }

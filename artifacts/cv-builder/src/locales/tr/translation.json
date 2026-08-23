@@ -162,5 +162,27 @@
         "a": "Yalnızca tarayıcınızda. CV’niz bu cihazın yerel depolamasına kaydedilir ve hiçbir sunucuya yüklenmez."
       }
     ]
+  },
+  "ats": {
+    "title": "ATS testi — CV’nizi bir ilanla karşılaştırın",
+    "intro": "İş ilanını yapıştırın. Her şey tarayıcınızda kalır — hiçbir veri gönderilmez.",
+    "placeholder": "İlanın tamamını buraya yapıştırın…",
+    "tooShort": "İlandan biraz daha yapıştırın — birkaç kelime karşılaştırma için yeterli değil.",
+    "scoreLabel": "bu ilandaki anahtar terimlerin CV’nizde geçme oranı",
+    "caveat": "Bu, yalnızca bu ilanla sözcük örtüşmesini ölçer. Herhangi bir işverenin sıralamasını öngörmez.",
+    "missingTitle": "CV’nizde bulunmayanlar",
+    "missingHint": "Deneyiminizi gerçekten anlatanları, ait oldukları bölüme ekleyin. Sahip olmadığınız becerileri yazmayın — mülakatta ortaya çıkar.",
+    "matchedTitle": "CV’nizde mevcut",
+    "partialHint": "Her iki kelime de geçiyor ama bu ifade olarak bir arada değil.",
+    "checksTitle": "Okunabilirlik kontrolleri",
+    "checks": {
+      "email": "E-posta adresi var",
+      "phone": "Telefon numarası var",
+      "jobTitle": "Pozisyon adı girilmiş",
+      "summary": "Profesyonel özet yazılmış",
+      "experienceDates": "Her görevin başlangıç tarihi var",
+      "skills": "En az üç beceri listelenmiş",
+      "education": "Eğitim bölümü doldurulmuş"
+    }
   }
 }
