@@ -15,7 +15,8 @@
     "templates": {
       "minimal": "Minimal",
       "modern": "Modern",
-      "creative": "Creative"
+      "creative": "Creative",
+      "europass": "Europass"
     },
     "editLabel": "← Edit",
     "previewLabel": "Preview →",
@@ -100,7 +101,10 @@
     "languages": "Languages",
     "projects": "Projects",
     "present": "Present",
-    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    "personalInformation": "Personal information",
+    "educationAndTraining": "Education and training",
+    "languageSkills": "Language skills"
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Free Online Resume & CV Maker",

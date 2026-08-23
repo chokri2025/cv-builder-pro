@@ -15,7 +15,8 @@
     "templates": {
       "minimal": "Minimaliste",
       "modern": "Moderne",
-      "creative": "Créatif"
+      "creative": "Créatif",
+      "europass": "Europass"
     },
     "editLabel": "← Modifier",
     "previewLabel": "Aperçu →",
@@ -113,7 +114,10 @@
       "Oct",
       "Nov",
       "Déc"
-    ]
+    ],
+    "personalInformation": "Informations personnelles",
+    "educationAndTraining": "Formation",
+    "languageSkills": "Compétences linguistiques"
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Créateur de CV & Resume Gratuit en Ligne",

@@ -1300,6 +1300,134 @@ body {
 }
 
 /* ========================
+   EUROPASS TEMPLATE
+   Layout European employers recognise: identity block, then dated entries with
+   the period in a left column. Stays single-column in DOM order so a parser
+   reading raw text still gets "period, role, employer" in sequence.
+======================== */
+.cv-europass {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  font-size: 9.5pt;
+  line-height: 1.5;
+  color: #1f2937;
+  padding: 2rem 2.25rem;
+  background: #fff;
+}
+
+.cv-europass-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid #003399;
+  margin-bottom: 1.25rem;
+}
+
+.cv-photo-europass {
+  width: 76px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.cv-europass-identity .cv-name {
+  font-size: 19pt;
+  font-weight: 700;
+  color: #003399;
+  line-height: 1.15;
+}
+
+.cv-europass-identity .cv-job-title {
+  font-size: 10.5pt;
+  color: #475569;
+  margin-top: 0.15rem;
+}
+
+.cv-europass-section {
+  margin-bottom: 1.1rem;
+  break-inside: avoid;
+}
+
+.cv-europass-title {
+  font-size: 8.5pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #003399;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #c7d2fe;
+  margin-bottom: 0.55rem;
+}
+
+.cv-europass-contact-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+
+.cv-europass-contact-row dt {
+  flex: 0 0 6.5rem;
+  color: #64748b;
+}
+
+.cv-europass-contact-row dd {
+  margin: 0;
+}
+
+.cv-europass-entry {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+  break-inside: avoid;
+}
+
+.cv-europass-period {
+  flex: 0 0 6.5rem;
+  color: #64748b;
+  font-size: 8.5pt;
+  padding-top: 0.1rem;
+  word-break: break-word;
+}
+
+.cv-europass-body {
+  flex: 1;
+}
+
+.cv-europass-org {
+  color: #334155;
+}
+
+.cv-europass-place {
+  color: #64748b;
+}
+
+.cv-europass-desc,
+.cv-europass-summary,
+.cv-europass-skills {
+  margin-top: 0.2rem;
+  color: #374151;
+  white-space: pre-wrap;
+}
+
+.cv-europass-languages {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cv-europass-level {
+  color: #475569;
+}
+
+[dir='rtl'] .cv-europass-entry,
+[dir='rtl'] .cv-europass-contact-row,
+[dir='rtl'] .cv-europass-header {
+  flex-direction: row-reverse;
+}
+
+/* ========================
    SEO LANDING PAGES
 ======================== */
 .seo-page {

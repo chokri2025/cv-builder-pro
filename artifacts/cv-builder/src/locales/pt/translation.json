@@ -15,7 +15,8 @@
     "templates": {
       "minimal": "Minimalista",
       "modern": "Moderno",
-      "creative": "Criativo"
+      "creative": "Criativo",
+      "europass": "Europass"
     },
     "editLabel": "← Editar",
     "previewLabel": "Pré-visualizar →",
@@ -100,7 +101,10 @@
     "languages": "Idiomas",
     "projects": "Projetos",
     "present": "Presente",
-    "months": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+    "months": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+    "personalInformation": "Informação pessoal",
+    "educationAndTraining": "Educação e formação",
+    "languageSkills": "Competências linguísticas"
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Criador de CV e Currículo Grátis Online",

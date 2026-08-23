@@ -15,7 +15,8 @@
     "templates": {
       "minimal": "Minimal",
       "modern": "Modern",
-      "creative": "Yaratıcı"
+      "creative": "Yaratıcı",
+      "europass": "Europass"
     },
     "editLabel": "← Düzenle",
     "previewLabel": "Önizleme →",
@@ -100,7 +101,10 @@
     "languages": "Diller",
     "projects": "Projeler",
     "present": "Devam ediyor",
-    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"]
+    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+    "personalInformation": "Kişisel bilgiler",
+    "educationAndTraining": "Eğitim ve öğretim",
+    "languageSkills": "Dil becerileri"
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Ücretsiz Çevrimiçi CV & Resume Oluşturucu",

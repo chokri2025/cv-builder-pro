@@ -15,7 +15,8 @@
     "templates": {
       "minimal": "بسيط",
       "modern": "عصري",
-      "creative": "إبداعي"
+      "creative": "إبداعي",
+      "europass": "Europass"
     },
     "editLabel": "تحرير →",
     "previewLabel": "← معاينة",
@@ -113,7 +114,10 @@
       "أكتوبر",
       "نوفمبر",
       "ديسمبر"
-    ]
+    ],
+    "personalInformation": "المعلومات الشخصية",
+    "educationAndTraining": "التعليم والتدريب",
+    "languageSkills": "المهارات اللغوية"
   },
   "seo": {
     "homeTitle": "منشئ السيرة الذاتية Pro – إنشاء CV مجاني عبر الإنترنت",

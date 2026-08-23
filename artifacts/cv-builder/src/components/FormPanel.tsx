@@ -4,7 +4,7 @@ import { CVData, TemplateType } from '../types/cv';
 import LanguageSwitcher from './LanguageSwitcher';
 import { compressImageFile } from '../lib/image';
 
-const TEMPLATE_KEYS: TemplateType[] = ['minimal', 'modern', 'creative'];
+const TEMPLATE_KEYS: TemplateType[] = ['minimal', 'modern', 'creative', 'europass'];
 
 type SectionKey =
   | 'personal'

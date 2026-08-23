@@ -5,6 +5,7 @@ import { CVData, TemplateType } from '../types/cv';
 import MinimalTemplate from './templates/MinimalTemplate';
 import ModernTemplate from './templates/ModernTemplate';
 import CreativeTemplate from './templates/CreativeTemplate';
+import EuropassTemplate from './templates/EuropassTemplate';
 
 interface Props {
   data: CVData;
@@ -40,6 +41,8 @@ export default function CVPreview({ data, template }: Props) {
         return <ModernTemplate data={data} />;
       case 'creative':
         return <CreativeTemplate data={data} />;
+      case 'europass':
+        return <EuropassTemplate data={data} />;
       default:
         return <MinimalTemplate data={data} />;
     }
