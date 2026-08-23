@@ -91,7 +91,9 @@
     "livePreview": "Live Preview",
     "print": "Print",
     "downloadPdf": "Download PDF",
-    "pdfHint": "Choose “Save as PDF” — keeps your CV as real text, so applicant tracking systems can read it."
+    "pdfHint": "Choose “Save as PDF” — keeps your CV as real text, so applicant tracking systems can read it.",
+    "downloadDocx": "Download .docx",
+    "docxHint": "The .docx is a plain one-column version for systems that parse Word better than PDF."
   },
   "cv": {
     "profile": "Profile",

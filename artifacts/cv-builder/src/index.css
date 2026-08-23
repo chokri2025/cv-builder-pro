@@ -1603,6 +1603,24 @@ body {
   flex-wrap: wrap;
 }
 
+.docx-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  background: #fff;
+  color: #0369a1;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.docx-btn:hover {
+  background: #e0f2fe;
+}
+
 /* Hint under the export buttons: the print dialog is where the real-text PDF
    comes from, so the extra step needs explaining. */
 .preview-hint {

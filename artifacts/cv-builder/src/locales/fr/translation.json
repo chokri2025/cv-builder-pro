@@ -91,7 +91,9 @@
     "livePreview": "Aperçu en direct",
     "print": "Imprimer",
     "downloadPdf": "Télécharger le PDF",
-    "pdfHint": "Choisissez « Enregistrer au format PDF » — votre CV reste en texte réel, lisible par les logiciels de recrutement (ATS)."
+    "pdfHint": "Choisissez « Enregistrer au format PDF » — votre CV reste en texte réel, lisible par les logiciels de recrutement (ATS).",
+    "downloadDocx": "Télécharger .docx",
+    "docxHint": "Le .docx est une version simple en une colonne, pour les systèmes qui lisent mieux Word que le PDF."
   },
   "cv": {
     "profile": "Profil",

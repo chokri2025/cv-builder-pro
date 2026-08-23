@@ -91,7 +91,9 @@
     "livePreview": "Canlı Önizleme",
     "print": "Yazdır",
     "downloadPdf": "PDF indir",
-    "pdfHint": "«PDF olarak kaydet»i seçin — CV'niz gerçek metin olarak kalır, ATS sistemleri okuyabilir."
+    "pdfHint": "«PDF olarak kaydet»i seçin — CV'niz gerçek metin olarak kalır, ATS sistemleri okuyabilir.",
+    "downloadDocx": ".docx indir",
+    "docxHint": ".docx, Word'ü PDF'ten daha iyi okuyan sistemler için tek sütunlu sade bir sürümdür."
   },
   "cv": {
     "profile": "Profil",

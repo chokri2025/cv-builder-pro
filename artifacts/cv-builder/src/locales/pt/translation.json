@@ -91,7 +91,9 @@
     "livePreview": "Pré-visualização ao vivo",
     "print": "Imprimir",
     "downloadPdf": "Descarregar PDF",
-    "pdfHint": "Escolha «Guardar como PDF» — o seu CV fica em texto real, legível pelos sistemas ATS."
+    "pdfHint": "Escolha «Guardar como PDF» — o seu CV fica em texto real, legível pelos sistemas ATS.",
+    "downloadDocx": "Descarregar .docx",
+    "docxHint": "O .docx é uma versão simples de uma coluna, para sistemas que leem Word melhor do que PDF."
   },
   "cv": {
     "profile": "Perfil",
