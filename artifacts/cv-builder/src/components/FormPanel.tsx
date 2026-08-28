@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { CVData, TemplateType } from '../types/cv';
 import LanguageSwitcher from './LanguageSwitcher';
 import { compressImageFile } from '../lib/image';
+import { trackEvent } from '../lib/analytics';
 
 const TEMPLATE_KEYS: TemplateType[] = ['minimal', 'modern', 'creative', 'europass'];
 
@@ -170,7 +171,10 @@ export default function FormPanel(props: FormPanelProps) {
             <button
               key={key}
               className={`template-btn ${template === key ? 'active' : ''}`}
-              onClick={() => setTemplate(key)}
+              onClick={() => {
+                setTemplate(key);
+                trackEvent('select_template', { template: key });
+              }}
             >
               {t(`builder.templates.${key}`)}
             </button>

@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { buildFileName, printElement } from '../lib/print-pdf';
 import { downloadDocx } from '../lib/docx';
+import { trackEvent } from '../lib/analytics';
 import { useLanguage } from '../hooks/useLanguage';
 import { CVData, TemplateType } from '../types/cv';
 import MinimalTemplate from './templates/MinimalTemplate';
@@ -41,6 +42,7 @@ export default function CVPreview({ data, template }: Props) {
       buildFileName(data.personal.fullName),
       rtl,
     );
+    trackEvent('docx_download', { template });
   };
 
   /**
@@ -55,6 +57,7 @@ export default function CVPreview({ data, template }: Props) {
     setExporting(true);
     try {
       await printElement(element, data.personal.fullName);
+      trackEvent('pdf_download', { template });
     } finally {
       setExporting(false);
     }
