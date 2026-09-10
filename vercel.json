@@ -9,6 +9,16 @@
       "has": [{ "type": "host", "value": "cvbuilder-pro.online" }],
       "destination": "https://www.cvbuilder-pro.online/$1",
       "permanent": true
+    },
+    {
+      "source": "/en",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/:path*",
+      "permanent": true
     }
   ],
   "rewrites": [
