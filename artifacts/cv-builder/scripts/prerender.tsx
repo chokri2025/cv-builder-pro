@@ -77,7 +77,7 @@ function escapeAttr(s: string): string {
 /** Removes the static, generic SEO tags from the shell template's <head> so the
  * per-route tags we inject are the only ones a crawler sees (no duplicate/conflicting
  * <title>, canonical, or og:* tags left over from the generic index.html shell). */
-function stripGenericSeoTags(headHtml: string, { keepJsonLd = false } = {}): string {
+export function stripGenericSeoTags(headHtml: string, { keepJsonLd = false } = {}): string {
   const stripped = headHtml
     .replace(/<title>[\s\S]*?<\/title>/, '')
     .replace(/<meta\s+name="description"[^>]*>/, '')
@@ -207,7 +207,7 @@ async function renderEuropassRoute(lang: LangCode, urlLang: string | undefined) 
   return { headTags, bodyHtml };
 }
 
-function assembleHtml(
+export function assembleHtml(
   template: string,
   headTags: HeadTags,
   bodyHtml: string,
@@ -272,7 +272,13 @@ async function main() {
   );
 }
 
-main().catch((err) => {
-  console.error('[prerender] Failed:', err);
-  process.exit(1);
-});
+// Only run when executed directly (`tsx scripts/prerender.tsx`), not when
+// imported — e.g. by prerender-html.test.ts, which reuses assembleHtml() /
+// stripGenericSeoTags() as pure functions against a fixture template.
+const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isMain) {
+  main().catch((err) => {
+    console.error('[prerender] Failed:', err);
+    process.exit(1);
+  });
+}
