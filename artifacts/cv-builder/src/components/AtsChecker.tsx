@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { CVData } from '../types/cv';
-import { analyseMatch } from '../lib/ats-match';
+import { analyseMatch, assessAtsReadiness } from '../lib/ats-match';
 import { useLanguage } from '../hooks/useLanguage';
 
 interface Props {
@@ -28,6 +28,8 @@ export default function AtsChecker({ data }: Props) {
   const [jobAd, setJobAd] = useState('');
   const [open, setOpen] = useState(false);
 
+  const readiness = useMemo(() => assessAtsReadiness(data), [data]);
+
   const result = useMemo(
     () => (jobAd.trim() ? analyseMatch(jobAd, data, currentLang) : null),
     [jobAd, data, currentLang],
@@ -42,11 +44,52 @@ export default function AtsChecker({ data }: Props) {
         aria-expanded={open}
       >
         <span>{t('ats.title')}</span>
-        <span className="ats-toggle-icon">{open ? '▲' : '▼'}</span>
+        <span className="ats-toggle-meta">
+          <span className={`ats-live-badge ats-live-badge-${scoreBand(readiness.score)}`}>
+            {readiness.score}/100
+          </span>
+          <span className="ats-toggle-icon">{open ? '▲' : '▼'}</span>
+        </span>
       </button>
 
       {open && (
         <div className="ats-body">
+          <div className={`ats-readiness ats-readiness-${scoreBand(readiness.score)}`}>
+            <div className="ats-readiness-head">
+              <div>
+                <div className="ats-readiness-label">{t('ats.readinessLabel')}</div>
+                <p className="ats-readiness-intro">{t('ats.readinessIntro')}</p>
+              </div>
+              <div className="ats-readiness-score">{readiness.score}<span>/100</span></div>
+            </div>
+
+            <div className="ats-readiness-progress" aria-hidden="true">
+              <span style={{ width: `${readiness.score}%` }} />
+            </div>
+
+            <div className="ats-category-list">
+              {readiness.categories.map((category) => (
+                <div key={category.id} className="ats-category-row">
+                  <span className="ats-category-name">{t(`ats.categories.${category.id}`)}</span>
+                  <span className="ats-category-value">{category.score}/{category.max}</span>
+                </div>
+              ))}
+            </div>
+
+            {readiness.nextSteps.length > 0 && (
+              <div className="ats-improve">
+                <strong>{t('ats.improveTitle')}</strong>
+                <div className="ats-chips">
+                  {readiness.nextSteps.map((id) => (
+                    <span key={id} className="ats-chip ats-chip-missing">
+                      {t(`ats.categories.${id}`)}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
           <p className="ats-intro">{t('ats.intro')}</p>
 
           <textarea

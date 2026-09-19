@@ -44,6 +44,28 @@ export interface AtsResult {
   tooShort: boolean;
 }
 
+export type ReadinessCategoryId =
+  | 'profile'
+  | 'summary'
+  | 'experience'
+  | 'skills'
+  | 'education'
+  | 'extras';
+
+export interface ReadinessCategory {
+  id: ReadinessCategoryId;
+  score: number;
+  max: number;
+}
+
+export interface AtsReadinessResult {
+  /** 0–100 deterministic readiness score based on CV completeness/content quality. */
+  score: number;
+  categories: ReadinessCategory[];
+  /** The three categories with the largest remaining score opportunity. */
+  nextSteps: ReadinessCategoryId[];
+}
+
 const MIN_AD_WORDS = 20;
 const MAX_KEYWORDS = 20;
 const MIN_TOKEN_LENGTH = 3;
@@ -229,6 +251,119 @@ export function analyseMatch(jobAd: string, data: CVData, lang: string): AtsResu
     checks,
     tooShort: false,
   };
+}
+
+/**
+ * Gives the CV a live, deterministic ATS-readiness score.
+ *
+ * This does not claim to predict any employer's ATS ranking. It rewards concrete
+ * things we can verify locally: complete contact details, a useful summary,
+ * complete experience entries, meaningful descriptions, skills, education and
+ * supporting profile information. It intentionally never calls a model or a
+ * server, so the same CV always gets the same score.
+ */
+export function assessAtsReadiness(data: CVData): AtsReadinessResult {
+  const { personal, summary, experience, education, skills, languages, projects } = data;
+
+  const phoneDigits = normalize(personal.phone).replace(/\D/g, '').length;
+  const profile =
+    (personal.fullName.trim().length >= 2 ? 4 : 0) +
+    (/\S+@\S+\.\S+/.test(personal.email) ? 4 : 0) +
+    (phoneDigits >= 6 ? 3 : 0) +
+    (personal.jobTitle.trim().length > 0 ? 5 : 0) +
+    (personal.location.trim().length > 0 ? 4 : 0);
+
+  const summaryLength = summary.trim().length;
+  const summaryScore =
+    summaryLength >= 80 ? 15 : summaryLength >= 40 ? 10 : summaryLength >= 20 ? 5 : 0;
+
+  let experienceScore = 0;
+  if (experience.length > 0) {
+    const requiredRatio =
+      experience.reduce((sum, item) => {
+        const present = [item.jobTitle, item.company, item.startDate].filter(
+          (value) => value.trim().length > 0,
+        ).length;
+        return sum + present / 3;
+      }, 0) / experience.length;
+
+    const descriptionRatio =
+      experience.reduce((sum, item) => {
+        const length = item.description.trim().length;
+        const quality = length >= 120 ? 1 : length >= 60 ? 0.7 : length >= 20 ? 0.35 : 0;
+        return sum + quality;
+      }, 0) / experience.length;
+
+    const measurableRatio =
+      experience.filter((item) => /[\d%€$£]/.test(item.description)).length / experience.length;
+
+    experienceScore =
+      6 +
+      Math.round(requiredRatio * 9) +
+      Math.round(descriptionRatio * 9) +
+      Math.round(measurableRatio * 6);
+  }
+
+  const skillsScore =
+    skills.length >= 8
+      ? 15
+      : skills.length >= 6
+        ? 13
+        : skills.length >= 4
+          ? 10
+          : skills.length >= 3
+            ? 8
+            : skills.length > 0
+              ? 4
+              : 0;
+
+  let educationScore = 0;
+  if (education.length > 0) {
+    const completeness =
+      education.reduce((sum, item) => {
+        const present = [item.degree, item.school, item.year].filter(
+          (value) => value.trim().length > 0,
+        ).length;
+        return sum + present / 3;
+      }, 0) / education.length;
+    educationScore = Math.round(completeness * 10);
+  }
+
+  const extras =
+    (personal.linkedin.trim().length > 0 ? 3 : 0) +
+    (personal.portfolio.trim().length > 0 ? 2 : 0) +
+    (languages.length > 0 ? 3 : 0) +
+    (projects.length > 0 ? 2 : 0);
+
+  const categories: ReadinessCategory[] = [
+    { id: 'profile', score: profile, max: 20 },
+    { id: 'summary', score: summaryScore, max: 15 },
+    { id: 'experience', score: Math.min(experienceScore, 30), max: 30 },
+    { id: 'skills', score: skillsScore, max: 15 },
+    { id: 'education', score: educationScore, max: 10 },
+    { id: 'extras', score: extras, max: 10 },
+  ];
+
+  const score = Math.max(
+    0,
+    Math.min(
+      100,
+      categories.reduce((sum, category) => sum + category.score, 0),
+    ),
+  );
+
+  const nextSteps = [...categories]
+    .filter((category) => category.score < category.max)
+    .sort(
+      (a, b) =>
+        b.max - b.score - (a.max - a.score) ||
+        b.max - a.max ||
+        a.id.localeCompare(b.id),
+    )
+    .slice(0, 3)
+    .map((category) => category.id);
+
+  return { score, categories, nextSteps };
 }
 
 /**

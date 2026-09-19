@@ -103,7 +103,20 @@
     "languages": "Idiomas",
     "projects": "Proyectos",
     "present": "Actualidad",
-    "months": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+    "months": [
+      "Ene",
+      "Feb",
+      "Mar",
+      "Abr",
+      "May",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dic"
+    ],
     "personalInformation": "Información personal",
     "educationAndTraining": "Educación y formación",
     "languageSkills": "Competencias lingüísticas"
@@ -185,6 +198,17 @@
       "experienceDates": "Cada puesto tiene fecha de inicio",
       "skills": "Al menos tres habilidades listadas",
       "education": "Sección de formación rellenada"
+    },
+    "readinessLabel": "Puntuación de preparación ATS",
+    "readinessIntro": "Se actualiza mientras completas tu CV. Mide la completitud y el contenido compatible con ATS, no una decisión del empleador.",
+    "improveTitle": "Áreas prioritarias para mejorar",
+    "categories": {
+      "profile": "Perfil",
+      "summary": "Resumen profesional",
+      "experience": "Experiencia",
+      "skills": "Habilidades",
+      "education": "Educación",
+      "extras": "Datos adicionales"
     }
   },
   "europass": {

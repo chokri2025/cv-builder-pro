@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { analyseMatch, cvText, extractKeywords, normalize, runStructuralChecks } from './ats-match';
+import { analyseMatch, assessAtsReadiness, cvText, extractKeywords, normalize, runStructuralChecks } from './ats-match';
 import type { CVData } from '../types/cv';
 
 const NURSE_CV: CVData = {
@@ -204,5 +204,62 @@ describe('runStructuralChecks', () => {
       .filter((c) => !c.ok)
       .map((c) => c.id);
     expect(failing).toEqual(expect.arrayContaining(['summary', 'skills', 'education']));
+  });
+});
+
+
+describe('assessAtsReadiness', () => {
+  it('gives a well-filled CV a strong readiness score', () => {
+    const result = assessAtsReadiness(NURSE_CV);
+    expect(result.score).toBeGreaterThanOrEqual(70);
+    expect(result.categories).toHaveLength(6);
+  });
+
+  it('scores a thin CV lower and points to the biggest gaps', () => {
+    const thin: CVData = {
+      ...NURSE_CV,
+      personal: {
+        ...NURSE_CV.personal,
+        jobTitle: '',
+        email: '',
+        phone: '',
+        location: '',
+      },
+      summary: '',
+      experience: [],
+      education: [],
+      skills: [],
+      languages: [],
+      projects: [],
+    };
+
+    const result = assessAtsReadiness(thin);
+    expect(result.score).toBeLessThan(30);
+    expect(result.nextSteps).toContain('experience');
+  });
+
+  it('increases as useful CV information is added', () => {
+    const base: CVData = {
+      ...NURSE_CV,
+      summary: '',
+      experience: [],
+      skills: [],
+      education: [],
+    };
+    const improved: CVData = {
+      ...base,
+      summary: NURSE_CV.summary,
+      experience: NURSE_CV.experience,
+      skills: NURSE_CV.skills,
+      education: NURSE_CV.education,
+    };
+
+    expect(assessAtsReadiness(improved).score).toBeGreaterThan(assessAtsReadiness(base).score);
+  });
+
+  it('always stays within 0–100', () => {
+    const { score } = assessAtsReadiness(NURSE_CV);
+    expect(score).toBeGreaterThanOrEqual(0);
+    expect(score).toBeLessThanOrEqual(100);
   });
 });
