@@ -229,7 +229,13 @@
       "addPortfolio": "Portföy bağlantısı ekleyin",
       "addLanguage": "Dil bilgilerinizi ekleyin",
       "addProject": "İlgili bir proje ekleyin"
-    }
+    },
+    "matchBadge": "Eşleşme %{{score}}",
+    "jobAdLabel": "Hedef iş ilanı",
+    "clearJobAd": "Temizle",
+    "savedLocally": "CV'nizi düzenlerken eşleşme canlı kalsın diye bu cihazda saklanır.",
+    "priorityMissingTitle": "Öncelikli terimler",
+    "moreMissing": "+{{count}} terim daha"
   },
   "europass": {
     "title": "Ücretsiz Europass CV Oluşturucu — Online Europass CV",
