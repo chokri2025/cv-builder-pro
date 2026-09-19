@@ -198,6 +198,17 @@
       "experienceDates": "Chaque poste a une date de début",
       "skills": "Au moins trois compétences listées",
       "education": "Rubrique formation remplie"
+    },
+    "readinessLabel": "Score de préparation ATS",
+    "readinessIntro": "Se met à jour pendant que vous complétez votre CV. Il mesure la complétude et la qualité lisible par les ATS, pas une décision de recruteur.",
+    "improveTitle": "Priorités à améliorer",
+    "categories": {
+      "profile": "Profil",
+      "summary": "Résumé professionnel",
+      "experience": "Expérience",
+      "skills": "Compétences",
+      "education": "Formation",
+      "extras": "Informations complémentaires"
     }
   },
   "europass": {

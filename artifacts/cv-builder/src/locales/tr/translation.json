@@ -103,7 +103,20 @@
     "languages": "Diller",
     "projects": "Projeler",
     "present": "Devam ediyor",
-    "months": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+    "months": [
+      "Oca",
+      "Şub",
+      "Mar",
+      "Nis",
+      "May",
+      "Haz",
+      "Tem",
+      "Ağu",
+      "Eyl",
+      "Eki",
+      "Kas",
+      "Ara"
+    ],
     "personalInformation": "Kişisel bilgiler",
     "educationAndTraining": "Eğitim ve öğretim",
     "languageSkills": "Dil becerileri"
@@ -185,6 +198,17 @@
       "experienceDates": "Her görevin başlangıç tarihi var",
       "skills": "En az üç beceri listelenmiş",
       "education": "Eğitim bölümü doldurulmuş"
+    },
+    "readinessLabel": "ATS hazırlık puanı",
+    "readinessIntro": "CV'nizi doldurdukça canlı olarak güncellenir. Eksiksizliği ve ATS uyumlu içeriği ölçer; işveren kararını tahmin etmez.",
+    "improveTitle": "Öncelikli geliştirme alanları",
+    "categories": {
+      "profile": "Profil",
+      "summary": "Profesyonel özet",
+      "experience": "Deneyim",
+      "skills": "Beceriler",
+      "education": "Eğitim",
+      "extras": "Ek profil bilgileri"
     }
   },
   "europass": {
