@@ -65,8 +65,15 @@ export function buildAiCopilotRequest(
   };
 }
 
+function aiApiBaseUrl(): string {
+  return (import.meta.env.VITE_AI_API_BASE_URL ?? '').trim().replace(/\/$/, '');
+}
+
 export async function fetchAiCopilotStatus(): Promise<AiCopilotStatus> {
-  const response = await fetch('/api/ai/status', {
+  const baseUrl = aiApiBaseUrl();
+  if (!baseUrl) return { enabled: false, provider: null };
+
+  const response = await fetch(`${baseUrl}/api/ai/status`, {
     method: 'GET',
     headers: { Accept: 'application/json' },
   });
@@ -85,7 +92,10 @@ export async function requestCvOptimization(
   jobAd: string,
   language: string,
 ): Promise<AiCopilotSuggestion> {
-  const response = await fetch('/api/ai/optimize', {
+  const baseUrl = aiApiBaseUrl();
+  if (!baseUrl) throw new Error('AI_NOT_CONFIGURED');
+
+  const response = await fetch(`${baseUrl}/api/ai/optimize`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
