@@ -327,5 +327,20 @@
         "description": "Comprend tout ce qui est lu ou entendu ; s’exprime avec précision même en situation complexe."
       }
     ]
+  },
+  "versions": {
+    "title": "Versions du CV",
+    "hint": "Enregistrez des versions pour différentes offres sans modifier votre CV de travail actuel.",
+    "namePlaceholder": "Nom de la version, ex. Électricien Lyon",
+    "save": "Enregistrer",
+    "saved": "Version enregistrée.",
+    "loaded": "« {{name}} » chargée.",
+    "deleted": "Version supprimée.",
+    "empty": "Aucune version enregistrée.",
+    "load": "Charger",
+    "delete": "Supprimer",
+    "deleteNamed": "Supprimer {{name}}",
+    "nameRequired": "Saisissez d’abord un nom de version.",
+    "storageError": "Impossible d’enregistrer. Le stockage du navigateur est peut-être plein."
   }
 }
