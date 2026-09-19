@@ -12,7 +12,9 @@ import { getPrerenderRoutes, LANGUAGES } from './seo-routes.mjs';
  * fine for a browser but is never prerendered: a crawler hitting that URL
  * falls through to the SPA shell and sees the homepage's <title>/canonical
  * instead of the page's own. This test catches that drift at the other end —
- * every path *pattern* seo-routes.mjs produces must have a matching <Route>.
+ * both declarations must contain the same page path patterns: a runtime-only route
+ * would not be prerendered, while a prerender-only route would not be reachable
+ * through the live router.
  */
 
 /** Path patterns declared in App.tsx's <Routes>, read as source text (same
@@ -43,9 +45,13 @@ describe('App.tsx route parity with the prerender/sitemap route space', () => {
       getPrerenderRoutes().map((r) => toPattern(r.path, r.lang, r.urlLang)),
     );
 
-    const missing = [...prerenderPatterns].filter((p) => !appPatterns.has(p));
+    const missingFromApp = [...prerenderPatterns].filter((p) => !appPatterns.has(p));
+    const missingFromPrerender = [...appPatterns].filter((p) => !prerenderPatterns.has(p));
 
-    expect(missing).toEqual([]);
+    expect({ missingFromApp, missingFromPrerender }).toEqual({
+      missingFromApp: [],
+      missingFromPrerender: [],
+    });
   });
 
   it("declares every locale's home route, not just the unprefixed one", () => {
