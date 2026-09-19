@@ -209,6 +209,26 @@
       "skills": "المهارات",
       "education": "التعليم",
       "extras": "معلومات إضافية"
+    },
+    "pointsGain": "حتى +{{points}} نقطة",
+    "recommendations": {
+      "addFullName": "أضف اسمك الكامل",
+      "addEmail": "أضف بريدًا إلكترونيًا صالحًا",
+      "addPhone": "أضف رقم هاتف",
+      "addJobTitle": "أضف المسمى الوظيفي المستهدف",
+      "addLocation": "أضف موقعك",
+      "expandSummary": "قوِّ ملخصك المهني",
+      "addExperience": "أضف خبرة مهنية واحدة على الأقل",
+      "completeExperience": "أكمل المسمى والشركة والتواريخ",
+      "detailExperience": "أضف تفاصيل أقوى للخبرات",
+      "quantifyExperience": "أضف نتائج قابلة للقياس",
+      "addSkills": "أضف مهارات أكثر صلة",
+      "addEducation": "أضف بيانات التعليم",
+      "completeEducation": "أكمل الشهادة والمؤسسة والسنة",
+      "addLinkedIn": "أضف ملف LinkedIn",
+      "addPortfolio": "أضف رابط Portfolio",
+      "addLanguage": "أضف اللغات",
+      "addProject": "أضف مشروعًا ذا صلة"
     }
   },
   "europass": {
