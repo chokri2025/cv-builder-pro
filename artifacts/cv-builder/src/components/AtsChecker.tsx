@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { CVData } from '../types/cv';
 import { analyseMatch, assessAtsReadiness, runStructuralChecks } from '../lib/ats-match';
@@ -6,6 +6,17 @@ import { useLanguage } from '../hooks/useLanguage';
 
 interface Props {
   data: CVData;
+}
+
+const JOB_AD_STORAGE_KEY = 'cv-builder-job-ad';
+
+function readStoredJobAd(): string {
+  if (typeof window === 'undefined') return '';
+  try {
+    return window.localStorage.getItem(JOB_AD_STORAGE_KEY) ?? '';
+  } catch {
+    return '';
+  }
 }
 
 function scoreBand(score: number): 'low' | 'mid' | 'high' {
@@ -25,7 +36,7 @@ function scoreBand(score: number): 'low' | 'mid' | 'high' {
 export default function AtsChecker({ data }: Props) {
   const { t } = useTranslation();
   const { currentLang } = useLanguage();
-  const [jobAd, setJobAd] = useState('');
+  const [jobAd, setJobAd] = useState(readStoredJobAd);
   const [open, setOpen] = useState(false);
 
   const readiness = useMemo(() => assessAtsReadiness(data), [data]);
@@ -35,6 +46,25 @@ export default function AtsChecker({ data }: Props) {
     () => (jobAd.trim() ? analyseMatch(jobAd, data, currentLang) : null),
     [jobAd, data, currentLang],
   );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      if (jobAd.trim()) {
+        window.localStorage.setItem(JOB_AD_STORAGE_KEY, jobAd);
+      } else {
+        window.localStorage.removeItem(JOB_AD_STORAGE_KEY);
+      }
+    } catch {
+      // Storage can be unavailable in private/restricted browsing. Job matching
+      // still works for the current session because React state remains intact.
+    }
+  }, [jobAd]);
+
+  const clearJobAd = () => setJobAd('');
+
+  const topMissing = result?.missing.slice(0, 5) ?? [];
+  const remainingMissing = Math.max(0, (result?.missing.length ?? 0) - topMissing.length);
 
   return (
     <section className="ats-checker">
@@ -49,6 +79,11 @@ export default function AtsChecker({ data }: Props) {
           <span className={`ats-live-badge ats-live-badge-${scoreBand(readiness.score)}`}>
             {readiness.score}/100
           </span>
+          {result && !result.tooShort && (
+            <span className={`ats-match-badge ats-match-badge-${scoreBand(result.score)}`}>
+              {t('ats.matchBadge', { score: result.score })}
+            </span>
+          )}
           <span className="ats-toggle-icon">{open ? '▲' : '▼'}</span>
         </span>
       </button>
@@ -96,6 +131,15 @@ export default function AtsChecker({ data }: Props) {
 
           <p className="ats-intro">{t('ats.intro')}</p>
 
+          <div className="ats-job-ad-head">
+            <span className="ats-job-ad-label">{t('ats.jobAdLabel')}</span>
+            {jobAd && (
+              <button type="button" className="ats-clear-btn" onClick={clearJobAd}>
+                {t('ats.clearJobAd')}
+              </button>
+            )}
+          </div>
+
           <textarea
             className="ats-textarea"
             value={jobAd}
@@ -104,6 +148,7 @@ export default function AtsChecker({ data }: Props) {
             rows={6}
             aria-label={t('ats.title')}
           />
+          {jobAd && <p className="ats-storage-note">{t('ats.savedLocally')}</p>}
 
           {result?.tooShort && <p className="ats-hint">{t('ats.tooShort')}</p>}
 
@@ -115,17 +160,25 @@ export default function AtsChecker({ data }: Props) {
               </div>
               <p className="ats-caveat">{t('ats.caveat')}</p>
 
-              {result.missing.length > 0 && (
+              {topMissing.length > 0 && (
                 <div className="ats-group">
-                  <h4 className="ats-group-title">{t('ats.missingTitle')}</h4>
+                  <h4 className="ats-group-title">{t('ats.priorityMissingTitle')}</h4>
                   <p className="ats-group-hint">{t('ats.missingHint')}</p>
                   <div className="ats-chips">
-                    {result.missing.map((k) => (
-                      <span key={k.term} className="ats-chip ats-chip-missing">
+                    {topMissing.map((k, index) => (
+                      <span
+                        key={k.term}
+                        className={`ats-chip ats-chip-missing ${index < 2 ? 'ats-chip-priority' : ''}`}
+                      >
                         {k.term}
                       </span>
                     ))}
                   </div>
+                  {remainingMissing > 0 && (
+                    <p className="ats-more-missing">
+                      {t('ats.moreMissing', { count: remainingMissing })}
+                    </p>
+                  )}
                 </div>
               )}
 
