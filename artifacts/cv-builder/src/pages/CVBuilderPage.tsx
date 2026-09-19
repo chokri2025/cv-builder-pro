@@ -95,7 +95,11 @@ export default function CVBuilderPage() {
           updateProject={cv.updateProject}
           removeProject={cv.removeProject}
         />
-        <AtsChecker data={cv.cvData} />
+        <AtsChecker
+          data={cv.cvData}
+          updateSummary={cv.updateSummary}
+          updateExperience={cv.updateExperience}
+        />
         <HomeSeoContent langPrefix={urlLang ? `/${urlLang}` : ''} />
       </section>
       <section
