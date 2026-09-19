@@ -209,6 +209,26 @@
       "skills": "Beceriler",
       "education": "Eğitim",
       "extras": "Ek profil bilgileri"
+    },
+    "pointsGain": "+{{points}} puana kadar",
+    "recommendations": {
+      "addFullName": "Ad soyadınızı ekleyin",
+      "addEmail": "Geçerli bir e-posta ekleyin",
+      "addPhone": "Telefon numarası ekleyin",
+      "addJobTitle": "Hedef pozisyonu ekleyin",
+      "addLocation": "Konumunuzu ekleyin",
+      "expandSummary": "Profesyonel özetinizi güçlendirin",
+      "addExperience": "En az bir iş deneyimi ekleyin",
+      "completeExperience": "Pozisyon, şirket ve tarihleri tamamlayın",
+      "detailExperience": "Deneyim açıklamalarını güçlendirin",
+      "quantifyExperience": "Ölçülebilir sonuçlar ekleyin",
+      "addSkills": "Daha fazla ilgili beceri ekleyin",
+      "addEducation": "Eğitim bilgilerinizi ekleyin",
+      "completeEducation": "Derece, okul ve yılı tamamlayın",
+      "addLinkedIn": "LinkedIn profilinizi ekleyin",
+      "addPortfolio": "Portföy bağlantısı ekleyin",
+      "addLanguage": "Dil bilgilerinizi ekleyin",
+      "addProject": "İlgili bir proje ekleyin"
     }
   },
   "europass": {
