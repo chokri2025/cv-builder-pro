@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { CVData } from '../types/cv';
-import { analyseMatch, assessAtsReadiness } from '../lib/ats-match';
+import { analyseMatch, assessAtsReadiness, runStructuralChecks } from '../lib/ats-match';
 import { useLanguage } from '../hooks/useLanguage';
 
 interface Props {
@@ -29,6 +29,7 @@ export default function AtsChecker({ data }: Props) {
   const [open, setOpen] = useState(false);
 
   const readiness = useMemo(() => assessAtsReadiness(data), [data]);
+  const structuralChecks = useMemo(() => runStructuralChecks(data), [data]);
 
   const result = useMemo(
     () => (jobAd.trim() ? analyseMatch(jobAd, data, currentLang) : null),
@@ -76,14 +77,17 @@ export default function AtsChecker({ data }: Props) {
               ))}
             </div>
 
-            {readiness.nextSteps.length > 0 && (
+            {readiness.recommendations.length > 0 && (
               <div className="ats-improve">
                 <strong>{t('ats.improveTitle')}</strong>
-                <div className="ats-chips">
-                  {readiness.nextSteps.map((id) => (
-                    <span key={id} className="ats-chip ats-chip-missing">
-                      {t(`ats.categories.${id}`)}
-                    </span>
+                <div className="ats-recommendations">
+                  {readiness.recommendations.slice(0, 4).map((recommendation) => (
+                    <div key={recommendation.id} className="ats-recommendation">
+                      <span>{t(`ats.recommendations.${recommendation.id}`)}</span>
+                      <span className="ats-recommendation-points">
+                        {t('ats.pointsGain', { points: recommendation.points })}
+                      </span>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -148,7 +152,7 @@ export default function AtsChecker({ data }: Props) {
           <div className="ats-group">
             <h4 className="ats-group-title">{t('ats.checksTitle')}</h4>
             <ul className="ats-checks">
-              {(result?.checks ?? []).map((check) => (
+              {structuralChecks.map((check) => (
                 <li key={check.id} className={check.ok ? 'ats-check-ok' : 'ats-check-fail'}>
                   <span aria-hidden="true">{check.ok ? '✓' : '!'}</span>
                   <span>{t(`ats.checks.${check.id}`)}</span>

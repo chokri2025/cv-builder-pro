@@ -263,3 +263,59 @@ describe('assessAtsReadiness', () => {
     expect(score).toBeLessThanOrEqual(100);
   });
 });
+
+
+describe('ATS readiness recommendations', () => {
+  it('turns a thin CV into specific point-bearing actions', () => {
+    const thin: CVData = {
+      ...NURSE_CV,
+      personal: {
+        ...NURSE_CV.personal,
+        fullName: '',
+        jobTitle: '',
+        email: '',
+        phone: '',
+        location: '',
+        linkedin: '',
+        portfolio: '',
+      },
+      summary: '',
+      experience: [],
+      education: [],
+      skills: [],
+      languages: [],
+      projects: [],
+    };
+
+    const recommendations = assessAtsReadiness(thin).recommendations;
+    const ids = recommendations.map((item) => item.id);
+
+    expect(ids).toContain('addExperience');
+    expect(ids).toContain('addJobTitle');
+    expect(ids).toContain('addSkills');
+    expect(recommendations.every((item) => item.points > 0)).toBe(true);
+  });
+
+  it('sorts the highest score opportunities first', () => {
+    const result = assessAtsReadiness({
+      ...NURSE_CV,
+      summary: '',
+      experience: [],
+      education: [],
+      skills: [],
+    });
+
+    for (let i = 1; i < result.recommendations.length; i += 1) {
+      expect(result.recommendations[i - 1].points).toBeGreaterThanOrEqual(
+        result.recommendations[i].points,
+      );
+    }
+  });
+
+  it('does not recommend contact fields that are already valid', () => {
+    const ids = assessAtsReadiness(NURSE_CV).recommendations.map((item) => item.id);
+    expect(ids).not.toContain('addEmail');
+    expect(ids).not.toContain('addPhone');
+    expect(ids).not.toContain('addJobTitle');
+  });
+});
