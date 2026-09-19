@@ -11,7 +11,7 @@ export interface CvVersion {
   template: TemplateType;
 }
 
-const TEMPLATES: TemplateType[] = ['minimal', 'modern', 'professional', 'executive', 'europass'];
+const TEMPLATES: TemplateType[] = ['minimal', 'modern', 'creative', 'europass'];
 
 function isTemplate(value: unknown): value is TemplateType {
   return typeof value === 'string' && TEMPLATES.includes(value as TemplateType);
