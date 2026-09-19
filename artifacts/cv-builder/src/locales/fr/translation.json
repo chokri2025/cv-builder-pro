@@ -229,7 +229,13 @@
       "addPortfolio": "Ajoutez un lien portfolio",
       "addLanguage": "Ajoutez vos langues",
       "addProject": "Ajoutez un projet pertinent"
-    }
+    },
+    "matchBadge": "Match {{score}} %",
+    "jobAdLabel": "Offre d’emploi ciblée",
+    "clearJobAd": "Effacer",
+    "savedLocally": "Enregistrée sur cet appareil pour garder le matching actif pendant que vous modifiez le CV.",
+    "priorityMissingTitle": "Termes prioritaires à vérifier",
+    "moreMissing": "+{{count}} autres termes"
   },
   "europass": {
     "title": "Créateur de CV Europass gratuit — CV Europass en ligne",
