@@ -209,6 +209,26 @@
       "skills": "Compétences",
       "education": "Formation",
       "extras": "Informations complémentaires"
+    },
+    "pointsGain": "Jusqu’à +{{points}} pts",
+    "recommendations": {
+      "addFullName": "Ajoutez votre nom complet",
+      "addEmail": "Ajoutez un e-mail valide",
+      "addPhone": "Ajoutez un numéro de téléphone",
+      "addJobTitle": "Ajoutez le poste visé",
+      "addLocation": "Ajoutez votre localisation",
+      "expandSummary": "Renforcez votre résumé professionnel",
+      "addExperience": "Ajoutez au moins une expérience",
+      "completeExperience": "Complétez poste, entreprise et dates",
+      "detailExperience": "Détaillez davantage vos expériences",
+      "quantifyExperience": "Ajoutez des résultats mesurables",
+      "addSkills": "Ajoutez des compétences pertinentes",
+      "addEducation": "Ajoutez votre formation",
+      "completeEducation": "Complétez diplôme, école et année",
+      "addLinkedIn": "Ajoutez votre profil LinkedIn",
+      "addPortfolio": "Ajoutez un lien portfolio",
+      "addLanguage": "Ajoutez vos langues",
+      "addProject": "Ajoutez un projet pertinent"
     }
   },
   "europass": {
