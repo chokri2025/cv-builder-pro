@@ -327,5 +327,20 @@
         "description": "Comprende todo lo que lee o escucha; se expresa con precisión incluso en situaciones complejas."
       }
     ]
+  },
+  "versions": {
+    "title": "Versiones del CV",
+    "hint": "Guarda versiones para distintos empleos sin cambiar tu CV de trabajo actual.",
+    "namePlaceholder": "Nombre, p. ej. Electricista Madrid",
+    "save": "Guardar versión",
+    "saved": "Versión guardada.",
+    "loaded": "“{{name}}” cargada.",
+    "deleted": "Versión eliminada.",
+    "empty": "Aún no hay versiones guardadas.",
+    "load": "Cargar",
+    "delete": "Eliminar",
+    "deleteNamed": "Eliminar {{name}}",
+    "nameRequired": "Escribe primero un nombre.",
+    "storageError": "No se pudo guardar. El almacenamiento del navegador puede estar lleno."
   }
 }
