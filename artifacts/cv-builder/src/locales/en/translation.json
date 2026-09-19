@@ -327,5 +327,20 @@
         "description": "Everything read or heard is understood; expression is precise even in complex situations."
       }
     ]
+  },
+  "versions": {
+    "title": "CV versions",
+    "hint": "Save snapshots for different jobs without changing your current working CV.",
+    "namePlaceholder": "Version name, e.g. Electrician Lyon",
+    "save": "Save version",
+    "saved": "Version saved.",
+    "loaded": "Loaded “{{name}}”.",
+    "deleted": "Version deleted.",
+    "empty": "No saved versions yet.",
+    "load": "Load",
+    "delete": "Delete",
+    "deleteNamed": "Delete {{name}}",
+    "nameRequired": "Enter a version name first.",
+    "storageError": "Could not save this version. Browser storage may be full."
   }
 }
