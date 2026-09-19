@@ -2684,3 +2684,81 @@ body {
   font-weight: 800;
   font-variant-numeric: tabular-nums;
 }
+
+
+/* ========================
+   JOB MATCH WORKSPACE
+======================== */
+.ats-match-badge {
+  min-width: 4.7rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ats-match-badge-low {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.ats-match-badge-mid {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.ats-match-badge-high {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.ats-job-ad-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.ats-job-ad-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+.ats-clear-btn {
+  border: 0;
+  background: none;
+  color: #0369a1;
+  font: inherit;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.15rem 0;
+}
+
+.ats-clear-btn:hover {
+  text-decoration: underline;
+}
+
+.ats-storage-note,
+.ats-more-missing {
+  font-size: 0.68rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.ats-storage-note {
+  margin-top: -0.2rem;
+}
+
+.ats-more-missing {
+  margin-top: 0.45rem;
+}
+
+.ats-chip-priority {
+  border-width: 2px;
+  font-weight: 700;
+}

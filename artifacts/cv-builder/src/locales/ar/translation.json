@@ -229,7 +229,13 @@
       "addPortfolio": "أضف رابط Portfolio",
       "addLanguage": "أضف اللغات",
       "addProject": "أضف مشروعًا ذا صلة"
-    }
+    },
+    "matchBadge": "تطابق {{score}}٪",
+    "jobAdLabel": "إعلان الوظيفة المستهدف",
+    "clearJobAd": "مسح",
+    "savedLocally": "محفوظ على هذا الجهاز ليبقى التقييم مباشرًا أثناء تعديل السيرة.",
+    "priorityMissingTitle": "أهم الكلمات التي يجب مراجعتها",
+    "moreMissing": "+{{count}} كلمات أخرى"
   },
   "europass": {
     "title": "منشئ سيرة ذاتية Europass مجاني — Europass عبر الإنترنت",

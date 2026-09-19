@@ -229,7 +229,13 @@
       "addPortfolio": "Adicione um link de portfólio",
       "addLanguage": "Adicione os seus idiomas",
       "addProject": "Adicione um projeto relevante"
-    }
+    },
+    "matchBadge": "Match {{score}}%",
+    "jobAdLabel": "Descrição da vaga alvo",
+    "clearJobAd": "Limpar",
+    "savedLocally": "Guardada neste dispositivo para manter o matching ativo enquanto edita o CV.",
+    "priorityMissingTitle": "Termos prioritários a rever",
+    "moreMissing": "+{{count}} termos"
   },
   "europass": {
     "title": "Criador de CV Europass grátis — CV Europass online",
