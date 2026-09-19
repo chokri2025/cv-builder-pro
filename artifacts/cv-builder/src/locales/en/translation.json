@@ -229,7 +229,13 @@
       "addPortfolio": "Add a portfolio link",
       "addLanguage": "Add your languages",
       "addProject": "Add a relevant project"
-    }
+    },
+    "matchBadge": "Match {{score}}%",
+    "jobAdLabel": "Target job description",
+    "clearJobAd": "Clear",
+    "savedLocally": "Saved on this device so the match stays live while you edit your CV.",
+    "priorityMissingTitle": "Priority terms to review",
+    "moreMissing": "+{{count}} more terms"
   },
   "europass": {
     "title": "Free Europass CV Builder — Create a Europass CV Online",
