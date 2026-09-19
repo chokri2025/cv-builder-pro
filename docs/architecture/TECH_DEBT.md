@@ -221,13 +221,13 @@ an allowlist.
 **Smallest safe change**: validate the host header against a small allowlist (production domain
 + localhost for dev) before using it to build URLs; fall back to a hardcoded default otherwise.
 
-### SEC3. No runtime validation of `localStorage`-read `CVData` — Low
-**Files**: `useCV.ts` reads `localStorage['cv-builder-data']` and trusts its shape; a corrupted
-or hand-edited value could throw at render time with no graceful fallback.
-**Smallest safe change**: wrap the `JSON.parse` + shape read in a try/catch that falls back to
-`DEFAULT_CV_DATA` on any failure (a defensive boundary check, not a full runtime schema — zod is
-already a workspace dependency via `lib/api-zod`'s `catalog:` entry if a stricter check is
-wanted later).
+### SEC3. No runtime shape validation of `localStorage`-read `CVData` — Low
+**Files**: `useCV.ts` already catches malformed JSON and falls back to `DEFAULT_CV_DATA`, but
+after a successful `JSON.parse` it trusts the resulting object's shape. Structurally invalid
+but valid JSON (for example `{"personal": null}`) can therefore reach render code and fail later.
+**Smallest safe change**: validate the parsed value at the storage boundary before accepting it,
+falling back to `DEFAULT_CV_DATA` when required fields/types are missing. A small hand-written
+type guard is sufficient; use zod only if a shared runtime schema is useful elsewhere.
 
 ---
 
