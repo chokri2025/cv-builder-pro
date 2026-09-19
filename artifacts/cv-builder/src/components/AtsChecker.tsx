@@ -3,9 +3,16 @@ import { useTranslation } from 'react-i18next';
 import type { CVData } from '../types/cv';
 import { analyseMatch, assessAtsReadiness, runStructuralChecks } from '../lib/ats-match';
 import { useLanguage } from '../hooks/useLanguage';
+import {
+  fetchAiCopilotStatus,
+  requestCvOptimization,
+  type AiCopilotSuggestion,
+} from '../lib/ai-copilot';
 
 interface Props {
   data: CVData;
+  updateSummary: (value: string) => void;
+  updateExperience: (id: string, field: string, value: string | boolean) => void;
 }
 
 const JOB_AD_STORAGE_KEY = 'cv-builder-job-ad';
@@ -33,11 +40,15 @@ function scoreBand(score: number): 'low' | 'mid' | 'high' {
  * have, which fails at interview and is not what this is for. The wording asks
  * the applicant to mention the ones that genuinely apply, where they belong.
  */
-export default function AtsChecker({ data }: Props) {
+export default function AtsChecker({ data, updateSummary, updateExperience }: Props) {
   const { t } = useTranslation();
   const { currentLang } = useLanguage();
   const [jobAd, setJobAd] = useState(readStoredJobAd);
   const [open, setOpen] = useState(false);
+  const [aiAvailable, setAiAvailable] = useState(false);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiError, setAiError] = useState<string | null>(null);
+  const [aiSuggestions, setAiSuggestions] = useState<AiCopilotSuggestion | null>(null);
 
   const readiness = useMemo(() => assessAtsReadiness(data), [data]);
   const structuralChecks = useMemo(() => runStructuralChecks(data), [data]);
@@ -61,7 +72,61 @@ export default function AtsChecker({ data }: Props) {
     }
   }, [jobAd]);
 
-  const clearJobAd = () => setJobAd('');
+  useEffect(() => {
+    let active = true;
+    fetchAiCopilotStatus()
+      .then((status) => {
+        if (active) setAiAvailable(status.enabled);
+      })
+      .catch(() => {
+        if (active) setAiAvailable(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const clearJobAd = () => {
+    setJobAd('');
+    setAiSuggestions(null);
+    setAiError(null);
+  };
+
+  const runAiOptimization = async () => {
+    if (!aiAvailable || !jobAd.trim()) return;
+
+    setAiLoading(true);
+    setAiError(null);
+    try {
+      const suggestions = await requestCvOptimization(data, jobAd, currentLang);
+      setAiSuggestions(suggestions);
+    } catch (error) {
+      const code = error instanceof Error ? error.message : 'AI_PROVIDER_ERROR';
+      setAiError(code);
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
+  const applySummarySuggestion = () => {
+    const suggestion = aiSuggestions?.summary;
+    if (!suggestion) return;
+    updateSummary(suggestion.suggested);
+    setAiSuggestions((current) => (current ? { ...current, summary: null } : current));
+  };
+
+  const applyExperienceSuggestion = (id: string, description: string) => {
+    updateExperience(id, 'description', description);
+    setAiSuggestions((current) =>
+      current
+        ? {
+            ...current,
+            experience: current.experience.filter((item) => item.id !== id),
+          }
+        : current,
+    );
+  };
 
   const topMissing = result?.missing.slice(0, 5) ?? [];
   const remainingMissing = Math.max(0, (result?.missing.length ?? 0) - topMissing.length);
@@ -143,7 +208,11 @@ export default function AtsChecker({ data }: Props) {
           <textarea
             className="ats-textarea"
             value={jobAd}
-            onChange={(e) => setJobAd(e.target.value)}
+            onChange={(e) => {
+              setJobAd(e.target.value);
+              setAiSuggestions(null);
+              setAiError(null);
+            }}
             placeholder={t('ats.placeholder')}
             rows={6}
             aria-label={t('ats.title')}
@@ -159,6 +228,83 @@ export default function AtsChecker({ data }: Props) {
                 <div className="ats-score-label">{t('ats.scoreLabel')}</div>
               </div>
               <p className="ats-caveat">{t('ats.caveat')}</p>
+
+              {aiAvailable && (
+                <div className="ats-ai-panel">
+                  <div className="ats-ai-head">
+                    <div>
+                      <h4 className="ats-ai-title">{t('ats.ai.title')}</h4>
+                      <p className="ats-ai-hint">{t('ats.ai.privacy')}</p>
+                    </div>
+                    <button
+                      type="button"
+                      className="ats-ai-btn"
+                      onClick={runAiOptimization}
+                      disabled={aiLoading}
+                    >
+                      {aiLoading ? t('ats.ai.optimizing') : t('ats.ai.optimize')}
+                    </button>
+                  </div>
+
+                  {aiError && (
+                    <p className="ats-ai-error">{t(`ats.ai.errors.${aiError}`)}</p>
+                  )}
+
+                  {aiSuggestions && (
+                    <div className="ats-ai-suggestions">
+                      {aiSuggestions.summary && (
+                        <div className="ats-ai-card">
+                          <div className="ats-ai-card-head">
+                            <strong>{t('ats.ai.summaryTitle')}</strong>
+                            <button
+                              type="button"
+                              className="ats-ai-apply"
+                              onClick={applySummarySuggestion}
+                            >
+                              {t('ats.ai.apply')}
+                            </button>
+                          </div>
+                          <p>{aiSuggestions.summary.suggested}</p>
+                          <small>{aiSuggestions.summary.rationale}</small>
+                        </div>
+                      )}
+
+                      {aiSuggestions.experience.map((suggestion) => (
+                        <div key={suggestion.id} className="ats-ai-card">
+                          <div className="ats-ai-card-head">
+                            <strong>{t('ats.ai.experienceTitle')}</strong>
+                            <button
+                              type="button"
+                              className="ats-ai-apply"
+                              onClick={() =>
+                                applyExperienceSuggestion(
+                                  suggestion.id,
+                                  suggestion.suggestedDescription,
+                                )
+                              }
+                            >
+                              {t('ats.ai.apply')}
+                            </button>
+                          </div>
+                          <p>{suggestion.suggestedDescription}</p>
+                          <small>{suggestion.rationale}</small>
+                        </div>
+                      ))}
+
+                      {aiSuggestions.warnings.length > 0 && (
+                        <div className="ats-ai-warnings">
+                          <strong>{t('ats.ai.warningsTitle')}</strong>
+                          <ul>
+                            {aiSuggestions.warnings.map((warning) => (
+                              <li key={warning}>{warning}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
 
               {topMissing.length > 0 && (
                 <div className="ats-group">

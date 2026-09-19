@@ -235,7 +235,25 @@
     "clearJobAd": "Clear",
     "savedLocally": "Saved on this device so the match stays live while you edit your CV.",
     "priorityMissingTitle": "Priority terms to review",
-    "moreMissing": "+{{count}} more terms"
+    "moreMissing": "+{{count}} more terms",
+    "ai": {
+      "title": "AI CV Copilot",
+      "privacy": "Runs only when you click. Contact details are excluded from the AI request.",
+      "optimize": "Optimize for this job",
+      "optimizing": "Optimizing…",
+      "summaryTitle": "Suggested professional summary",
+      "experienceTitle": "Suggested experience rewrite",
+      "apply": "Apply",
+      "warningsTitle": "Check before applying",
+      "errors": {
+        "AI_NOT_CONFIGURED": "AI Copilot is not configured yet.",
+        "AI_INVALID_REQUEST": "The CV or job description could not be processed.",
+        "AI_AUTH_ERROR": "The AI provider is not authenticated.",
+        "AI_QUOTA_EXCEEDED": "The AI provider quota is currently exhausted.",
+        "AI_PROVIDER_ERROR": "The AI provider is temporarily unavailable.",
+        "AI_INVALID_RESPONSE": "The AI response could not be read."
+      }
+    }
   },
   "europass": {
     "title": "Free Europass CV Builder — Create a Europass CV Online",

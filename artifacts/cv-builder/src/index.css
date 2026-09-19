@@ -2762,3 +2762,139 @@ body {
   border-width: 2px;
   font-weight: 700;
 }
+
+
+/* ========================
+   AI CV COPILOT
+======================== */
+.ats-ai-panel {
+  margin-top: 0.9rem;
+  padding: 0.85rem;
+  border: 1px solid #c4b5fd;
+  border-radius: 10px;
+  background: #faf5ff;
+}
+
+.ats-ai-head,
+.ats-ai-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.ats-ai-title {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #4c1d95;
+}
+
+.ats-ai-hint {
+  margin-top: 0.2rem;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+.ats-ai-btn,
+.ats-ai-apply {
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+.ats-ai-btn {
+  flex-shrink: 0;
+  padding: 0.48rem 0.7rem;
+  background: #6d28d9;
+  color: #fff;
+  font-size: 0.7rem;
+}
+
+.ats-ai-btn:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.ats-ai-suggestions {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.ats-ai-card {
+  padding: 0.65rem;
+  border: 1px solid #ddd6fe;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ats-ai-card strong,
+.ats-ai-warnings strong {
+  font-size: 0.72rem;
+  color: #312e81;
+}
+
+.ats-ai-card p {
+  margin: 0.45rem 0 0.25rem;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #1f2937;
+  white-space: pre-wrap;
+}
+
+.ats-ai-card small {
+  display: block;
+  font-size: 0.66rem;
+  line-height: 1.4;
+  color: #6b7280;
+}
+
+.ats-ai-apply {
+  padding: 0.28rem 0.5rem;
+  background: #ede9fe;
+  color: #5b21b6;
+  font-size: 0.66rem;
+}
+
+.ats-ai-error {
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: 7px;
+  background: #fee2e2;
+  color: #991b1b;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+.ats-ai-warnings {
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: #fffbeb;
+}
+
+.ats-ai-warnings ul {
+  margin: 0.4rem 0 0;
+  padding-inline-start: 1.1rem;
+}
+
+.ats-ai-warnings li {
+  margin: 0.2rem 0;
+  font-size: 0.68rem;
+  line-height: 1.4;
+  color: #78350f;
+}
+
+@media (max-width: 520px) {
+  .ats-ai-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .ats-ai-btn {
+    width: 100%;
+  }
+}

@@ -235,7 +235,25 @@
     "clearJobAd": "Temizle",
     "savedLocally": "CV'nizi düzenlerken eşleşme canlı kalsın diye bu cihazda saklanır.",
     "priorityMissingTitle": "Öncelikli terimler",
-    "moreMissing": "+{{count}} terim daha"
+    "moreMissing": "+{{count}} terim daha",
+    "ai": {
+      "title": "AI CV Copilot",
+      "privacy": "Yapay zekâ yalnızca siz tıkladığınızda çalışır. İletişim bilgileri gönderilmez.",
+      "optimize": "Bu işe göre optimize et",
+      "optimizing": "Optimize ediliyor…",
+      "summaryTitle": "Önerilen profesyonel özet",
+      "experienceTitle": "Önerilen deneyim düzenlemesi",
+      "apply": "Uygula",
+      "warningsTitle": "Uygulamadan önce kontrol edin",
+      "errors": {
+        "AI_NOT_CONFIGURED": "AI Copilot henüz yapılandırılmadı.",
+        "AI_INVALID_REQUEST": "CV veya iş ilanı işlenemedi.",
+        "AI_AUTH_ERROR": "AI sağlayıcısının kimlik doğrulaması yok.",
+        "AI_QUOTA_EXCEEDED": "AI sağlayıcısı kotası şu anda tükendi.",
+        "AI_PROVIDER_ERROR": "AI sağlayıcısı geçici olarak kullanılamıyor.",
+        "AI_INVALID_RESPONSE": "AI yanıtı okunamadı."
+      }
+    }
   },
   "europass": {
     "title": "Ücretsiz Europass CV Oluşturucu — Online Europass CV",
