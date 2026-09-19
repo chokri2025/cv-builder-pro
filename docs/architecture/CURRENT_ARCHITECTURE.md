@@ -5,11 +5,12 @@ _Audit date: 2026-09-14. Scope: `chokri2025/cv-builder-pro` at commit `32633e1`.
 ## 1. What this system actually is
 
 Despite the workspace containing a full typed-API pipeline (`lib/api-spec` → `lib/api-zod` /
-`lib/api-client-react`) and a database package (`lib/db`), **the shipped product is a
-100%-client-side, localStorage-backed single-page app.** There is no network call anywhere in
-`artifacts/cv-builder/src` (`grep -rn "fetch(" src` is empty), no auth, and no CV data ever
-leaves the browser. `replit.md` says this explicitly: *"No auth required — purely client-side
-with localStorage."*
+`lib/api-client-react`) and a database package (`lib/db`), **the shipped product is a client-side, localStorage-backed single-page app.** There is no
+product backend/API call for CV persistence, export, or ATS matching, no auth, and no CV or
+job-ad content is sent to an application server. The frontend does optionally load GA4
+(`src/lib/analytics.ts`) when `VITE_GA_MEASUREMENT_ID` is configured and emits non-content
+analytics events such as template selection and export actions. `replit.md` correctly describes
+the CV storage model as localStorage-only.
 
 The rest of the workspace (`artifacts/api-server`, `lib/db`, `lib/api-*`) is **forward-looking
 infrastructure that the product does not yet consume.** This is the single most important fact
@@ -174,8 +175,10 @@ limiting, no tests. Not part of the production deployment (§3).
 
 ## 8. Data and privacy posture (current)
 
-No CV content, job-ad text, or personal data is transmitted to any server. `DATABASE_URL` is
-confined to `lib/db` (server/build-time only) and never referenced from `cv-builder/src`. No
-LLM/API keys, no payment integration, no client-exposed secrets were found anywhere in the
-codebase. This is a genuine, currently-true privacy property of the system — see
-`TARGET_ARCHITECTURE.md` for how to preserve it if a backend is eventually wired up.
+No CV field content or pasted job-ad text is transmitted by the builder's product features.
+`DATABASE_URL` is confined to `lib/db` (server/build-time only) and never referenced from
+`cv-builder/src`. When `VITE_GA_MEASUREMENT_ID` is configured, the frontend loads GA4 and
+sends analytics event metadata (for example template/export actions); the audit found no CV
+field values or job-ad text passed to those events. No LLM/API keys, payment integration, or
+client-exposed secrets were found. Keeping CV/job-ad content local is a genuine current privacy
+property — see `TARGET_ARCHITECTURE.md` for how to preserve it if a backend is eventually wired up.
