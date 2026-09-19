@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { CVData, TemplateType } from '../types/cv';
 import {
@@ -27,15 +27,9 @@ function readVersions(): CvVersion[] {
 export default function CvVersions({ data, template, onLoad }: Props) {
   const { t, i18n } = useTranslation();
   const [versions, setVersions] = useState<CvVersion[]>(readVersions);
-  const [name, setName] = useState('');
+  const [name, setName] = useState(() => data.personal.jobTitle.trim().slice(0, 60));
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!name && data.personal.jobTitle.trim()) {
-      setName(data.personal.jobTitle.trim().slice(0, 60));
-    }
-  }, [data.personal.jobTitle]);
 
   const persist = (next: CvVersion[]) => {
     if (!canUseStorage) return false;
