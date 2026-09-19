@@ -235,7 +235,25 @@
     "clearJobAd": "Effacer",
     "savedLocally": "Enregistrée sur cet appareil pour garder le matching actif pendant que vous modifiez le CV.",
     "priorityMissingTitle": "Termes prioritaires à vérifier",
-    "moreMissing": "+{{count}} autres termes"
+    "moreMissing": "+{{count}} autres termes",
+    "ai": {
+      "title": "Copilote CV IA",
+      "privacy": "L’IA est appelée uniquement après votre clic. Les coordonnées personnelles ne sont pas envoyées.",
+      "optimize": "Optimiser pour cette offre",
+      "optimizing": "Optimisation…",
+      "summaryTitle": "Résumé professionnel suggéré",
+      "experienceTitle": "Expérience reformulée",
+      "apply": "Appliquer",
+      "warningsTitle": "À vérifier avant d’appliquer",
+      "errors": {
+        "AI_NOT_CONFIGURED": "Le copilote IA n’est pas encore configuré.",
+        "AI_INVALID_REQUEST": "Le CV ou l’offre ne peut pas être traité.",
+        "AI_AUTH_ERROR": "Le fournisseur IA n’est pas authentifié.",
+        "AI_QUOTA_EXCEEDED": "Le quota du fournisseur IA est épuisé.",
+        "AI_PROVIDER_ERROR": "Le fournisseur IA est temporairement indisponible.",
+        "AI_INVALID_RESPONSE": "La réponse IA n’a pas pu être lue."
+      }
+    }
   },
   "europass": {
     "title": "Créateur de CV Europass gratuit — CV Europass en ligne",
