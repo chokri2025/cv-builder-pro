@@ -209,6 +209,26 @@
       "skills": "Skills",
       "education": "Education",
       "extras": "Extra profile details"
+    },
+    "pointsGain": "Up to +{{points}} pts",
+    "recommendations": {
+      "addFullName": "Add your full name",
+      "addEmail": "Add a valid email",
+      "addPhone": "Add a phone number",
+      "addJobTitle": "Add your target job title",
+      "addLocation": "Add your location",
+      "expandSummary": "Strengthen your professional summary",
+      "addExperience": "Add at least one work experience",
+      "completeExperience": "Complete role, company and dates",
+      "detailExperience": "Add stronger experience descriptions",
+      "quantifyExperience": "Add measurable results to experience",
+      "addSkills": "Add more relevant skills",
+      "addEducation": "Add your education",
+      "completeEducation": "Complete degree, school and year",
+      "addLinkedIn": "Add your LinkedIn profile",
+      "addPortfolio": "Add a portfolio link",
+      "addLanguage": "Add your languages",
+      "addProject": "Add a relevant project"
     }
   },
   "europass": {
