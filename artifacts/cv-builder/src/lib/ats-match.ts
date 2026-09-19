@@ -58,12 +58,39 @@ export interface ReadinessCategory {
   max: number;
 }
 
+export type ReadinessRecommendationId =
+  | 'addFullName'
+  | 'addEmail'
+  | 'addPhone'
+  | 'addJobTitle'
+  | 'addLocation'
+  | 'expandSummary'
+  | 'addExperience'
+  | 'completeExperience'
+  | 'detailExperience'
+  | 'quantifyExperience'
+  | 'addSkills'
+  | 'addEducation'
+  | 'completeEducation'
+  | 'addLinkedIn'
+  | 'addPortfolio'
+  | 'addLanguage'
+  | 'addProject';
+
+export interface ReadinessRecommendation {
+  id: ReadinessRecommendationId;
+  /** Maximum points available if the recommendation is completed fully. */
+  points: number;
+}
+
 export interface AtsReadinessResult {
   /** 0–100 deterministic readiness score based on CV completeness/content quality. */
   score: number;
   categories: ReadinessCategory[];
-  /** The three categories with the largest remaining score opportunity. */
+  /** Category-level gaps, retained for summary views. */
   nextSteps: ReadinessCategoryId[];
+  /** Specific actions, sorted by the score opportunity they unlock. */
+  recommendations: ReadinessRecommendation[];
 }
 
 const MIN_AD_WORDS = 20;
@@ -278,8 +305,11 @@ export function assessAtsReadiness(data: CVData): AtsReadinessResult {
     summaryLength >= 80 ? 15 : summaryLength >= 40 ? 10 : summaryLength >= 20 ? 5 : 0;
 
   let experienceScore = 0;
+  let requiredRatio = 0;
+  let descriptionRatio = 0;
+  let measurableRatio = 0;
   if (experience.length > 0) {
-    const requiredRatio =
+    requiredRatio =
       experience.reduce((sum, item) => {
         const present = [item.jobTitle, item.company, item.startDate].filter(
           (value) => value.trim().length > 0,
@@ -287,14 +317,14 @@ export function assessAtsReadiness(data: CVData): AtsReadinessResult {
         return sum + present / 3;
       }, 0) / experience.length;
 
-    const descriptionRatio =
+    descriptionRatio =
       experience.reduce((sum, item) => {
         const length = item.description.trim().length;
         const quality = length >= 120 ? 1 : length >= 60 ? 0.7 : length >= 20 ? 0.35 : 0;
         return sum + quality;
       }, 0) / experience.length;
 
-    const measurableRatio =
+    measurableRatio =
       experience.filter((item) => /[\d%€$£]/.test(item.description)).length / experience.length;
 
     experienceScore =
@@ -363,7 +393,44 @@ export function assessAtsReadiness(data: CVData): AtsReadinessResult {
     .slice(0, 3)
     .map((category) => category.id);
 
-  return { score, categories, nextSteps };
+  const recommendations: ReadinessRecommendation[] = [];
+  const recommend = (id: ReadinessRecommendationId, points: number) => {
+    const rounded = Math.round(points);
+    if (rounded > 0) recommendations.push({ id, points: rounded });
+  };
+
+  if (personal.fullName.trim().length < 2) recommend('addFullName', 4);
+  if (!/\S+@\S+\.\S+/.test(personal.email)) recommend('addEmail', 4);
+  if (phoneDigits < 6) recommend('addPhone', 3);
+  if (!personal.jobTitle.trim()) recommend('addJobTitle', 5);
+  if (!personal.location.trim()) recommend('addLocation', 4);
+
+  if (summaryScore < 15) recommend('expandSummary', 15 - summaryScore);
+
+  if (experience.length === 0) {
+    recommend('addExperience', 30);
+  } else {
+    recommend('completeExperience', 9 - Math.round(requiredRatio * 9));
+    recommend('detailExperience', 9 - Math.round(descriptionRatio * 9));
+    recommend('quantifyExperience', 6 - Math.round(measurableRatio * 6));
+  }
+
+  if (skillsScore < 15) recommend('addSkills', 15 - skillsScore);
+
+  if (education.length === 0) {
+    recommend('addEducation', 10);
+  } else if (educationScore < 10) {
+    recommend('completeEducation', 10 - educationScore);
+  }
+
+  if (!personal.linkedin.trim()) recommend('addLinkedIn', 3);
+  if (!personal.portfolio.trim()) recommend('addPortfolio', 2);
+  if (languages.length === 0) recommend('addLanguage', 3);
+  if (projects.length === 0) recommend('addProject', 2);
+
+  recommendations.sort((a, b) => b.points - a.points || a.id.localeCompare(b.id));
+
+  return { score, categories, nextSteps, recommendations };
 }
 
 /**
