@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import FormPanel from '../components/FormPanel';
 import HomeSeoContent from '../components/HomeSeoContent';
 import AtsChecker from '../components/AtsChecker';
+import CvVersions from '../components/CvVersions';
 import CVPreview from '../components/CVPreview';
 import { useCV } from '../hooks/useCV';
 import { useSEO } from '../hooks/useSEO';
@@ -71,6 +72,11 @@ export default function CVBuilderPage() {
         className={`form-side ${showPreview ? 'hidden-mobile' : ''}`}
         aria-label={t('builder.editLabel')}
       >
+        <CvVersions
+          data={cv.cvData}
+          template={cv.template}
+          onLoad={cv.loadCVSnapshot}
+        />
         <FormPanel
           cvData={cv.cvData}
           template={cv.template}
