@@ -277,7 +277,13 @@
         "interview": "Mülakat",
         "offer": "Teklif",
         "rejected": "Reddedildi"
-      }
+      },
+      "details": "Ayrıntılar",
+      "notes": "Notlar",
+      "notesPlaceholder": "Bu başvuru hakkında notlar…",
+      "followUpDate": "Takip tarihi",
+      "saveDetails": "Ayrıntıları kaydet",
+      "detailsSaved": "Başvuru ayrıntıları kaydedildi."
     }
   },
   "europass": {
