@@ -1,0 +1,97 @@
+export const JOB_WORKSPACE_STORAGE_KEY = 'cv-builder-saved-jobs-v1';
+export const MAX_SAVED_JOBS = 20;
+
+export type JobStatus = 'saved' | 'applied' | 'interview' | 'offer' | 'rejected';
+
+export interface SavedJob {
+  id: string;
+  title: string;
+  company: string;
+  jobAd: string;
+  status: JobStatus;
+  createdAt: string;
+  updatedAt: string;
+}
+
+const STATUSES: JobStatus[] = ['saved', 'applied', 'interview', 'offer', 'rejected'];
+
+function isJobStatus(value: unknown): value is JobStatus {
+  return typeof value === 'string' && STATUSES.includes(value as JobStatus);
+}
+
+function cleanText(value: string, max: number): string {
+  return value.trim().slice(0, max);
+}
+
+export function parseSavedJobs(raw: string | null): SavedJob[] {
+  if (!raw) return [];
+
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed
+      .filter((item): item is SavedJob => {
+        if (!item || typeof item !== 'object') return false;
+        const candidate = item as Record<string, unknown>;
+        return (
+          typeof candidate.id === 'string' &&
+          typeof candidate.title === 'string' &&
+          candidate.title.trim().length > 0 &&
+          typeof candidate.company === 'string' &&
+          typeof candidate.jobAd === 'string' &&
+          candidate.jobAd.trim().length >= 40 &&
+          isJobStatus(candidate.status) &&
+          typeof candidate.createdAt === 'string' &&
+          typeof candidate.updatedAt === 'string'
+        );
+      })
+      .slice(0, MAX_SAVED_JOBS);
+  } catch {
+    return [];
+  }
+}
+
+export function createSavedJob(
+  title: string,
+  company: string,
+  jobAd: string,
+  now = new Date(),
+): SavedJob {
+  const cleanTitle = cleanText(title, 120);
+  const cleanCompany = cleanText(company, 120);
+  const cleanJobAd = jobAd.trim().slice(0, 15_000);
+
+  if (!cleanTitle) throw new Error('JOB_TITLE_REQUIRED');
+  if (cleanJobAd.length < 40) throw new Error('JOB_AD_TOO_SHORT');
+
+  const timestamp = now.toISOString();
+  return {
+    id: `job-${now.getTime()}-${Math.random().toString(36).slice(2, 8)}`,
+    title: cleanTitle,
+    company: cleanCompany,
+    jobAd: cleanJobAd,
+    status: 'saved',
+    createdAt: timestamp,
+    updatedAt: timestamp,
+  };
+}
+
+export function prependSavedJob(jobs: SavedJob[], job: SavedJob): SavedJob[] {
+  return [job, ...jobs.filter((item) => item.id !== job.id)].slice(0, MAX_SAVED_JOBS);
+}
+
+export function updateSavedJobStatus(
+  jobs: SavedJob[],
+  id: string,
+  status: JobStatus,
+  now = new Date(),
+): SavedJob[] {
+  return jobs.map((job) =>
+    job.id === id ? { ...job, status, updatedAt: now.toISOString() } : job,
+  );
+}
+
+export function deleteSavedJob(jobs: SavedJob[], id: string): SavedJob[] {
+  return jobs.filter((job) => job.id !== id);
+}

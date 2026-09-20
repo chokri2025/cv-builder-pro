@@ -253,6 +253,31 @@
         "AI_PROVIDER_ERROR": "The AI provider is temporarily unavailable.",
         "AI_INVALID_RESPONSE": "The AI response could not be read."
       }
+    },
+    "jobs": {
+      "title": "Job workspace",
+      "hint": "Save target jobs locally and track your application status while the match score stays live.",
+      "titlePlaceholder": "Job title, e.g. Electrician",
+      "companyPlaceholder": "Company (optional)",
+      "save": "Save job",
+      "saved": "Job saved.",
+      "loaded": "Loaded “{{title}}” as the target job.",
+      "deleted": "Job removed.",
+      "empty": "No saved jobs yet.",
+      "use": "Use",
+      "delete": "Delete",
+      "deleteNamed": "Delete {{title}}",
+      "statusLabel": "Application status for {{title}}",
+      "titleRequired": "Enter a job title first.",
+      "jobAdTooShort": "Paste a fuller job description before saving.",
+      "storageError": "Could not save jobs. Browser storage may be unavailable or full.",
+      "statuses": {
+        "saved": "Saved",
+        "applied": "Applied",
+        "interview": "Interview",
+        "offer": "Offer",
+        "rejected": "Rejected"
+      }
     }
   },
   "europass": {

@@ -8,6 +8,17 @@ import {
   requestCvOptimization,
   type AiCopilotSuggestion,
 } from '../lib/ai-copilot';
+import {
+  JOB_WORKSPACE_STORAGE_KEY,
+  MAX_SAVED_JOBS,
+  createSavedJob,
+  deleteSavedJob,
+  parseSavedJobs,
+  prependSavedJob,
+  updateSavedJobStatus,
+  type JobStatus,
+  type SavedJob,
+} from '../lib/job-workspace';
 
 interface Props {
   data: CVData;
@@ -23,6 +34,15 @@ function readStoredJobAd(): string {
     return window.localStorage.getItem(JOB_AD_STORAGE_KEY) ?? '';
   } catch {
     return '';
+  }
+}
+
+function readStoredJobs(): SavedJob[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    return parseSavedJobs(window.localStorage.getItem(JOB_WORKSPACE_STORAGE_KEY));
+  } catch {
+    return [];
   }
 }
 
@@ -49,6 +69,10 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
   const [aiLoading, setAiLoading] = useState(false);
   const [aiError, setAiError] = useState<string | null>(null);
   const [aiSuggestions, setAiSuggestions] = useState<AiCopilotSuggestion | null>(null);
+  const [savedJobs, setSavedJobs] = useState<SavedJob[]>(readStoredJobs);
+  const [jobTitle, setJobTitle] = useState('');
+  const [jobCompany, setJobCompany] = useState('');
+  const [jobWorkspaceMessage, setJobWorkspaceMessage] = useState<string | null>(null);
 
   const readiness = useMemo(() => assessAtsReadiness(data), [data]);
   const structuralChecks = useMemo(() => runStructuralChecks(data), [data]);
@@ -91,6 +115,55 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
     setJobAd('');
     setAiSuggestions(null);
     setAiError(null);
+  };
+
+  const persistSavedJobs = (next: SavedJob[]) => {
+    if (typeof window === 'undefined') return false;
+    try {
+      window.localStorage.setItem(JOB_WORKSPACE_STORAGE_KEY, JSON.stringify(next));
+      setSavedJobs(next);
+      return true;
+    } catch {
+      setJobWorkspaceMessage(t('ats.jobs.storageError'));
+      return false;
+    }
+  };
+
+  const saveCurrentJob = () => {
+    try {
+      const job = createSavedJob(jobTitle, jobCompany, jobAd);
+      if (persistSavedJobs(prependSavedJob(savedJobs, job))) {
+        setJobTitle('');
+        setJobCompany('');
+        setJobWorkspaceMessage(t('ats.jobs.saved'));
+      }
+    } catch (error) {
+      const code = error instanceof Error ? error.message : '';
+      setJobWorkspaceMessage(
+        code === 'JOB_TITLE_REQUIRED'
+          ? t('ats.jobs.titleRequired')
+          : t('ats.jobs.jobAdTooShort'),
+      );
+    }
+  };
+
+  const loadSavedJob = (job: SavedJob) => {
+    setJobAd(job.jobAd);
+    setJobTitle(job.title);
+    setJobCompany(job.company);
+    setAiSuggestions(null);
+    setAiError(null);
+    setJobWorkspaceMessage(t('ats.jobs.loaded', { title: job.title }));
+  };
+
+  const changeSavedJobStatus = (id: string, status: JobStatus) => {
+    persistSavedJobs(updateSavedJobStatus(savedJobs, id, status));
+  };
+
+  const removeSavedJob = (id: string) => {
+    if (persistSavedJobs(deleteSavedJob(savedJobs, id))) {
+      setJobWorkspaceMessage(t('ats.jobs.deleted'));
+    }
   };
 
   const runAiOptimization = async () => {
@@ -218,6 +291,101 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
             aria-label={t('ats.title')}
           />
           {jobAd && <p className="ats-storage-note">{t('ats.savedLocally')}</p>}
+
+          <div className="ats-job-workspace">
+            <div className="ats-job-workspace-head">
+              <div>
+                <h4>{t('ats.jobs.title')}</h4>
+                <p>{t('ats.jobs.hint')}</p>
+              </div>
+              <span>{savedJobs.length}/{MAX_SAVED_JOBS}</span>
+            </div>
+
+            {jobAd.trim() && (
+              <div className="ats-job-save-grid">
+                <input
+                  value={jobTitle}
+                  maxLength={120}
+                  onChange={(event) => {
+                    setJobTitle(event.target.value);
+                    setJobWorkspaceMessage(null);
+                  }}
+                  placeholder={t('ats.jobs.titlePlaceholder')}
+                  aria-label={t('ats.jobs.titlePlaceholder')}
+                />
+                <input
+                  value={jobCompany}
+                  maxLength={120}
+                  onChange={(event) => {
+                    setJobCompany(event.target.value);
+                    setJobWorkspaceMessage(null);
+                  }}
+                  placeholder={t('ats.jobs.companyPlaceholder')}
+                  aria-label={t('ats.jobs.companyPlaceholder')}
+                />
+                <button
+                  type="button"
+                  onClick={saveCurrentJob}
+                  disabled={!jobTitle.trim() || jobAd.trim().length < 40}
+                >
+                  {t('ats.jobs.save')}
+                </button>
+              </div>
+            )}
+
+            {jobWorkspaceMessage && (
+              <p className="ats-job-workspace-message">{jobWorkspaceMessage}</p>
+            )}
+
+            {savedJobs.length === 0 ? (
+              <p className="ats-job-workspace-empty">{t('ats.jobs.empty')}</p>
+            ) : (
+              <div className="ats-saved-jobs-list">
+                {savedJobs.map((job) => {
+                  const savedMatch = analyseMatch(job.jobAd, data, currentLang);
+                  return (
+                    <div key={job.id} className="ats-saved-job-row">
+                      <div className="ats-saved-job-main">
+                        <strong>{job.title}</strong>
+                        {job.company && <span>{job.company}</span>}
+                      </div>
+                      {!savedMatch.tooShort && (
+                        <span className={`ats-saved-job-score ats-match-badge-${scoreBand(savedMatch.score)}`}>
+                          {savedMatch.score}%
+                        </span>
+                      )}
+                      <select
+                        value={job.status}
+                        onChange={(event) =>
+                          changeSavedJobStatus(job.id, event.target.value as JobStatus)
+                        }
+                        aria-label={t('ats.jobs.statusLabel', { title: job.title })}
+                      >
+                        <option value="saved">{t('ats.jobs.statuses.saved')}</option>
+                        <option value="applied">{t('ats.jobs.statuses.applied')}</option>
+                        <option value="interview">{t('ats.jobs.statuses.interview')}</option>
+                        <option value="offer">{t('ats.jobs.statuses.offer')}</option>
+                        <option value="rejected">{t('ats.jobs.statuses.rejected')}</option>
+                      </select>
+                      <div className="ats-saved-job-actions">
+                        <button type="button" onClick={() => loadSavedJob(job)}>
+                          {t('ats.jobs.use')}
+                        </button>
+                        <button
+                          type="button"
+                          className="ats-saved-job-delete"
+                          onClick={() => removeSavedJob(job.id)}
+                          aria-label={t('ats.jobs.deleteNamed', { title: job.title })}
+                        >
+                          {t('ats.jobs.delete')}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
 
           {result?.tooShort && <p className="ats-hint">{t('ats.tooShort')}</p>}
 

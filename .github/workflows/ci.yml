@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   quality:
-    name: typecheck, lint, test
+    name: typecheck, lint, test, build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,3 +34,6 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+      - name: Build
+        run: pnpm --filter @workspace/cv-builder run build

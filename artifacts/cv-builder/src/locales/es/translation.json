@@ -253,6 +253,31 @@
         "AI_PROVIDER_ERROR": "El proveedor de IA no está disponible temporalmente.",
         "AI_INVALID_RESPONSE": "No se pudo leer la respuesta de IA."
       }
+    },
+    "jobs": {
+      "title": "Espacio de empleos",
+      "hint": "Guarda ofertas localmente y sigue el estado de cada candidatura mientras el match se actualiza.",
+      "titlePlaceholder": "Puesto, p. ej. Electricista",
+      "companyPlaceholder": "Empresa (opcional)",
+      "save": "Guardar empleo",
+      "saved": "Empleo guardado.",
+      "loaded": "“{{title}}” es ahora el empleo objetivo.",
+      "deleted": "Empleo eliminado.",
+      "empty": "Aún no hay empleos guardados.",
+      "use": "Usar",
+      "delete": "Eliminar",
+      "deleteNamed": "Eliminar {{title}}",
+      "statusLabel": "Estado de candidatura para {{title}}",
+      "titleRequired": "Escribe primero el puesto.",
+      "jobAdTooShort": "Pega una descripción de empleo más completa antes de guardar.",
+      "storageError": "No se pudieron guardar los empleos. El almacenamiento del navegador puede no estar disponible o estar lleno.",
+      "statuses": {
+        "saved": "Guardado",
+        "applied": "Solicitado",
+        "interview": "Entrevista",
+        "offer": "Oferta",
+        "rejected": "Rechazado"
+      }
     }
   },
   "europass": {

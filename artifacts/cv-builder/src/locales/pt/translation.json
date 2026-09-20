@@ -253,6 +253,31 @@
         "AI_PROVIDER_ERROR": "O fornecedor de IA está temporariamente indisponível.",
         "AI_INVALID_RESPONSE": "Não foi possível ler a resposta da IA."
       }
+    },
+    "jobs": {
+      "title": "Área de vagas",
+      "hint": "Guarde vagas-alvo localmente e acompanhe o estado da candidatura enquanto a pontuação de compatibilidade se mantém atualizada.",
+      "titlePlaceholder": "Cargo, ex. Eletricista",
+      "companyPlaceholder": "Empresa (opcional)",
+      "save": "Guardar vaga",
+      "saved": "Vaga guardada.",
+      "loaded": "“{{title}}” foi carregada como vaga-alvo.",
+      "deleted": "Vaga removida.",
+      "empty": "Ainda não existem vagas guardadas.",
+      "use": "Usar",
+      "delete": "Eliminar",
+      "deleteNamed": "Eliminar {{title}}",
+      "statusLabel": "Estado da candidatura para {{title}}",
+      "titleRequired": "Introduza primeiro o cargo.",
+      "jobAdTooShort": "Cole uma descrição de vaga mais completa antes de guardar.",
+      "storageError": "Não foi possível guardar as vagas. O armazenamento do navegador pode estar indisponível ou cheio.",
+      "statuses": {
+        "saved": "Guardada",
+        "applied": "Candidatura enviada",
+        "interview": "Entrevista",
+        "offer": "Oferta",
+        "rejected": "Recusada"
+      }
     }
   },
   "europass": {
