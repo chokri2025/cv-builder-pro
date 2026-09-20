@@ -95,3 +95,13 @@ export function updateSavedJobStatus(
 export function deleteSavedJob(jobs: SavedJob[], id: string): SavedJob[] {
   return jobs.filter((job) => job.id !== id);
 }
+
+export function summarizeJobStatuses(jobs: SavedJob[]): Record<JobStatus, number> {
+  return jobs.reduce<Record<JobStatus, number>>(
+    (summary, job) => {
+      summary[job.status] += 1;
+      return summary;
+    },
+    { saved: 0, applied: 0, interview: 0, offer: 0, rejected: 0 },
+  );
+}
