@@ -46,7 +46,12 @@ describe('App.tsx route parity with the prerender/sitemap route space', () => {
     );
 
     const missingFromApp = [...prerenderPatterns].filter((p) => !appPatterns.has(p));
-    const missingFromPrerender = [...appPatterns].filter((p) => !prerenderPatterns.has(p));
+    // Runtime product routes (for example Job Discovery) are intentionally not
+    // SEO landing pages and do not need to be in the sitemap/prerender matrix.
+    const runtimeOnlyPatterns = new Set(['/jobs', '/:lang/jobs']);
+    const missingFromPrerender = [...appPatterns].filter(
+      (p) => !prerenderPatterns.has(p) && !runtimeOnlyPatterns.has(p),
+    );
 
     expect({ missingFromApp, missingFromPrerender }).toEqual({
       missingFromApp: [],
