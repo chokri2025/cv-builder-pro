@@ -253,6 +253,31 @@
         "AI_PROVIDER_ERROR": "Le fournisseur IA est temporairement indisponible.",
         "AI_INVALID_RESPONSE": "La réponse IA n’a pas pu être lue."
       }
+    },
+    "jobs": {
+      "title": "Espace candidatures",
+      "hint": "Enregistrez vos offres localement et suivez leur statut tout en gardant le score de compatibilité à jour.",
+      "titlePlaceholder": "Intitulé du poste, ex. Électricien",
+      "companyPlaceholder": "Entreprise (facultatif)",
+      "save": "Enregistrer l’offre",
+      "saved": "Offre enregistrée.",
+      "loaded": "« {{title}} » est maintenant l’offre cible.",
+      "deleted": "Offre supprimée.",
+      "empty": "Aucune offre enregistrée.",
+      "use": "Utiliser",
+      "delete": "Supprimer",
+      "deleteNamed": "Supprimer {{title}}",
+      "statusLabel": "Statut de candidature pour {{title}}",
+      "titleRequired": "Saisissez d’abord l’intitulé du poste.",
+      "jobAdTooShort": "Collez une description de poste plus complète avant d’enregistrer.",
+      "storageError": "Impossible d’enregistrer les offres. Le stockage du navigateur est peut-être indisponible ou plein.",
+      "statuses": {
+        "saved": "Enregistrée",
+        "applied": "Candidature envoyée",
+        "interview": "Entretien",
+        "offer": "Offre reçue",
+        "rejected": "Refusée"
+      }
     }
   },
   "europass": {
