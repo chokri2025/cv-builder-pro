@@ -3370,3 +3370,29 @@ body {
     width: 100%;
   }
 }
+
+
+/* JOB DISCOVERY */
+.jobs-page { min-height:100vh; overflow-y:auto; background:#f8fafc; padding:2rem; }
+.jobs-hero { max-width:1100px; margin:0 auto 1.5rem; display:flex; justify-content:space-between; gap:2rem; align-items:flex-start; }
+.jobs-kicker { font-size:.75rem; font-weight:700; color:#0284c7; text-transform:uppercase; letter-spacing:.08em; }
+.jobs-hero h1 { margin:.35rem 0; font-size:2rem; }
+.jobs-hero p { color:#64748b; max-width:680px; }
+.jobs-builder-link { color:#0369a1; font-weight:600; text-decoration:none; white-space:nowrap; }
+.jobs-search { max-width:1100px; margin:0 auto 1rem; display:grid; grid-template-columns:2fr 1.2fr auto; gap:.75rem; }
+.jobs-search input { padding:.85rem 1rem; border:1px solid #cbd5e1; border-radius:10px; font:inherit; background:#fff; }
+.jobs-search button,.job-actions button { border:0; border-radius:10px; padding:.85rem 1rem; background:#0284c7; color:#fff; font-weight:700; cursor:pointer; }
+.jobs-search button:disabled { opacity:.55; cursor:not-allowed; }
+.jobs-message { max-width:1100px; margin:.75rem auto; color:#475569; }
+.jobs-grid { max-width:1100px; margin:0 auto; display:grid; gap:1rem; }
+.job-card { background:#fff; border:1px solid #e2e8f0; border-radius:14px; padding:1.25rem; box-shadow:0 4px 18px rgba(15,23,42,.04); }
+.job-card-head { display:flex; justify-content:space-between; gap:1rem; }
+.job-card h2 { font-size:1.05rem; margin-bottom:.25rem; }
+.job-card-head p,.job-description { color:#64748b; }
+.job-description { margin:1rem 0; line-height:1.55; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+.job-match-score { color:#0369a1; background:#e0f2fe; padding:.45rem .65rem; border-radius:999px; white-space:nowrap; height:max-content; }
+.job-keywords { font-size:.82rem; color:#475569; margin-bottom:1rem; }
+.job-keywords span { font-weight:700; color:#0f172a; }
+.job-actions { display:flex; gap:.75rem; align-items:center; }
+.job-actions a { color:#0369a1; font-weight:700; text-decoration:none; padding:.75rem .25rem; }
+@media(max-width:700px){.jobs-page{padding:1rem}.jobs-hero{display:block}.jobs-builder-link{display:inline-block;margin-top:1rem}.jobs-search{grid-template-columns:1fr}.job-card-head{display:block}.job-match-score{display:inline-block;margin-top:.75rem}}
