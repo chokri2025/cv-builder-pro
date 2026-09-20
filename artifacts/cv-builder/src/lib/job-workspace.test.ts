@@ -7,6 +7,7 @@ import {
   parseSavedJobs,
   prependSavedJob,
   summarizeJobStatuses,
+  updateSavedJobDetails,
   updateSavedJobStatus,
 } from './job-workspace';
 
@@ -70,6 +71,34 @@ describe('job workspace', () => {
       'Older',
     ]);
     expect(filterAndSortJobs([older, interviewed, newer], 'interview')).toEqual([interviewed]);
+  });
+
+  it('stores private notes and a follow-up date on one application', () => {
+    const first = createSavedJob('First', '', AD, new Date('2026-09-20T00:00:00Z'));
+    const second = createSavedJob('Second', '', AD, new Date('2026-09-20T00:01:00Z'));
+
+    const updated = updateSavedJobDetails(
+      [first, second],
+      first.id,
+      { notes: 'Call recruiter after interview', followUpDate: '2026-09-25' },
+      new Date('2026-09-20T02:00:00Z'),
+    );
+
+    expect(updated[0]?.notes).toBe('Call recruiter after interview');
+    expect(updated[0]?.followUpDate).toBe('2026-09-25');
+    expect(updated[0]?.updatedAt).toBe('2026-09-20T02:00:00.000Z');
+    expect(updated[1]).toEqual(second);
+  });
+
+  it('drops malformed follow-up dates', () => {
+    const job = createSavedJob('First', '', AD);
+    const [updated] = updateSavedJobDetails(
+      [job],
+      job.id,
+      { notes: 'Keep this', followUpDate: 'tomorrow' },
+    );
+    expect(updated?.notes).toBe('Keep this');
+    expect(updated?.followUpDate).toBe('');
   });
 
   it('updates status and deletes jobs without mutating unrelated entries', () => {
