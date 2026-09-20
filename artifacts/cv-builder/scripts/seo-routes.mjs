@@ -47,18 +47,12 @@ export const SEO_CITY_SLUGS = [
 export const LANGUAGES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
 export const NON_EN_LANGS = LANGUAGES.filter((l) => l !== 'en');
 
+// Index only pages with a clear standalone search intent. The old Cartesian
+// product (every role × every city × every language) created hundreds of weak,
+// near-duplicate landing pages. City-role pages can return later when Search
+// Console / keyword data proves demand for a specific combination.
 export function getAllSeoSlugs() {
-  const slugs = [];
-  for (const skill of SEO_SKILL_SLUGS) {
-    slugs.push(skill);
-    for (const city of SEO_CITY_SLUGS) {
-      slugs.push(`${skill}-${city}`);
-    }
-  }
-  for (const city of SEO_CITY_SLUGS) {
-    slugs.push(city);
-  }
-  return slugs;
+  return [...SEO_SKILL_SLUGS, ...SEO_CITY_SLUGS];
 }
 
 /**
