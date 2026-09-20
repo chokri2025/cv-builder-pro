@@ -3,6 +3,7 @@ import {
   MAX_SAVED_JOBS,
   createSavedJob,
   deleteSavedJob,
+  filterAndSortJobs,
   parseSavedJobs,
   prependSavedJob,
   summarizeJobStatuses,
@@ -53,6 +54,22 @@ describe('job workspace', () => {
       offer: 0,
       rejected: 0,
     });
+  });
+
+  it('filters by status and orders the newest update first', () => {
+    const older = createSavedJob('Older', '', AD, new Date('2026-09-20T00:00:00Z'));
+    const newer = createSavedJob('Newer', '', AD, new Date('2026-09-20T00:01:00Z'));
+    const interviewed = {
+      ...createSavedJob('Interview', '', AD, new Date('2026-09-20T00:02:00Z')),
+      status: 'interview' as const,
+    };
+
+    expect(filterAndSortJobs([older, interviewed, newer], null).map((job) => job.title)).toEqual([
+      'Interview',
+      'Newer',
+      'Older',
+    ]);
+    expect(filterAndSortJobs([older, interviewed, newer], 'interview')).toEqual([interviewed]);
   });
 
   it('updates status and deletes jobs without mutating unrelated entries', () => {
