@@ -11,6 +11,11 @@ export interface SavedJob {
   status: JobStatus;
   notes?: string;
   followUpDate?: string;
+  source?: string;
+  sourceJobId?: string;
+  url?: string;
+  location?: string;
+  publishedAt?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -82,7 +87,12 @@ export function createSavedJob(
 }
 
 export function prependSavedJob(jobs: SavedJob[], job: SavedJob): SavedJob[] {
-  return [job, ...jobs.filter((item) => item.id !== job.id)].slice(0, MAX_SAVED_JOBS);
+  const withoutDuplicate = jobs.filter(
+    (item) =>
+      item.id !== job.id &&
+      !(job.source && job.sourceJobId && item.source === job.source && item.sourceJobId === job.sourceJobId),
+  );
+  return [job, ...withoutDuplicate].slice(0, MAX_SAVED_JOBS);
 }
 
 export function updateSavedJobStatus(
