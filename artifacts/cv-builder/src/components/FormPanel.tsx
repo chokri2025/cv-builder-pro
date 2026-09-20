@@ -180,6 +180,7 @@ export default function FormPanel(props: FormPanelProps) {
             </button>
           ))}
         </div>
+        <TemplateGuidance template={template} />
       </div>
 
       <div className="form-sections">
@@ -569,5 +570,55 @@ function FormField({
         onChange={(e) => onChange(e.target.value)}
       />
     </div>
+  );
+}
+
+
+function TemplateGuidance({ template }: { template: TemplateType }) {
+  const guidance: Record<TemplateType, { title: string; fit: string; tips: string[] }> = {
+    minimal: {
+      title: 'ATS / Canada',
+      fit: 'Best for ATS-heavy applications and a Canadian-style resume. Keep it simple, targeted and easy to scan.',
+      tips: [
+        'For Canada, omit the photo and avoid decorative personal details.',
+        'Match the job posting language and prioritize measurable achievements.',
+        'Use the DOCX export when the employer requests a machine-readable resume.',
+      ],
+    },
+    modern: {
+      title: 'Modern professional',
+      fit: 'Best for tech, consulting, sales and business roles where you want a polished visual hierarchy without sacrificing readability.',
+      tips: [
+        'Keep the sidebar concise: contact details, skills and languages only.',
+        'Put the strongest recent experience first.',
+        'Use concrete results instead of long responsibility lists.',
+      ],
+    },
+    creative: {
+      title: 'Creative portfolio',
+      fit: 'Best for design, marketing, content and portfolio-led roles where visual identity matters.',
+      tips: [
+        'Add a portfolio link and keep projects outcome-focused.',
+        'Use this version when a human reviewer is likely to see the CV.',
+        'For strict ATS portals, prefer the Minimal template or DOCX export.',
+      ],
+    },
+    europass: {
+      title: 'Europass / Europe',
+      fit: 'Best when Europass is requested or useful for European, academic and mobility applications.',
+      tips: [
+        'Tailor the CV to each vacancy and keep only relevant experience.',
+        'List experience and education from most recent to oldest.',
+        'Describe language ability with CEFR levels when possible.',
+      ],
+    },
+  };
+  const item = guidance[template];
+  return (
+    <aside className={`template-guidance template-guidance-${template}`} aria-live="polite">
+      <strong>{item.title}</strong>
+      <p>{item.fit}</p>
+      <ul>{item.tips.map((tip) => <li key={tip}>{tip}</li>)}</ul>
+    </aside>
   );
 }

@@ -8,12 +8,9 @@ import {
 } from './seo-routes.mjs';
 
 describe('getAllSeoSlugs', () => {
-  it('produces the expected combination count', () => {
+  it('indexes only standalone role and city pages', () => {
     const slugs = getAllSeoSlugs();
-    const expected =
-      SEO_SKILL_SLUGS.length * SEO_CITY_SLUGS.length +
-      SEO_SKILL_SLUGS.length +
-      SEO_CITY_SLUGS.length;
+    const expected = SEO_SKILL_SLUGS.length + SEO_CITY_SLUGS.length;
     expect(slugs).toHaveLength(expected);
   });
 
