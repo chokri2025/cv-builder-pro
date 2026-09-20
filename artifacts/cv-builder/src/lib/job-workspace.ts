@@ -9,6 +9,8 @@ export interface SavedJob {
   company: string;
   jobAd: string;
   status: JobStatus;
+  notes?: string;
+  followUpDate?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -72,6 +74,8 @@ export function createSavedJob(
     company: cleanCompany,
     jobAd: cleanJobAd,
     status: 'saved',
+    notes: '',
+    followUpDate: '',
     createdAt: timestamp,
     updatedAt: timestamp,
   };
@@ -110,4 +114,27 @@ export function filterAndSortJobs(jobs: SavedJob[], status: JobStatus | null): S
   return [...jobs]
     .filter((job) => status === null || job.status === status)
     .sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
+}
+
+export function updateSavedJobDetails(
+  jobs: SavedJob[],
+  id: string,
+  details: { notes: string; followUpDate: string },
+  now = new Date(),
+): SavedJob[] {
+  const notes = cleanText(details.notes, 2_000);
+  const followUpDate = /^\d{4}-\d{2}-\d{2}$/.test(details.followUpDate)
+    ? details.followUpDate
+    : '';
+
+  return jobs.map((job) =>
+    job.id === id
+      ? {
+          ...job,
+          notes,
+          followUpDate,
+          updatedAt: now.toISOString(),
+        }
+      : job,
+  );
 }
