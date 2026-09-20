@@ -13,6 +13,7 @@ import {
   MAX_SAVED_JOBS,
   createSavedJob,
   deleteSavedJob,
+  filterAndSortJobs,
   parseSavedJobs,
   prependSavedJob,
   summarizeJobStatuses,
@@ -74,10 +75,15 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
   const [jobTitle, setJobTitle] = useState('');
   const [jobCompany, setJobCompany] = useState('');
   const [jobWorkspaceMessage, setJobWorkspaceMessage] = useState<string | null>(null);
+  const [jobStatusFilter, setJobStatusFilter] = useState<JobStatus | null>(null);
 
   const readiness = useMemo(() => assessAtsReadiness(data), [data]);
   const structuralChecks = useMemo(() => runStructuralChecks(data), [data]);
   const jobStatusCounts = useMemo(() => summarizeJobStatuses(savedJobs), [savedJobs]);
+  const visibleJobs = useMemo(
+    () => filterAndSortJobs(savedJobs, jobStatusFilter),
+    [savedJobs, jobStatusFilter],
+  );
 
   const result = useMemo(
     () => (jobAd.trim() ? analyseMatch(jobAd, data, currentLang) : null),
@@ -97,6 +103,12 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
       // still works for the current session because React state remains intact.
     }
   }, [jobAd]);
+
+  useEffect(() => {
+    if (jobStatusFilter && jobStatusCounts[jobStatusFilter] === 0) {
+      setJobStatusFilter(null);
+    }
+  }, [jobStatusCounts, jobStatusFilter]);
 
   useEffect(() => {
     let active = true;
@@ -306,10 +318,22 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
             {savedJobs.length > 0 && (
               <div className="ats-job-pipeline" aria-label={t('ats.jobs.title')}>
                 {(['saved', 'applied', 'interview', 'offer', 'rejected'] as const).map((status) => (
-                  <div key={status} className={`ats-job-pipeline-card ats-job-pipeline-${status}`}>
+                  <button
+                    key={status}
+                    type="button"
+                    className={`ats-job-pipeline-card ats-job-pipeline-${status}${
+                      jobStatusFilter === status ? ' active' : ''
+                    }`}
+                    onClick={() =>
+                      setJobStatusFilter((current) => (current === status ? null : status))
+                    }
+                    disabled={jobStatusCounts[status] === 0}
+                    aria-pressed={jobStatusFilter === status}
+                    aria-label={t(`ats.jobs.statuses.${status}`)}
+                  >
                     <span>{t(`ats.jobs.statuses.${status}`)}</span>
                     <strong>{jobStatusCounts[status]}</strong>
-                  </div>
+                  </button>
                 ))}
               </div>
             )}
@@ -354,7 +378,7 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
               <p className="ats-job-workspace-empty">{t('ats.jobs.empty')}</p>
             ) : (
               <div className="ats-saved-jobs-list">
-                {savedJobs.map((job) => {
+                {visibleJobs.map((job) => {
                   const savedMatch = analyseMatch(job.jobAd, data, currentLang);
                   return (
                     <div key={job.id} className="ats-saved-job-row">
