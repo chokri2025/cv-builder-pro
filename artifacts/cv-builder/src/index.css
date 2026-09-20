@@ -3122,6 +3122,27 @@ body {
   border-radius: 8px;
   background: #fff;
   text-align: center;
+  font: inherit;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.ats-job-pipeline-card:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+}
+
+.ats-job-pipeline-card.active {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.14);
+}
+
+.ats-job-pipeline-card:disabled {
+  cursor: default;
+  opacity: 0.5;
 }
 
 .ats-job-pipeline-card span {

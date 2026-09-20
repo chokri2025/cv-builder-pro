@@ -105,3 +105,9 @@ export function summarizeJobStatuses(jobs: SavedJob[]): Record<JobStatus, number
     { saved: 0, applied: 0, interview: 0, offer: 0, rejected: 0 },
   );
 }
+
+export function filterAndSortJobs(jobs: SavedJob[], status: JobStatus | null): SavedJob[] {
+  return [...jobs]
+    .filter((job) => status === null || job.status === status)
+    .sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
+}
