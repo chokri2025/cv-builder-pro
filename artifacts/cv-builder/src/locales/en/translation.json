@@ -277,7 +277,13 @@
         "interview": "Interview",
         "offer": "Offer",
         "rejected": "Rejected"
-      }
+      },
+      "details": "Details",
+      "notes": "Notes",
+      "notesPlaceholder": "Notes about this application…",
+      "followUpDate": "Follow-up date",
+      "saveDetails": "Save details",
+      "detailsSaved": "Application details saved."
     }
   },
   "europass": {

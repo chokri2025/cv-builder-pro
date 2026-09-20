@@ -277,7 +277,13 @@
         "interview": "مقابلة",
         "offer": "عرض عمل",
         "rejected": "مرفوضة"
-      }
+      },
+      "details": "التفاصيل",
+      "notes": "ملاحظات",
+      "notesPlaceholder": "ملاحظات حول هذا الترشح…",
+      "followUpDate": "تاريخ المتابعة",
+      "saveDetails": "حفظ التفاصيل",
+      "detailsSaved": "تم حفظ تفاصيل الترشح."
     }
   },
   "europass": {

@@ -277,7 +277,13 @@
         "interview": "Entrevista",
         "offer": "Oferta",
         "rejected": "Rechazado"
-      }
+      },
+      "details": "Detalles",
+      "notes": "Notas",
+      "notesPlaceholder": "Notas sobre esta candidatura…",
+      "followUpDate": "Fecha de seguimiento",
+      "saveDetails": "Guardar detalles",
+      "detailsSaved": "Detalles de la candidatura guardados."
     }
   },
   "europass": {
