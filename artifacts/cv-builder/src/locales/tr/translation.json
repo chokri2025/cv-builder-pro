@@ -327,5 +327,20 @@
         "description": "Okunan ve duyulan her şeyi anlar; karmaşık durumlarda bile kendini tam olarak ifade eder."
       }
     ]
+  },
+  "versions": {
+    "title": "CV sürümleri",
+    "hint": "Mevcut çalışma CV'nizi değiştirmeden farklı işler için sürümler kaydedin.",
+    "namePlaceholder": "Sürüm adı, örn. Elektrikçi Lyon",
+    "save": "Sürümü kaydet",
+    "saved": "Sürüm kaydedildi.",
+    "loaded": "“{{name}}” yüklendi.",
+    "deleted": "Sürüm silindi.",
+    "empty": "Henüz kayıtlı sürüm yok.",
+    "load": "Yükle",
+    "delete": "Sil",
+    "deleteNamed": "{{name}} sürümünü sil",
+    "nameRequired": "Önce bir sürüm adı girin.",
+    "storageError": "Sürüm kaydedilemedi. Tarayıcı depolaması dolu olabilir."
   }
 }

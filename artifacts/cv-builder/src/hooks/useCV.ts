@@ -176,6 +176,17 @@ export function useCV() {
     }));
   }, []);
 
+  const loadCVSnapshot = useCallback((data: CVData, nextTemplate: TemplateType) => {
+    const snapshot = JSON.parse(JSON.stringify(data)) as CVData;
+    setCvData(snapshot);
+    setTemplate(nextTemplate);
+
+    if (canUseStorage) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
+      localStorage.setItem(TEMPLATE_KEY, nextTemplate);
+    }
+  }, []);
+
   const clearCV = useCallback(() => {
     setCvData(DEFAULT_CV_DATA);
     localStorage.removeItem(STORAGE_KEY);
@@ -204,6 +215,7 @@ export function useCV() {
     addProject,
     updateProject,
     removeProject,
+    loadCVSnapshot,
     clearCV,
   };
 }

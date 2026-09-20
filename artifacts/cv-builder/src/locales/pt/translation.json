@@ -327,5 +327,20 @@
         "description": "Compreende tudo o que lê ou ouve; exprime-se com precisão mesmo em situações complexas."
       }
     ]
+  },
+  "versions": {
+    "title": "Versões do CV",
+    "hint": "Guarde versões para vagas diferentes sem alterar o CV em que está a trabalhar.",
+    "namePlaceholder": "Nome da versão, ex. Eletricista Lyon",
+    "save": "Guardar versão",
+    "saved": "Versão guardada.",
+    "loaded": "“{{name}}” carregada.",
+    "deleted": "Versão eliminada.",
+    "empty": "Ainda não existem versões guardadas.",
+    "load": "Carregar",
+    "delete": "Eliminar",
+    "deleteNamed": "Eliminar {{name}}",
+    "nameRequired": "Introduza primeiro um nome.",
+    "storageError": "Não foi possível guardar. O armazenamento do navegador pode estar cheio."
   }
 }
