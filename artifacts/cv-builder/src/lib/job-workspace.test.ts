@@ -5,6 +5,7 @@ import {
   deleteSavedJob,
   parseSavedJobs,
   prependSavedJob,
+  summarizeJobStatuses,
   updateSavedJobStatus,
 } from './job-workspace';
 
@@ -38,6 +39,20 @@ describe('job workspace', () => {
 
     expect(result).toHaveLength(MAX_SAVED_JOBS);
     expect(result[0]?.title).toBe('Newest');
+  });
+
+  it('summarizes the application pipeline by status', () => {
+    const saved = createSavedJob('Saved', '', AD, new Date('2026-09-20T00:00:00Z'));
+    const applied = { ...createSavedJob('Applied', '', AD), status: 'applied' as const };
+    const interview = { ...createSavedJob('Interview', '', AD), status: 'interview' as const };
+
+    expect(summarizeJobStatuses([saved, applied, interview])).toEqual({
+      saved: 1,
+      applied: 1,
+      interview: 1,
+      offer: 0,
+      rejected: 0,
+    });
   });
 
   it('updates status and deletes jobs without mutating unrelated entries', () => {
