@@ -7,6 +7,7 @@ const CVBuilderPage = lazy(() => import('./pages/CVBuilderPage'));
 const LandingPage = lazy(() => import('./pages/LandingPage'));
 const SitemapPage = lazy(() => import('./pages/SitemapPage'));
 const EuropassPage = lazy(() => import('./pages/EuropassPage'));
+const JobsPage = lazy(() => import('./pages/JobsPage'));
 
 function AppRoutes() {
   const { i18n } = useTranslation();
@@ -21,10 +22,12 @@ function AppRoutes() {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<CVBuilderPage />} />
+        <Route path="/jobs" element={<JobsPage />} />
         <Route path="/resume/:slug" element={<LandingPage />} />
         <Route path="/sitemap" element={<SitemapPage />} />
         <Route path="/europass-cv" element={<EuropassPage />} />
         <Route path="/:lang" element={<CVBuilderPage />} />
+        <Route path="/:lang/jobs" element={<JobsPage />} />
         <Route path="/:lang/resume/:slug" element={<LandingPage />} />
         <Route path="/:lang/sitemap" element={<SitemapPage />} />
         <Route path="/:lang/europass-cv" element={<EuropassPage />} />
