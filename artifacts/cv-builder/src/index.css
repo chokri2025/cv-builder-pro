@@ -3283,9 +3283,65 @@ body {
   color: #1d4ed8;
 }
 
+.ats-saved-job-actions button.active {
+  background: #2563eb;
+  color: #fff;
+}
+
 .ats-saved-job-actions .ats-saved-job-delete {
   background: #fee2e2;
   color: #991b1b;
+}
+
+.ats-job-details {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.55rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.ats-job-details label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.ats-job-details textarea,
+.ats-job-details input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0.48rem 0.55rem;
+  font: inherit;
+  font-size: 0.69rem;
+  color: #0f172a;
+}
+
+.ats-job-details textarea {
+  resize: vertical;
+}
+
+.ats-job-details-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 0.5rem;
+}
+
+.ats-job-details-footer button {
+  border: 0;
+  border-radius: 7px;
+  padding: 0.5rem 0.7rem;
+  background: #2563eb;
+  color: #fff;
+  font: inherit;
+  font-size: 0.67rem;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 @media (max-width: 760px) {
@@ -3304,5 +3360,13 @@ body {
 
   .ats-saved-job-actions button {
     flex: 1;
+  }
+
+  .ats-job-details-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .ats-job-details-footer button {
+    width: 100%;
   }
 }
