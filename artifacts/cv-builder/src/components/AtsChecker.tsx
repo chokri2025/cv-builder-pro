@@ -80,9 +80,11 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
   const readiness = useMemo(() => assessAtsReadiness(data), [data]);
   const structuralChecks = useMemo(() => runStructuralChecks(data), [data]);
   const jobStatusCounts = useMemo(() => summarizeJobStatuses(savedJobs), [savedJobs]);
+  const activeJobStatusFilter =
+    jobStatusFilter && jobStatusCounts[jobStatusFilter] > 0 ? jobStatusFilter : null;
   const visibleJobs = useMemo(
-    () => filterAndSortJobs(savedJobs, jobStatusFilter),
-    [savedJobs, jobStatusFilter],
+    () => filterAndSortJobs(savedJobs, activeJobStatusFilter),
+    [savedJobs, activeJobStatusFilter],
   );
 
   const result = useMemo(
@@ -103,12 +105,6 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
       // still works for the current session because React state remains intact.
     }
   }, [jobAd]);
-
-  useEffect(() => {
-    if (jobStatusFilter && jobStatusCounts[jobStatusFilter] === 0) {
-      setJobStatusFilter(null);
-    }
-  }, [jobStatusCounts, jobStatusFilter]);
 
   useEffect(() => {
     let active = true;
@@ -322,13 +318,13 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
                     key={status}
                     type="button"
                     className={`ats-job-pipeline-card ats-job-pipeline-${status}${
-                      jobStatusFilter === status ? ' active' : ''
+                      activeJobStatusFilter === status ? ' active' : ''
                     }`}
                     onClick={() =>
                       setJobStatusFilter((current) => (current === status ? null : status))
                     }
                     disabled={jobStatusCounts[status] === 0}
-                    aria-pressed={jobStatusFilter === status}
+                    aria-pressed={activeJobStatusFilter === status}
                     aria-label={t(`ats.jobs.statuses.${status}`)}
                   >
                     <span>{t(`ats.jobs.statuses.${status}`)}</span>
