@@ -17,6 +17,7 @@ import {
   parseSavedJobs,
   prependSavedJob,
   summarizeJobStatuses,
+  updateSavedJobDetails,
   updateSavedJobStatus,
   type JobStatus,
   type SavedJob,
@@ -76,6 +77,9 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
   const [jobCompany, setJobCompany] = useState('');
   const [jobWorkspaceMessage, setJobWorkspaceMessage] = useState<string | null>(null);
   const [jobStatusFilter, setJobStatusFilter] = useState<JobStatus | null>(null);
+  const [detailsJobId, setDetailsJobId] = useState<string | null>(null);
+  const [jobNotes, setJobNotes] = useState('');
+  const [jobFollowUpDate, setJobFollowUpDate] = useState('');
 
   const readiness = useMemo(() => assessAtsReadiness(data), [data]);
   const structuralChecks = useMemo(() => runStructuralChecks(data), [data]);
@@ -170,8 +174,33 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
     persistSavedJobs(updateSavedJobStatus(savedJobs, id, status));
   };
 
+  const toggleJobDetails = (job: SavedJob) => {
+    if (detailsJobId === job.id) {
+      setDetailsJobId(null);
+      return;
+    }
+    setDetailsJobId(job.id);
+    setJobNotes(job.notes ?? '');
+    setJobFollowUpDate(job.followUpDate ?? '');
+    setJobWorkspaceMessage(null);
+  };
+
+  const saveJobDetails = () => {
+    if (!detailsJobId) return;
+    const next = updateSavedJobDetails(
+      savedJobs,
+      detailsJobId,
+      { notes: jobNotes, followUpDate: jobFollowUpDate },
+    );
+    if (persistSavedJobs(next)) {
+      setDetailsJobId(null);
+      setJobWorkspaceMessage(t('ats.jobs.detailsSaved'));
+    }
+  };
+
   const removeSavedJob = (id: string) => {
     if (persistSavedJobs(deleteSavedJob(savedJobs, id))) {
+      if (detailsJobId === id) setDetailsJobId(null);
       setJobWorkspaceMessage(t('ats.jobs.deleted'));
     }
   };
@@ -406,6 +435,14 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
                         </button>
                         <button
                           type="button"
+                          className={detailsJobId === job.id ? 'active' : ''}
+                          onClick={() => toggleJobDetails(job)}
+                          aria-expanded={detailsJobId === job.id}
+                        >
+                          {t('ats.jobs.details')}
+                        </button>
+                        <button
+                          type="button"
                           className="ats-saved-job-delete"
                           onClick={() => removeSavedJob(job.id)}
                           aria-label={t('ats.jobs.deleteNamed', { title: job.title })}
@@ -413,6 +450,33 @@ export default function AtsChecker({ data, updateSummary, updateExperience }: Pr
                           {t('ats.jobs.delete')}
                         </button>
                       </div>
+                      {detailsJobId === job.id && (
+                        <div className="ats-job-details">
+                          <label>
+                            <span>{t('ats.jobs.notes')}</span>
+                            <textarea
+                              value={jobNotes}
+                              maxLength={2000}
+                              rows={3}
+                              onChange={(event) => setJobNotes(event.target.value)}
+                              placeholder={t('ats.jobs.notesPlaceholder')}
+                            />
+                          </label>
+                          <div className="ats-job-details-footer">
+                            <label>
+                              <span>{t('ats.jobs.followUpDate')}</span>
+                              <input
+                                type="date"
+                                value={jobFollowUpDate}
+                                onChange={(event) => setJobFollowUpDate(event.target.value)}
+                              />
+                            </label>
+                            <button type="button" onClick={saveJobDetails}>
+                              {t('ats.jobs.saveDetails')}
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   );
                 })}
