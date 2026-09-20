@@ -3065,3 +3065,175 @@ body {
     flex: 1;
   }
 }
+
+
+/* ========================
+   LOCAL JOB WORKSPACE
+======================== */
+.ats-job-workspace {
+  margin-top: 0.9rem;
+  padding: 0.85rem;
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.ats-job-workspace-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.ats-job-workspace-head h4 {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #0f172a;
+}
+
+.ats-job-workspace-head p {
+  margin: 0.2rem 0 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+.ats-job-workspace-head > span {
+  flex-shrink: 0;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 0.64rem;
+  font-weight: 800;
+}
+
+.ats-job-save-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+}
+
+.ats-job-save-grid input,
+.ats-saved-job-row select {
+  min-width: 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  padding: 0.48rem 0.55rem;
+  font: inherit;
+  font-size: 0.69rem;
+}
+
+.ats-job-save-grid button,
+.ats-saved-job-actions button {
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.67rem;
+  font-weight: 800;
+}
+
+.ats-job-save-grid button {
+  padding: 0.48rem 0.7rem;
+  background: #2563eb;
+  color: #fff;
+}
+
+.ats-job-save-grid button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ats-job-workspace-message,
+.ats-job-workspace-empty {
+  margin: 0.55rem 0 0;
+  font-size: 0.67rem;
+  line-height: 1.4;
+  color: #64748b;
+}
+
+.ats-job-workspace-message {
+  color: #0369a1;
+}
+
+.ats-saved-jobs-list {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+}
+
+.ats-saved-job-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(7.5rem, auto) auto;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ats-saved-job-main {
+  min-width: 0;
+  display: grid;
+  gap: 0.1rem;
+}
+
+.ats-saved-job-main strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  color: #0f172a;
+}
+
+.ats-saved-job-main span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.62rem;
+  color: #64748b;
+}
+
+.ats-saved-job-score {
+  min-width: 2.7rem;
+  padding: 0.18rem 0.35rem;
+  border-radius: 999px;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.ats-saved-job-actions {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.ats-saved-job-actions button {
+  padding: 0.4rem 0.52rem;
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.ats-saved-job-actions .ats-saved-job-delete {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+@media (max-width: 760px) {
+  .ats-job-save-grid,
+  .ats-saved-job-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ats-saved-job-actions {
+    width: 100%;
+  }
+
+  .ats-saved-job-actions button {
+    flex: 1;
+  }
+}
