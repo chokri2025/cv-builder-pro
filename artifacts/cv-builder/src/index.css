@@ -3370,3 +3370,82 @@ body {
     width: 100%;
   }
 }
+
+
+/* Template guidance: explain when each layout is the right tool, not just a skin. */
+.template-guidance {
+  margin-top: .75rem;
+  padding: .8rem .9rem;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  background: #fff;
+  color: #334155;
+  font-size: .76rem;
+  line-height: 1.45;
+}
+.template-guidance strong { display:block; color:#0f172a; font-size:.82rem; margin-bottom:.2rem; }
+.template-guidance p { margin-bottom:.4rem; }
+.template-guidance ul { padding-inline-start:1rem; display:grid; gap:.18rem; }
+
+/* Make the four CV choices visibly distinct while keeping real selectable text. */
+.cv-minimal {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+}
+.cv-minimal .cv-header-minimal {
+  border-bottom: 1px solid #111827;
+}
+.cv-minimal .cv-photo-minimal { display: none; }
+.cv-minimal .cv-header-text .cv-job-title,
+.cv-minimal .cv-section-title,
+.cv-minimal .cv-date,
+.cv-minimal .cv-link { color: #111827; }
+.cv-minimal .cv-section-title {
+  letter-spacing: .08em;
+  border-bottom: 1px solid #9ca3af;
+}
+.cv-minimal .cv-tag {
+  background: transparent;
+  border: 0;
+  color: #111827;
+  padding: 0;
+  border-radius: 0;
+}
+.cv-minimal .cv-tag:not(:last-child)::after { content: " ·"; }
+
+.cv-modern-sidebar {
+  width: 235px;
+  min-width: 235px;
+  background: #102a43;
+  padding-top: 2.25rem;
+}
+.cv-modern-main { padding: 2.25rem 2rem; }
+.cv-modern-main-title {
+  font-size: 9pt;
+  letter-spacing: .13em;
+  border-bottom: 2px solid #0ea5e9;
+  padding-bottom: .3rem;
+}
+
+.cv-creative-top {
+  background: #111827;
+  color: #fff;
+}
+.cv-creative-accent-bar { height: 8px; }
+.cv-creative-hero { padding-top: 1.65rem; padding-bottom: 1.1rem; }
+.cv-creative-hero .cv-name { font-size: 23pt; letter-spacing: -.03em; }
+.cv-creative-body { grid-template-columns: 1.65fr .75fr; }
+.cv-creative-right { background: #eef2ff; }
+.cv-creative-skill { border-radius: 999px; }
+
+.cv-europass {
+  border-top: 7px solid #003399;
+}
+.cv-europass-header {
+  border-bottom: 1px solid #b7c5e7;
+}
+.cv-europass-title {
+  background: #f2f5fb;
+  border-bottom: 0;
+  padding: .32rem .45rem;
+}
