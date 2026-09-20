@@ -253,6 +253,31 @@
         "AI_PROVIDER_ERROR": "AI sağlayıcısı geçici olarak kullanılamıyor.",
         "AI_INVALID_RESPONSE": "AI yanıtı okunamadı."
       }
+    },
+    "jobs": {
+      "title": "İş çalışma alanı",
+      "hint": "Hedef işleri cihazınızda kaydedin ve eşleşme puanı güncel kalırken başvuru durumunu takip edin.",
+      "titlePlaceholder": "Pozisyon, ör. Elektrikçi",
+      "companyPlaceholder": "Şirket (isteğe bağlı)",
+      "save": "İşi kaydet",
+      "saved": "İş kaydedildi.",
+      "loaded": "“{{title}}” hedef iş olarak yüklendi.",
+      "deleted": "İş silindi.",
+      "empty": "Henüz kayıtlı iş yok.",
+      "use": "Kullan",
+      "delete": "Sil",
+      "deleteNamed": "{{title}} işini sil",
+      "statusLabel": "{{title}} için başvuru durumu",
+      "titleRequired": "Önce pozisyon adını girin.",
+      "jobAdTooShort": "Kaydetmeden önce daha ayrıntılı bir iş ilanı yapıştırın.",
+      "storageError": "İşler kaydedilemedi. Tarayıcı depolaması kullanılamıyor veya dolu olabilir.",
+      "statuses": {
+        "saved": "Kaydedildi",
+        "applied": "Başvuruldu",
+        "interview": "Mülakat",
+        "offer": "Teklif",
+        "rejected": "Reddedildi"
+      }
     }
   },
   "europass": {
