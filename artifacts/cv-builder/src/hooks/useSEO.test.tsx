@@ -6,7 +6,7 @@ afterEach(() => {
   cleanup();
   document
     .querySelectorAll(
-      'link[data-i18n-hreflang], link[rel="alternate"][hreflang], script[data-i18n-jsonld]',
+      'link[data-i18n-hreflang], link[rel="alternate"][hreflang], script[type="application/ld+json"]',
     )
     .forEach((el) => el.remove());
 });
@@ -134,5 +134,33 @@ describe('useSEO', () => {
     expect(pairs).toHaveLength(3);
     expect(pairs.map(([, href]) => href)).not.toContain('https://example.com/');
     expect(new Set(pairs.map(([lang]) => lang)).size).toBe(pairs.length);
+  });
+
+  it('replaces the prerendered page JSON-LD and keeps the site-wide shell graph', () => {
+    // Shell graph (unmarked) and the per-page graph the prerender writes (marked).
+    const shell = document.createElement('script');
+    shell.type = 'application/ld+json';
+    shell.textContent = JSON.stringify({ '@type': 'WebSite' });
+    document.head.appendChild(shell);
+    const prerendered = document.createElement('script');
+    prerendered.type = 'application/ld+json';
+    prerendered.setAttribute('data-i18n-jsonld', 'true');
+    prerendered.textContent = JSON.stringify({ '@type': 'FAQPage', name: 'prerendered' });
+    document.head.appendChild(prerendered);
+
+    renderHook(() =>
+      useSEO({
+        title: 'Test',
+        description: 'Test',
+        jsonLd: { '@context': 'https://schema.org', '@type': 'FAQPage', name: 'page' },
+      }),
+    );
+
+    const blocks = Array.from(document.querySelectorAll('script[type="application/ld+json"]')).map(
+      (s) => JSON.parse(s.textContent ?? '{}'),
+    );
+    expect(blocks.filter((b) => b['@type'] === 'FAQPage')).toHaveLength(1);
+    expect(blocks.find((b) => b['@type'] === 'FAQPage').name).toBe('page');
+    expect(blocks.filter((b) => b['@type'] === 'WebSite')).toHaveLength(1);
   });
 });

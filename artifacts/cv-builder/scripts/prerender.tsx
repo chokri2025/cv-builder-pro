@@ -61,7 +61,11 @@ function renderHeadTagsHtml(head: HeadTags): string {
     lines.push(`<link rel="${escapeAttr(rel)}"${hreflangAttr} href="${escapeAttr(href)}">`);
   });
   if (head.jsonLd) {
-    lines.push(`<script type="application/ld+json">${JSON.stringify(head.jsonLd)}</script>`);
+    // Marked like the tag useSEO inserts, so hydration replaces it instead of adding a
+    // second copy. The shell's site-wide graph (kept on homepages) stays unmarked.
+    lines.push(
+      `<script type="application/ld+json" data-i18n-jsonld="true">${JSON.stringify(head.jsonLd)}</script>`,
+    );
   }
   return lines.join('\n    ');
 }

@@ -66,6 +66,17 @@ describe('assembleHtml', () => {
     expect(html).not.toContain('Generic Shell Title');
   });
 
+  it('marks the per-page JSON-LD so useSEO replaces it on hydration, and leaves the shell graph unmarked', () => {
+    const page = assembleHtml(FIXTURE_TEMPLATE, FIXTURE_HEAD, '', 'en', false);
+    expect(page).toContain('<script type="application/ld+json" data-i18n-jsonld="true">');
+
+    // Homepages keep the shell's site-wide graph; only the injected one is marked.
+    const home = assembleHtml(FIXTURE_TEMPLATE, FIXTURE_HEAD, '', 'en', true);
+    expect(home.match(/application\/ld\+json/g)).toHaveLength(2);
+    expect(home.match(/data-i18n-jsonld/g)).toHaveLength(1);
+    expect(home).toContain('<script type="application/ld+json">{"@type":"WebSite"}</script>');
+  });
+
   it('injects the rendered body into #root', () => {
     const html = assembleHtml(FIXTURE_TEMPLATE, FIXTURE_HEAD, '<div>rendered</div>', 'en', false);
     expect(html).toContain('<div id="root"><div>rendered</div></div>');
