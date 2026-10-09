@@ -1,0 +1,48 @@
+name: Next.js SEO PoC
+
+# Isolated from the production CI: builds and tests only poc/nextjs-seo, with its own
+# lockfile. Also runs when the shared SEO content modules it imports change.
+on:
+  pull_request:
+    paths:
+      - 'poc/nextjs-seo/**'
+      - 'artifacts/cv-builder/src/data/**'
+      - 'artifacts/cv-builder/src/lib/landing-seo.ts'
+      - 'artifacts/cv-builder/src/hooks/useSEO.ts'
+      - '.github/workflows/nextjs-seo-poc.yml'
+
+concurrency:
+  group: nextjs-seo-poc-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  seo-poc:
+    name: PoC typecheck, build, SEO regression tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: poc/nextjs-seo
+    env:
+      NEXT_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: poc/nextjs-seo/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build
+
+      - name: SEO regression tests
+        run: pnpm test

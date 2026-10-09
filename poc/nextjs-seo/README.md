@@ -1,6 +1,6 @@
 # CV Builder Pro — isolated Next.js SEO PoC
 
-**Status: prototype only. NOT production-ready. NOT yet build-verified.**
+**Status: prototype only. NOT production-ready.** Build-verified with Next.js 16.4.0 and covered by automated SEO regression tests (see below).
 
 Scope:
 - Homepage `/` (English only);
@@ -12,19 +12,34 @@ The PoC reuses the current React/Vite project's existing *pure* SEO content func
 ## Why separate root layouts?
 English and French receive different `<html lang>` values. Routes are static Server Components. Metadata is generated with the Next.js Metadata API; **do not run the current client-side `useSEO` hook** in this PoC.
 
-## Run (once dependency installation is possible)
+## Run
 
-Requirements: compatible Node.js for Next 16 and pnpm.
+Requirements: Node.js >= 20.9 and pnpm 10.26.1 (same `packageManager` as the root workspace).
 
 ```bash
 cd poc/nextjs-seo
-pnpm install
-pnpm typecheck
+pnpm install --frozen-lockfile
+pnpm typecheck   # next typegen && tsc --noEmit
 pnpm build
-pnpm start
+pnpm test        # SEO regression tests against `next start` (needs a build)
+pnpm verify      # all three in order
 ```
 
-The nested `pnpm-workspace.yaml` isolates dependencies and lockfile from the production workspace. The `turbopack.root` setting enables importing the existing SEO content modules.
+The nested `pnpm-workspace.yaml` isolates dependencies and lockfile (`poc/nextjs-seo/pnpm-lock.yaml`) from the production workspace and keeps the 1-day `minimumReleaseAge` protection. The `turbopack.root` setting enables importing the existing SEO content modules.
+
+`tsconfig.json` maps `react` to this package's `@types/react`: the shared `landing-seo.ts` has a type-only import of `hooks/useSEO.ts`, which imports `react`. Without the mapping, `tsc` resolves `react` from `artifacts/cv-builder` and fails whenever the root workspace is not installed (e.g. a PoC-only install).
+
+## SEO regression tests
+
+`tests/seo.test.mjs` (Node built-in test runner, no extra dependencies) starts the production build and checks the raw HTML a crawler receives:
+- `<html lang>`, exactly one `<title>`, meta description and absolute canonical per page, on `https://www.cvbuilder-pro.online` only (no preview/localhost hosts);
+- `noindex, nofollow` on every page; `robots.txt` disallows `/`;
+- landing pages: exact, unique, reciprocal hreflang set (`en`, `fr`, `x-default`), Open Graph = title/description/canonical, title/description within SERP limits;
+- exactly one JSON-LD block, valid JSON, one each of WebPage/BreadcrumbList/FAQPage/WebApplication, URLs and `inLanguage` matching the page, FAQ questions identical to the visible FAQ, no duplicate `@id`;
+- real 404 + noindex for unknown/legacy URLs (incl. `/resume/customer-service-los-angeles`), 308 for trailing slashes;
+- `sitemap.xml` lists only built URLs, each returning 200, with reciprocal alternates.
+
+CI: `.github/workflows/nextjs-seo-poc.yml` runs install/typecheck/build/test on PRs touching the PoC or the shared SEO modules it imports.
 
 ## Non-production precautions
 - `robots.ts` disallows all crawling.
@@ -46,5 +61,7 @@ The nested `pnpm-workspace.yaml` isolates dependencies and lockfile from the pro
 ## Known deliberate gaps
 - Only three proof-of-concept URLs; not a full site migration.
 - Imported copy is currently reused as-is, including content-quality issues. This tests rendering/metadata, **not** content relevance.
-- No CI/build execution has been run yet from this environment.
+- Only `en`/`fr` hreflang alternates: production pages advertise 6 languages + `x-default`. A cutover must emit the full set or hreflang reciprocity breaks with pages still served by Vite.
+- The 404 page has no `lang` attribute (multiple root layouts; fixing it needs Next's experimental `global-not-found`). It is `noindex`, so no SEO impact.
+- JSON-LD references `#website` / `#logo` nodes that the Vite app defines in `index.html`; the PoC does not define them.
 - Legacy 301/404 routing must be decided from Search Console evidence before the cutover.
