@@ -5,9 +5,27 @@ import { useSEO } from './useSEO';
 afterEach(() => {
   cleanup();
   document
-    .querySelectorAll('link[data-i18n-hreflang], script[data-i18n-jsonld]')
+    .querySelectorAll(
+      'link[data-i18n-hreflang], link[rel="alternate"][hreflang], script[data-i18n-jsonld]',
+    )
     .forEach((el) => el.remove());
 });
+
+/** Adds unmarked hreflang links the way the prerendered HTML and the index.html shell ship them. */
+function addStaticHreflangs(entries: Array<[string, string]>) {
+  for (const [hreflang, href] of entries) {
+    const link = document.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = hreflang;
+    link.href = href;
+    document.head.appendChild(link);
+  }
+}
+
+const hreflangPairs = () =>
+  Array.from(document.querySelectorAll<HTMLLinkElement>('link[rel="alternate"][hreflang]')).map(
+    (l) => [l.getAttribute('hreflang'), l.getAttribute('href')],
+  );
 
 describe('useSEO', () => {
   it('sets document title, description and canonical', () => {
@@ -63,5 +81,58 @@ describe('useSEO', () => {
 
     expect(document.querySelectorAll('link[data-i18n-hreflang]')).toHaveLength(0);
     expect(document.querySelector('script[data-i18n-jsonld]')).toBeNull();
+  });
+
+  it('replaces prerendered hreflang links instead of adding a second set', () => {
+    // Same set the prerender writes into the static HTML for this page.
+    addStaticHreflangs([
+      ['en', 'https://example.com/resume/teacher'],
+      ['fr', 'https://example.com/fr/resume/teacher'],
+      ['x-default', 'https://example.com/resume/teacher'],
+    ]);
+
+    renderHook(() =>
+      useSEO({
+        title: 'Test',
+        description: 'Test',
+        alternateLangs: [
+          { lang: 'en', href: 'https://example.com/resume/teacher' },
+          { lang: 'fr', href: 'https://example.com/fr/resume/teacher' },
+        ],
+      }),
+    );
+
+    expect(hreflangPairs()).toEqual([
+      ['en', 'https://example.com/resume/teacher'],
+      ['fr', 'https://example.com/fr/resume/teacher'],
+      ['x-default', 'https://example.com/resume/teacher'],
+    ]);
+  });
+
+  it('drops the homepage hreflang set when a non-prerendered URL falls back to the homepage HTML', () => {
+    // Legacy URLs without a prerendered file are served the homepage HTML, whose
+    // hreflang cluster points at the homepages, not at this page.
+    addStaticHreflangs([
+      ['en', 'https://example.com/'],
+      ['fr', 'https://example.com/fr'],
+      ['x-default', 'https://example.com/'],
+    ]);
+
+    renderHook(() =>
+      useSEO({
+        title: 'Test',
+        description: 'Test',
+        canonical: 'https://example.com/resume/legacy',
+        alternateLangs: [
+          { lang: 'en', href: 'https://example.com/resume/legacy' },
+          { lang: 'fr', href: 'https://example.com/fr/resume/legacy' },
+        ],
+      }),
+    );
+
+    const pairs = hreflangPairs();
+    expect(pairs).toHaveLength(3);
+    expect(pairs.map(([, href]) => href)).not.toContain('https://example.com/');
+    expect(new Set(pairs.map(([lang]) => lang)).size).toBe(pairs.length);
   });
 });

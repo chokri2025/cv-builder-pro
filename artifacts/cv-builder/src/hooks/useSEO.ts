@@ -172,8 +172,13 @@ function setLink(rel: string, href: string) {
   el.href = href;
 }
 
+/** Removes every hreflang link, not only the ones this hook added: the prerendered HTML
+ * and the index.html shell ship unmarked sets, and leaving them produced two conflicting
+ * clusters after hydration (the homepage's on URLs served by the SPA fallback). */
 function removeOldHreflangs() {
-  document.querySelectorAll('link[data-i18n-hreflang]').forEach((el) => el.remove());
+  document
+    .querySelectorAll('link[data-i18n-hreflang], link[rel="alternate"][hreflang]')
+    .forEach((el) => el.remove());
 }
 
 function removeOldJsonLd() {
