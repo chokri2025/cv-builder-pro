@@ -13,19 +13,30 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE_URL = 'https://www.cvbuilder-pro.online';
-const EN_TEACHER = `${SITE_URL}/resume/teacher`;
-const FR_TEACHER = `${SITE_URL}/fr/resume/teacher`;
-const EXPECTED_HREFLANG = { en: EN_TEACHER, fr: FR_TEACHER, 'x-default': EN_TEACHER };
+// Same locale set and URL scheme as production (artifacts/cv-builder/scripts/seo-routes.mjs).
+const LANGUAGES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
+const teacherUrl = (lang) =>
+  lang === 'en' ? `${SITE_URL}/resume/teacher` : `${SITE_URL}/${lang}/resume/teacher`;
+const EXPECTED_HREFLANG = {
+  ...Object.fromEntries(LANGUAGES.map((l) => [l, teacherUrl(l)])),
+  'x-default': teacherUrl('en'),
+};
 
 // Mirrors MAX_TITLE / MAX_META_DESCRIPTION in artifacts/cv-builder/src/data/localized-seo-data.ts.
 const MAX_TITLE = 60;
 const MAX_META_DESCRIPTION = 155;
 
 const PAGES = [
-  { path: '/', lang: 'en', canonical: `${SITE_URL}/`, landing: false },
-  { path: '/resume/teacher', lang: 'en', canonical: EN_TEACHER, landing: true },
-  { path: '/fr/resume/teacher', lang: 'fr', canonical: FR_TEACHER, landing: true },
+  { path: '/', lang: 'en', dir: 'ltr', canonical: `${SITE_URL}/`, landing: false },
+  ...LANGUAGES.map((lang) => ({
+    path: new URL(teacherUrl(lang)).pathname,
+    lang,
+    dir: lang === 'ar' ? 'rtl' : 'ltr',
+    canonical: teacherUrl(lang),
+    landing: true,
+  })),
 ];
+const LANDING_PAGES = PAGES.filter((p) => p.landing);
 
 // URLs that must NOT resolve inside the PoC. The legacy production policy for these is
 // undecided (see docs/migration/NEXTJS_SEO_POC.md); the PoC itself must 404, not soft-200.
@@ -35,6 +46,9 @@ const NOT_FOUND_PATHS = [
   '/resume/nurse',
   '/en/resume/teacher',
   '/fr',
+  '/es',
+  '/de/resume/teacher',
+  '/ar/resume/nurse',
   '/does-not-exist',
 ];
 
@@ -110,6 +124,7 @@ function parse(html) {
     html,
     head,
     htmlLang: attrs(html.match(/<html\b[^>]*>/)?.[0] ?? '').lang,
+    htmlDir: attrs(html.match(/<html\b[^>]*>/)?.[0] ?? '').dir,
     titles: [...html.matchAll(/<title>([\s\S]*?)<\/title>/g)].map((m) => decode(m[1])),
     descriptions: metaContent('description'),
     robots: metaContent('robots'),
@@ -139,9 +154,10 @@ async function page(path) {
 }
 
 for (const p of PAGES) {
-  test(`${p.path}: html lang, single title/description, noindex`, async () => {
+  test(`${p.path}: html lang/dir, single title/description, noindex`, async () => {
     const doc = await page(p.path);
     assert.equal(doc.htmlLang, p.lang);
+    assert.equal(doc.htmlDir, p.dir);
     assert.equal(doc.titles.length, 1, 'exactly one <title>');
     assert.equal(doc.descriptions.length, 1, 'exactly one meta description');
     assert.ok(doc.titles[0].trim().length > 0);
@@ -173,7 +189,7 @@ test('/: no hreflang or JSON-LD on the English-only PoC homepage', async () => {
   assert.equal(doc.jsonLd.length, 0);
 });
 
-for (const p of PAGES.filter((x) => x.landing)) {
+for (const p of LANDING_PAGES) {
   test(`${p.path}: title/description within SERP limits`, async () => {
     const doc = await page(p.path);
     assert.ok(doc.titles[0].length <= MAX_TITLE, `title too long: ${doc.titles[0].length}`);
@@ -240,11 +256,17 @@ for (const p of PAGES.filter((x) => x.landing)) {
   });
 }
 
-test('EN and FR landing pages are distinct documents', async () => {
-  const en = await page('/resume/teacher');
-  const fr = await page('/fr/resume/teacher');
-  assert.notEqual(en.titles[0], fr.titles[0]);
-  assert.notEqual(en.descriptions[0], fr.descriptions[0]);
+test('every language in the cluster is a distinct, localized document', async () => {
+  const docs = await Promise.all(LANDING_PAGES.map((p) => page(p.path)));
+  for (const field of ['titles', 'descriptions']) {
+    const values = docs.map((d) => d[field][0]);
+    assert.equal(new Set(values).size, values.length, `duplicate ${field} across languages`);
+  }
+});
+
+test('/: links to every page in the hreflang cluster', async () => {
+  const doc = await page('/');
+  for (const p of LANDING_PAGES) assert.ok(doc.html.includes(`href="${p.path}"`), p.path);
 });
 
 for (const path of NOT_FOUND_PATHS) {
@@ -261,7 +283,7 @@ for (const path of NOT_FOUND_PATHS) {
 }
 
 test('trailing-slash URLs permanently redirect to the canonical path', async () => {
-  for (const p of ['/resume/teacher/', '/fr/resume/teacher/']) {
+  for (const p of LANDING_PAGES.map((x) => `${x.path}/`)) {
     const res = await get(p);
     assert.equal(res.status, 308, p);
     assert.equal(new URL(res.headers.get('location'), baseUrl).pathname, p.slice(0, -1));

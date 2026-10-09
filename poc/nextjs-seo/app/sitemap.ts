@@ -1,13 +1,13 @@
 import type { MetadataRoute } from 'next';
-import { SITE_URL } from '../lib/seo';
+import { LANGUAGES, POC_SLUGS, SITE_URL, getAlternateLanguages } from '../lib/seo';
 
 // Test fixture only. Robots disallows all preview crawling; do not submit to GSC.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const en = `${SITE_URL}/resume/teacher`;
-  const fr = `${SITE_URL}/fr/resume/teacher`;
   return [
     { url: `${SITE_URL}/` },
-    { url: en, alternates: { languages: { en, fr, 'x-default': en } } },
-    { url: fr, alternates: { languages: { en, fr, 'x-default': en } } },
+    ...POC_SLUGS.flatMap((slug) => {
+      const languages = getAlternateLanguages(slug);
+      return LANGUAGES.map((lang) => ({ url: languages[lang], alternates: { languages } }));
+    }),
   ];
 }

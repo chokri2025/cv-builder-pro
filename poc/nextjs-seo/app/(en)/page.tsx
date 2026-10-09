@@ -1,6 +1,16 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { SITE_URL } from '../../lib/seo';
+import { LANGUAGES, SITE_URL, getCanonicalPath } from '../../lib/seo';
+
+// Native names as in artifacts/cv-builder/src/i18n.ts SUPPORTED_LANGUAGES.
+const NATIVE_NAMES = {
+  en: 'English',
+  fr: 'Français',
+  es: 'Español',
+  ar: 'العربية',
+  tr: 'Türkçe',
+  pt: 'Português',
+} as const;
 
 export const metadata: Metadata = {
   title: 'CV Builder Pro – Free Online Resume & CV Maker',
@@ -22,8 +32,13 @@ export default function HomePage() {
       <section>
         <h2>Routes to validate</h2>
         <ul>
-          <li><Link href="/resume/teacher">Teacher — English</Link></li>
-          <li><Link href="/fr/resume/teacher">Teacher — Français</Link></li>
+          {LANGUAGES.map((lang) => (
+            <li key={lang}>
+              <Link href={getCanonicalPath('teacher', lang)} hrefLang={lang}>
+                Teacher — <span lang={lang}>{NATIVE_NAMES[lang]}</span>
+              </Link>
+            </li>
+          ))}
         </ul>
       </section>
     </main>

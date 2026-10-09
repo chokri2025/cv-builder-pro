@@ -3,14 +3,13 @@
 **Status: prototype only. NOT production-ready.** Build-verified with Next.js 16.4.0 and covered by automated SEO regression tests (see below).
 
 Scope:
-- Homepage `/` (English only);
-- `/resume/teacher` (English);
-- `/fr/resume/teacher` (French).
+- Homepage `/` (English only, PoC index page);
+- `/resume/teacher` (English) and `/{fr,es,ar,tr,pt}/resume/teacher`: one complete 6-language hreflang cluster, same URL scheme as production.
 
 The PoC reuses the current React/Vite project's existing *pure* SEO content functions via sibling-file imports, without changing the main application. The current CV editor, localStorage, ATS checker and PDF/DOCX exporting stay on the production Vite app.
 
 ## Why separate root layouts?
-English and French receive different `<html lang>` values. Routes are static Server Components. Metadata is generated with the Next.js Metadata API; **do not run the current client-side `useSEO` hook** in this PoC.
+English is unprefixed (`app/(en)`); the other five locales share `app/[lang]` (`generateStaticParams` + `dynamicParams = false`), which sets `<html lang>` and `dir` (`rtl` for Arabic). Routes are static Server Components. Metadata is generated with the Next.js Metadata API; **do not run the current client-side `useSEO` hook** in this PoC.
 
 ## Run
 
@@ -34,7 +33,8 @@ The nested `pnpm-workspace.yaml` isolates dependencies and lockfile (`poc/nextjs
 `tests/seo.test.mjs` (Node built-in test runner, no extra dependencies) starts the production build and checks the raw HTML a crawler receives:
 - `<html lang>`, exactly one `<title>`, meta description and absolute canonical per page, on `https://www.cvbuilder-pro.online` only (no preview/localhost hosts);
 - `noindex, nofollow` on every page; `robots.txt` disallows `/`;
-- landing pages: exact, unique, reciprocal hreflang set (`en`, `fr`, `x-default`), Open Graph = title/description/canonical, title/description within SERP limits;
+- `dir="rtl"` for Arabic, `ltr` elsewhere;
+- landing pages: exact, unique, reciprocal hreflang set (all 6 languages + `x-default` → en), all 6 documents distinct, Open Graph = title/description/canonical, title/description within SERP limits;
 - exactly one JSON-LD block, valid JSON, one each of WebPage/BreadcrumbList/FAQPage/WebApplication, URLs and `inLanguage` matching the page, FAQ questions identical to the visible FAQ, no duplicate `@id`;
 - real 404 + noindex for unknown/legacy URLs (incl. `/resume/customer-service-los-angeles`), 308 for trailing slashes;
 - `sitemap.xml` lists only built URLs, each returning 200, with reciprocal alternates.
@@ -61,7 +61,8 @@ CI: `.github/workflows/nextjs-seo-poc.yml` runs install/typecheck/build/test on 
 ## Known deliberate gaps
 - Only three proof-of-concept URLs; not a full site migration.
 - Imported copy is currently reused as-is, including content-quality issues. This tests rendering/metadata, **not** content relevance.
-- Only `en`/`fr` hreflang alternates: production pages advertise 6 languages + `x-default`. A cutover must emit the full set or hreflang reciprocity breaks with pages still served by Vite.
+- Only the teacher cluster is migrated; a cutover must move whole clusters (all 6 languages of a page type) at once. Localized homepages, `/sitemap` and `/europass-cv` are not in the PoC.
+- Landing-page UI strings come from the app's `src/locales/*/translation.json`; profession labels are untranslated in all non-English languages (e.g. "Creador de CV de Teacher"), same as production.
 - The 404 page has no `lang` attribute (multiple root layouts; fixing it needs Next's experimental `global-not-found`). It is `noindex`, so no SEO impact.
 - JSON-LD references `#website` / `#logo` nodes that the Vite app defines in `index.html`; the PoC does not define them.
 - Legacy 301/404 routing must be decided from Search Console evidence before the cutover.

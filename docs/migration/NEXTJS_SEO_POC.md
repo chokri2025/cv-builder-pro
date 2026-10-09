@@ -24,7 +24,7 @@ Production Vite/Vercel project and public domain must stay untouched.
 
 - Separate PoC at `poc/nextjs-seo`, using an isolated pnpm workspace.
 - Root layouts for EN and FR to set document language.
-- Three routes only: `/`, `/resume/teacher`, `/fr/resume/teacher`.
+- Seven routes only: `/` plus `/resume/teacher` and `/{fr,es,ar,tr,pt}/resume/teacher` (one full 6-language hreflang cluster).
 - Server-rendered page content and server-defined metadata.
 - Reuse existing deterministic localized SEO data (no invented SEO copy).
 - One controlled metadata source: canonical + alternates; no DOM-mutating useSEO hook.
@@ -48,13 +48,13 @@ Environment: Node 22.22, pnpm 10.26.1, Next.js 16.4.0 (pinned), React 19.1.0. `p
 | --- | --- |
 | `pnpm install --frozen-lockfile` (nested lockfile, `minimumReleaseAge: 1440` kept) | pass |
 | `pnpm typecheck` | pass (after `react` type path fix, see PoC README) |
-| `pnpm build` | pass; `/`, `/resume/teacher`, `/fr/resume/teacher` prerendered as static HTML |
-| `pnpm test` (28 SEO regression tests against `next start`) | 28/28 pass |
+| `pnpm build` | pass; `/` and the 6 teacher pages prerendered as static HTML |
+| `pnpm test` (60 SEO regression tests against `next start`) | 60/60 pass |
 | Legacy `/resume/customer-service-los-angeles` (EN + FR) inside PoC | 404 + `noindex` |
 | `robots.txt` / `sitemap.xml` | `Disallow: /`; 3 URLs, reciprocal alternates |
 | Root workspace: typecheck, lint, test, `@workspace/cv-builder` build | pass (lint: 0 errors, 5 pre-existing warnings; 202/202 tests; 231 pages prerendered) |
 
-Raw HTML parity with the current Vite prerender for `/resume/teacher` and `/fr/resume/teacher`: identical `<html lang>`, title, canonical and JSON-LD graph types (WebPage, BreadcrumbList, FAQPage, WebApplication). Intentional differences: PoC is `noindex, nofollow` (production `index, follow`) and advertises only `en`/`fr`/`x-default` alternates (production: 6 languages + `x-default`).
+Raw HTML parity with the current Vite prerender for all 6 teacher pages: identical `<html lang>` and `dir`, title, meta description, canonical, hreflang set (6 languages + `x-default`) and JSON-LD graph. Only intended difference: PoC is `noindex, nofollow` (production `index, follow`).
 
 ## Known repo risk outside PoC
 
