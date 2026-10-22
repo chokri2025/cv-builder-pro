@@ -18,7 +18,6 @@ const appUrl =
   process.env.VITE_APP_URL || process.env.APP_URL || 'https://www.cvbuilder-pro.online';
 const base = appUrl.replace(/\/$/, '');
 const slugs = getAllSeoSlugs();
-const today = new Date().toISOString().split('T')[0];
 
 /** English lives at the unprefixed path; other locales are prefixed with /<lang>. */
 function localizedPath(lang, suffix) {
@@ -31,12 +30,13 @@ function alternatesFor(suffix) {
   return [...links, { lang: 'x-default', href: `${base}${suffix || '/'}` }];
 }
 
-function entry({ path: loc, priority, changefreq, lastmod: includeLastmod, altSuffix }) {
-  const lastmod = includeLastmod ? `\n    <lastmod>${today}</lastmod>` : '';
+function entry({ path: loc, priority, changefreq, altSuffix }) {
+  // A build timestamp is not a content modification date. Omit this optional
+  // field until the content pipeline can supply accurate per-page dates.
   const links = alternatesFor(altSuffix)
     .map((a) => `\n    <xhtml:link rel="alternate" hreflang="${a.lang}" href="${a.href}" />`)
     .join('');
-  return `  <url>\n    <loc>${base}${loc}</loc>${lastmod}\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>${links}\n  </url>`;
+  return `  <url>\n    <loc>${base}${loc}</loc>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>${links}\n  </url>`;
 }
 
 // The route list is shared with the prerender step, so the sitemap can never

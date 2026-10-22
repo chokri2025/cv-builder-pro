@@ -1,6 +1,6 @@
 /**
  * Shared enumeration of the SEO landing-page route space.
- * Used by both the sitemap generator and (in the future) a prerender step,
+ * Used by both the sitemap generator and prerender step,
  * so the two can never drift apart.
  */
 export const SEO_SKILL_SLUGS = [
@@ -182,5 +182,12 @@ export function getPrerenderRoutes() {
     ),
   ];
 
-  return [...home, ...sitemap, ...europass, ...landing];
+  // Personalized job search remains functional without a catch-all SPA rewrite.
+  // These noindex workspaces intentionally do not appear in the XML sitemap.
+  const jobs = [
+    { kind: 'jobs', path: '/jobs', lang: 'en', urlLang: undefined },
+    ...NON_EN_LANGS.map((lang) => ({ kind: 'jobs', path: `/${lang}/jobs`, lang, urlLang: lang })),
+  ];
+
+  return [...home, ...sitemap, ...europass, ...landing, ...jobs];
 }

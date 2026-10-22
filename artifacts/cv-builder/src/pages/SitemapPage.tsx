@@ -78,26 +78,6 @@ export default function SitemapPage() {
             ))}
           </div>
         </section>
-
-        <section>
-          <h2>{t('seo.sitemapBySkillCity')}</h2>
-          {/* Every combination, not a sample: this page is the crawl path into the
-              job × city cluster, so a partial list leaves pages discoverable only
-              through the XML sitemap. */}
-          <div className="sitemap-grid">
-            {SEO_SKILLS.map((skill) =>
-              SEO_CITIES.map((city) => (
-                <Link
-                  key={`${skill.slug}-${city.slug}`}
-                  to={`${langPrefix}/resume/${skill.slug}-${city.slug}`}
-                  className="sitemap-link"
-                >
-                  {t('seo.related.skillCity', { skill: skill.label, city: city.label })}
-                </Link>
-              )),
-            )}
-          </div>
-        </section>
       </div>
     </div>
   );

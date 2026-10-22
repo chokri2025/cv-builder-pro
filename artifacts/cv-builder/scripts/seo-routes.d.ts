@@ -15,7 +15,7 @@ declare module '*seo-routes.mjs' {
   }
 
   export interface PrerenderRoute {
-    kind: 'home' | 'sitemap' | 'europass' | 'landing';
+    kind: 'home' | 'sitemap' | 'europass' | 'landing' | 'jobs';
     path: string;
     lang: 'en' | 'fr' | 'es' | 'ar' | 'tr' | 'pt';
     urlLang: string | undefined;

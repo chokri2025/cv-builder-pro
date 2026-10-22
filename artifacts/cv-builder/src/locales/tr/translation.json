@@ -21,7 +21,7 @@
     "editLabel": "← Düzenle",
     "previewLabel": "Önizleme →",
     "pageHeading": "Ücretsiz Çevrimiçi CV ve Özgeçmiş Oluşturucu",
-    "pageTagline": "Dakikalar içinde profesyonel bir CV hazırlayın: formu doldurun, üç şablondan birini seçin ve baskıya hazır PDF'i indirin. Ücretsiz, kayıt gerekmez."
+    "pageTagline": "Dakikalar içinde profesyonel bir CV hazırlayın: formu doldurun, dört şablondan birini seçin ve baskıya hazır PDF'i indirin. Ücretsiz, kayıt gerekmez."
   },
   "sections": {
     "personal": "Kişisel Bilgiler",
@@ -123,13 +123,13 @@
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Ücretsiz Çevrimiçi CV & Resume Oluşturucu",
-    "homeDescription": "Dakikalar içinde profesyonel bir CV oluşturun. 3 şık şablondan birini seçin ve PDF olarak indirin. Ücretsiz, kayıt gerekmez.",
+    "homeDescription": "Dakikalar içinde profesyonel bir CV oluşturun. 4 şık şablondan birini seçin ve PDF olarak indirin. Ücretsiz, kayıt gerekmez.",
     "notFound": "Sayfa bulunamadı",
     "notFoundDesc": "Bu sayfa mevcut değil. Deneyin",
     "notFoundLink": "ücretsiz CV oluşturucumuzu",
     "readyIn": "⚡ 5 dakikada hazır",
     "pdfDownload": "📄 PDF indirme",
-    "templates": "🎨 3 şablon",
+    "templates": "🎨 4 şablon",
     "startBuilding": "CV'mi Oluşturmaya Başla",
     "howItWorks": "Nasıl çalışır",
     "step1Title": "Bilgilerinizi doldurun",
@@ -151,7 +151,7 @@
       "skill": "{{skill}} CV'si",
       "city": "CV Oluşturucu – {{city}}"
     },
-    "sitemapIntro": "Tüm CV Builder Pro rehberleri: mesleğe göre, şehre göre ve meslek ile şehir birlikte.",
+    "sitemapIntro": "Meslek ve şehre göre listelenen tüm CV Builder Pro rehberleri.",
     "sitemapBySkill": "Mesleğe göre CV rehberleri",
     "sitemapByCity": "Şehre göre CV rehberleri",
     "sitemapBySkillCity": "Meslek ve şehre göre CV rehberleri",

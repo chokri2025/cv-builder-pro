@@ -21,7 +21,7 @@
     "editLabel": "← Edit",
     "previewLabel": "Preview →",
     "pageHeading": "Free Online CV & Resume Builder",
-    "pageTagline": "Build a professional CV in minutes: fill in the form, pick one of three templates and download a print-ready PDF. Free, no sign-up."
+    "pageTagline": "Build a professional CV in minutes: fill in the form, pick one of four templates and download a print-ready PDF. Free, no sign-up."
   },
   "sections": {
     "personal": "Personal Information",
@@ -123,19 +123,19 @@
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Free Online Resume & CV Maker",
-    "homeDescription": "Create a professional CV in minutes. Pick from 3 free templates, add your experience & skills, and download as a polished PDF — no sign-up needed.",
+    "homeDescription": "Create a professional CV in minutes. Pick from 4 free templates, add your experience & skills, and download as a polished PDF — no sign-up needed.",
     "notFound": "Page not found",
     "notFoundDesc": "This page doesn't exist. Try our",
     "notFoundLink": "free CV builder",
     "readyIn": "⚡ Ready in 5 minutes",
     "pdfDownload": "📄 PDF download",
-    "templates": "🎨 3 templates",
+    "templates": "🎨 4 templates",
     "startBuilding": "Start Building My CV",
     "howItWorks": "How it works",
     "step1Title": "Fill in your details",
     "step1Desc": "Add your experience, skills, education and contact info using our guided form.",
     "step2Title": "Choose a template",
-    "step2Desc": "Pick from Minimal, Modern Sidebar or Creative — all professionally designed.",
+    "step2Desc": "Choose Minimal, Modern, Creative or Europass, depending on the application.",
     "step3Title": "Download as PDF",
     "step3Desc": "Export your finished CV as a perfect A4 PDF, ready to send to employers.",
     "faqTitle": "Frequently asked questions",
@@ -151,7 +151,7 @@
       "skill": "{{skill}} CV",
       "city": "CV Builder – {{city}}"
     },
-    "sitemapIntro": "Every CV Builder Pro guide, listed by profession, by city, and by profession and city together.",
+    "sitemapIntro": "Every CV Builder Pro guide, listed by profession and by city.",
     "sitemapBySkill": "CV guides by profession",
     "sitemapByCity": "CV guides by city",
     "sitemapBySkillCity": "CV guides by profession and city",
@@ -170,7 +170,7 @@
       },
       {
         "q": "Will my CV pass an ATS screen?",
-        "a": "Our templates use a single-column, text-based layout with standard section headings, which applicant tracking systems parse reliably. Keep your job title and skills in the words the advert uses."
+        "a": "For applications screened by software, use the Minimal template or the plain DOCX export. Follow the employer’s format requirements and use relevant wording from the job advert."
       },
       {
         "q": "Where is my data stored?",

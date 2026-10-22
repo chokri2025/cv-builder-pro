@@ -21,7 +21,7 @@
     "editLabel": "← Editar",
     "previewLabel": "Pré-visualizar →",
     "pageHeading": "Criador de CV e currículo grátis online",
-    "pageTagline": "Crie um CV profissional em minutos: preencha o formulário, escolha um dos três modelos e descarregue um PDF pronto a imprimir. Grátis e sem registo."
+    "pageTagline": "Crie um CV profissional em minutos: preencha o formulário, escolha um dos quatro modelos e descarregue um PDF pronto a imprimir. Grátis e sem registo."
   },
   "sections": {
     "personal": "Informações pessoais",
@@ -123,13 +123,13 @@
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Criador de CV e Currículo Grátis Online",
-    "homeDescription": "Crie um CV profissional em minutos. Escolha entre 3 modelos elegantes e descarregue em PDF. Grátis, sem registo.",
+    "homeDescription": "Crie um CV profissional em minutos. Escolha entre 4 modelos elegantes e descarregue em PDF. Grátis, sem registo.",
     "notFound": "Página não encontrada",
     "notFoundDesc": "Esta página não existe. Experimente o nosso",
     "notFoundLink": "criador de CV gratuito",
     "readyIn": "⚡ Pronto em 5 minutos",
     "pdfDownload": "📄 Download PDF",
-    "templates": "🎨 3 modelos",
+    "templates": "🎨 4 modelos",
     "startBuilding": "Criar o meu CV",
     "howItWorks": "Como funciona",
     "step1Title": "Preencha os seus dados",
@@ -151,7 +151,7 @@
       "skill": "CV de {{skill}}",
       "city": "Criador de CV – {{city}}"
     },
-    "sitemapIntro": "Todos os guias do CV Builder Pro, por profissão, por cidade e por profissão e cidade.",
+    "sitemapIntro": "Todos os guias do CV Builder Pro, organizados por profissão e cidade.",
     "sitemapBySkill": "Guias de CV por profissão",
     "sitemapByCity": "Guias de CV por cidade",
     "sitemapBySkillCity": "Guias de CV por profissão e cidade",

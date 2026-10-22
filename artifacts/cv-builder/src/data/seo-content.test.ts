@@ -236,7 +236,7 @@ describe('index.html shell', () => {
 
   it('ships Organization, WebSite and WebApplication structured data', () => {
     const jsonLd = html.match(
-      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
+      /<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/,
     )?.[1] as string;
     const parsed = JSON.parse(jsonLd) as { '@graph': Array<{ '@type': string }> };
     expect(parsed['@graph'].map((n) => n['@type'])).toEqual([
@@ -308,14 +308,19 @@ describe('homepage content', () => {
 });
 
 describe('related links', () => {
-  it('branches along both axes instead of linking one fixed set of hubs', () => {
+  it('links retired combinations only to retained guides', () => {
     const sydney = buildRelatedLinks(...withSlug('nurse-sydney')).map((l) => l.slug);
     const london = buildRelatedLinks(...withSlug('nurse-london')).map((l) => l.slug);
 
     expect(sydney).not.toEqual(london);
     expect(sydney).toContain('nurse');
     expect(sydney).toContain('sydney');
-    expect(sydney.some((s) => s.startsWith('nurse-') && s !== 'nurse-sydney')).toBe(true);
+    expect(
+      sydney.every((s) => {
+        const { skill, city } = parseSlug(s);
+        return !(skill && city);
+      }),
+    ).toBe(true);
     expect(sydney).not.toContain('nurse-sydney');
   });
 
