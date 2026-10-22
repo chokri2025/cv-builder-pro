@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useCV } from '../hooks/useCV';
 import { analyseMatch } from '../lib/ats-match';
 import { searchJobs, type DiscoveredJob } from '../lib/job-discovery';
+import { useSEO } from '../hooks/useSEO';
+import { buildJobsSeoProps } from '../lib/jobs-seo';
 import {
   JOB_WORKSPACE_STORAGE_KEY,
   createSavedJob,
@@ -14,6 +16,7 @@ import {
 export default function JobsPage() {
   const { i18n } = useTranslation();
   const params = useParams<{ lang?: string }>();
+  useSEO(buildJobsSeoProps(params.lang));
   const cv = useCV();
   const [what, setWhat] = useState(cv.cvData.personal.jobTitle || '');
   const [where, setWhere] = useState(cv.cvData.personal.location || '');
@@ -77,14 +80,27 @@ export default function JobsPage() {
         <div>
           <span className="jobs-kicker">CV Builder Pro · Job Discovery</span>
           <h1>Find jobs that match your CV</h1>
-          <p>Search real offers, see your live CV match, save the best ones and track every application.</p>
+          <p>
+            Search real offers, see your live CV match, save the best ones and track every
+            application.
+          </p>
         </div>
-        <Link className="jobs-builder-link" to={builderHref}>← CV Builder & Tracker</Link>
+        <Link className="jobs-builder-link" to={builderHref}>
+          ← CV Builder & Tracker
+        </Link>
       </header>
 
       <form className="jobs-search" onSubmit={submit}>
-        <input value={what} onChange={(e) => setWhat(e.target.value)} placeholder="Job title or keywords" />
-        <input value={where} onChange={(e) => setWhere(e.target.value)} placeholder="City or location" />
+        <input
+          value={what}
+          onChange={(e) => setWhat(e.target.value)}
+          placeholder="Job title or keywords"
+        />
+        <input
+          value={where}
+          onChange={(e) => setWhere(e.target.value)}
+          placeholder="City or location"
+        />
         <button disabled={loading || !what.trim()}>{loading ? 'Searching…' : 'Search jobs'}</button>
       </form>
 
@@ -98,19 +114,32 @@ export default function JobsPage() {
               <div className="job-card-head">
                 <div>
                   <h2>{job.title}</h2>
-                  <p>{job.company}{job.location ? ` · ${job.location}` : ''}</p>
+                  <p>
+                    {job.company}
+                    {job.location ? ` · ${job.location}` : ''}
+                  </p>
                 </div>
-                {match && !match.tooShort && <strong className="job-match-score">{match.score}% match</strong>}
+                {match && !match.tooShort && (
+                  <strong className="job-match-score">{match.score}% match</strong>
+                )}
               </div>
               <p className="job-description">{job.description}</p>
               {match && !match.tooShort && match.missing.length > 0 && (
                 <div className="job-keywords">
-                  <span>Top gaps:</span> {match.missing.slice(0, 3).map((item) => item.term).join(' · ')}
+                  <span>Top gaps:</span>{' '}
+                  {match.missing
+                    .slice(0, 3)
+                    .map((item) => item.term)
+                    .join(' · ')}
                 </div>
               )}
               <div className="job-actions">
-                <button type="button" onClick={() => saveJob(job)}>Save & Track</button>
-                <a href={job.applyUrl} target="_blank" rel="noopener noreferrer">View & Apply ↗</a>
+                <button type="button" onClick={() => saveJob(job)}>
+                  Save & Track
+                </button>
+                <a href={job.applyUrl} target="_blank" rel="noopener noreferrer">
+                  View & Apply ↗
+                </a>
               </div>
             </article>
           );

@@ -30,6 +30,8 @@ import LandingPage from '../src/pages/LandingPage';
 import SitemapPage from '../src/pages/SitemapPage';
 import EuropassPage from '../src/pages/EuropassPage';
 import CVBuilderPage from '../src/pages/CVBuilderPage';
+import JobsPage from '../src/pages/JobsPage';
+import { buildJobsSeoProps } from '../src/lib/jobs-seo';
 import { buildHomeFaqJsonLd, getHomeFaqs } from '../src/lib/home-seo';
 import { buildSitemapSeoProps } from '../src/lib/sitemap-seo';
 import { buildEuropassSeoProps } from '../src/lib/europass-seo';
@@ -61,7 +63,9 @@ function renderHeadTagsHtml(head: HeadTags): string {
     lines.push(`<link rel="${escapeAttr(rel)}"${hreflangAttr} href="${escapeAttr(href)}">`);
   });
   if (head.jsonLd) {
-    lines.push(`<script type="application/ld+json">${JSON.stringify(head.jsonLd)}</script>`);
+    lines.push(
+      `<script type="application/ld+json" data-i18n-jsonld="true">${JSON.stringify(head.jsonLd).replace(/</g, '\\u003c')}</script>`,
+    );
   }
   return lines.join('\n    ');
 }
@@ -82,6 +86,7 @@ export function stripGenericSeoTags(headHtml: string, { keepJsonLd = false } = {
     .replace(/<title>[\s\S]*?<\/title>/, '')
     .replace(/<meta\s+name="description"[^>]*>/, '')
     .replace(/<meta\s+name="keywords"[^>]*>/, '')
+    .replace(/<meta\s+name="robots"[^>]*>/g, '')
     .replace(/<link\s+rel="canonical"[^>]*>/, '')
     .replace(/<link\s+rel="alternate"[^>]*>\s*/g, '')
     .replace(/<meta\s+property="og:[^"]*"[^>]*>\s*/g, '')
@@ -91,7 +96,7 @@ export function stripGenericSeoTags(headHtml: string, { keepJsonLd = false } = {
   // landing pages replace it with their own per-page graph.
   return keepJsonLd
     ? stripped
-    : stripped.replace(/<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/, '');
+    : stripped.replace(/<script\s+type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/g, '');
 }
 
 async function renderRoute(slug: string, lang: LangCode, urlLang: string | undefined) {
@@ -207,6 +212,22 @@ async function renderEuropassRoute(lang: LangCode, urlLang: string | undefined) 
   return { headTags, bodyHtml };
 }
 
+async function renderJobsRoute(lang: LangCode, urlLang: string | undefined) {
+  await i18n.changeLanguage(lang);
+  const routePath = urlLang ? `/${urlLang}/jobs` : '/jobs';
+  const bodyHtml = renderToStaticMarkup(
+    <StaticRouter location={routePath}>
+      <I18nextProvider i18n={i18n}>
+        <Routes>
+          <Route path="/jobs" element={<JobsPage />} />
+          <Route path="/:lang/jobs" element={<JobsPage />} />
+        </Routes>
+      </I18nextProvider>
+    </StaticRouter>,
+  );
+  return { headTags: buildHeadTags(buildJobsSeoProps(urlLang)), bodyHtml };
+}
+
 export function assembleHtml(
   template: string,
   headTags: HeadTags,
@@ -234,19 +255,21 @@ async function main() {
   // One list, shared with the sitemap generator: every advertised URL gets a file.
   const routes = getPrerenderRoutes();
 
-  const counts = { home: 0, sitemap: 0, europass: 0, landing: 0 };
+  const counts = { home: 0, sitemap: 0, europass: 0, landing: 0, jobs: 0 };
 
   for (const route of routes) {
     const { kind, lang, urlLang } = route;
 
     const rendered =
-      kind === 'landing'
-        ? await renderRoute(route.slug!, lang, urlLang)
-        : kind === 'sitemap'
-          ? await renderSitemapRoute(lang, urlLang)
-          : kind === 'europass'
-            ? await renderEuropassRoute(lang, urlLang)
-            : await renderHomeRoute(lang, urlLang);
+      kind === 'jobs'
+        ? await renderJobsRoute(lang, urlLang)
+        : kind === 'landing'
+          ? await renderRoute(route.slug!, lang, urlLang)
+          : kind === 'sitemap'
+            ? await renderSitemapRoute(lang, urlLang)
+            : kind === 'europass'
+              ? await renderEuropassRoute(lang, urlLang)
+              : await renderHomeRoute(lang, urlLang);
 
     // Homepages keep the shell's Organization/WebSite graph; the other page types
     // ship their own, so the shell's is stripped for them.
@@ -264,11 +287,22 @@ async function main() {
     counts[kind] += 1;
   }
 
-  const written = counts.home + counts.sitemap + counts.europass + counts.landing;
+  // Vercel serves this file with HTTP 404 for unknown paths. No catch-all
+  // rewrite is allowed: it would turn missing URLs back into 200 homepages.
+  fs.writeFileSync(
+    path.join(distDir, '404.html'),
+    `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow"><title>404 – CV Builder Pro</title></head>
+<body><main><h1>404 — Page not found</h1><p>This page does not exist.</p><a href="/">Return to CV Builder Pro</a></main></body></html>`,
+    'utf8',
+  );
+
+  const written = Object.values(counts).reduce((sum, count) => sum + count, 0);
 
   console.log(
     `[prerender] ✓ Prerendered ${written} pages ` +
-      `(${counts.home} homepage, ${counts.sitemap} sitemap, ${counts.europass} europass, ${counts.landing} landing)`,
+      `(${counts.home} homepage, ${counts.sitemap} sitemap, ${counts.europass} europass, ${counts.landing} landing, ${counts.jobs} jobs)`,
   );
 }
 

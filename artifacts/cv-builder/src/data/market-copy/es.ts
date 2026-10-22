@@ -99,7 +99,7 @@ export const es: MarketPhrasebook = {
     (c) =>
       `La mayoría de las candidaturas de ${c.skill} se descartan en la primera lectura, antes de llegar al detalle. ${c.proof} Usa nuestra herramienta gratuita para colocar lo decisivo en el primer tercio de la página y descarga tu CV en PDF.`,
     (c) =>
-      `Los reclutadores comparan los CV de ${c.skill} con una lista de cosas que deben encontrar sí o sí. ${c.proof} Nuestro creador online gratuito te da una estructura que las destaca, con tres plantillas profesionales y exportación inmediata a PDF.`,
+      `Los reclutadores comparan los CV de ${c.skill} con una lista de cosas que deben encontrar sí o sí. ${c.proof} Nuestro creador online gratuito te da una estructura que las destaca, con cuatro plantillas profesionales y exportación inmediata a PDF.`,
   ],
 
   introCity: [

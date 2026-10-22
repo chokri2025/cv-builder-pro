@@ -21,7 +21,7 @@
     "editLabel": "← Modifier",
     "previewLabel": "Aperçu →",
     "pageHeading": "Créateur de CV et de résumé gratuit en ligne",
-    "pageTagline": "Créez un CV professionnel en quelques minutes : remplissez le formulaire, choisissez l’un des trois modèles et téléchargez un PDF prêt à imprimer. Gratuit, sans inscription."
+    "pageTagline": "Créez un CV professionnel en quelques minutes : remplissez le formulaire, choisissez l’un des quatre modèles et téléchargez un PDF prêt à imprimer. Gratuit, sans inscription."
   },
   "sections": {
     "personal": "Informations personnelles",
@@ -123,19 +123,19 @@
   },
   "seo": {
     "homeTitle": "CV Builder Pro – Créateur de CV & Resume Gratuit en Ligne",
-    "homeDescription": "Créez un CV professionnel en quelques minutes. Choisissez parmi 3 modèles élégants et téléchargez en PDF. Gratuit, sans inscription.",
+    "homeDescription": "Créez un CV professionnel en quelques minutes. Choisissez parmi 4 modèles élégants et téléchargez en PDF. Gratuit, sans inscription.",
     "notFound": "Page introuvable",
     "notFoundDesc": "Cette page n'existe pas. Essayez notre",
     "notFoundLink": "créateur de CV gratuit",
     "readyIn": "⚡ Prêt en 5 minutes",
     "pdfDownload": "📄 Téléchargement PDF",
-    "templates": "🎨 3 modèles",
+    "templates": "🎨 4 modèles",
     "startBuilding": "Créer mon CV",
     "howItWorks": "Comment ça marche",
     "step1Title": "Remplissez vos informations",
     "step1Desc": "Ajoutez votre expérience, vos compétences, votre formation et vos coordonnées via notre formulaire guidé.",
     "step2Title": "Choisissez un modèle",
-    "step2Desc": "Choisissez parmi Minimaliste, Moderne ou Créatif — tous conçus professionnellement.",
+    "step2Desc": "Choisissez Minimaliste, Moderne, Créatif ou Europass selon votre candidature.",
     "step3Title": "Téléchargez en PDF",
     "step3Desc": "Exportez votre CV fini au format A4 parfait, prêt à envoyer aux employeurs.",
     "faqTitle": "Questions fréquemment posées",
@@ -151,7 +151,7 @@
       "skill": "CV de {{skill}}",
       "city": "Créateur de CV – {{city}}"
     },
-    "sitemapIntro": "Tous les guides CV Builder Pro, classés par métier, par ville, puis par métier et ville.",
+    "sitemapIntro": "Tous les guides CV Builder Pro, classés par métier et par ville.",
     "sitemapBySkill": "Guides de CV par métier",
     "sitemapByCity": "Guides de CV par ville",
     "sitemapBySkillCity": "Guides de CV par métier et ville",
@@ -170,7 +170,7 @@
       },
       {
         "q": "Mon CV passera-t-il les filtres ATS ?",
-        "a": "Nos modèles utilisent une mise en page en une colonne, en texte réel, avec des intitulés de sections standard, que les logiciels de recrutement analysent de façon fiable. Reprenez les mots de l’annonce pour votre intitulé et vos compétences."
+        "a": "Pour les candidatures analysées par un logiciel, privilégiez le modèle Minimaliste ou l’export DOCX simple. Respectez le format demandé et reprenez les termes pertinents de l’annonce."
       },
       {
         "q": "Où sont stockées mes données ?",

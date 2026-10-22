@@ -99,7 +99,7 @@ export const tr: MarketPhrasebook = {
     (c) =>
       `${c.skill} başvurularının çoğu, ayrıntıya bakılmadan ilk taramada elenir. ${c.proof} Ücretsiz aracımızla belirleyici bilgiyi sayfanın ilk üçte birine yerleştirin ve CV'nizi PDF olarak indirin.`,
     (c) =>
-      `İşe alımcılar ${c.skill} CV'lerini, mutlaka bulmaları gereken kısa bir listeye göre karşılaştırır. ${c.proof} Ücretsiz çevrimiçi oluşturucumuz bunları öne çıkaran bir yapı, üç profesyonel şablon ve anında PDF çıktısı sunar.`,
+      `İşe alımcılar ${c.skill} CV'lerini, mutlaka bulmaları gereken kısa bir listeye göre karşılaştırır. ${c.proof} Ücretsiz çevrimiçi oluşturucumuz bunları öne çıkaran bir yapı, dört profesyonel şablon ve anında PDF çıktısı sunar.`,
   ],
 
   introCity: [

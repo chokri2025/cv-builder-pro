@@ -16,6 +16,7 @@ export interface SEOProps {
   /** Site name for og:site_name. */
   siteName?: string;
   jsonLd?: Record<string, unknown>;
+  robots?: string;
 }
 
 interface MetaTag {
@@ -48,8 +49,10 @@ export function buildHeadTags({
   image,
   siteName,
   jsonLd,
+  robots = 'index, follow',
 }: SEOProps): HeadTags {
   const metas: MetaTag[] = [
+    { attrName: 'name', attrValue: 'robots', content: robots },
     { attrName: 'name', attrValue: 'description', content: description },
     { attrName: 'property', attrValue: 'og:title', content: title },
     { attrName: 'property', attrValue: 'og:description', content: description },
@@ -95,7 +98,8 @@ export function buildHeadTags({
 }
 
 export function useSEO(props: SEOProps) {
-  const { title, description, canonical, lang, alternateLangs, image, siteName, jsonLd } = props;
+  const { title, description, canonical, lang, alternateLangs, image, siteName, jsonLd, robots } =
+    props;
 
   useEffect(() => {
     const head = buildHeadTags({
@@ -107,13 +111,22 @@ export function useSEO(props: SEOProps) {
       image,
       siteName,
       jsonLd,
+      robots,
     });
 
     document.title = head.title;
+    // Replace the prerendered route's metadata as a set, including tags the
+    // next route intentionally omits (e.g. og:url on a 404).
+    document
+      .querySelectorAll(
+        'meta[name="description"], meta[name="robots"], meta[property^="og:"], meta[name^="twitter:"]',
+      )
+      .forEach((el) => el.remove());
     head.metas.forEach(({ attrName, attrValue, content }) => setMeta(attrName, attrValue, content));
 
     const canonicalLink = head.links.find((l) => l.rel === 'canonical');
     if (canonicalLink) setLink('canonical', canonicalLink.href);
+    else document.querySelectorAll('link[rel="canonical"]').forEach((el) => el.remove());
 
     removeOldHreflangs();
     head.links
@@ -147,6 +160,7 @@ export function useSEO(props: SEOProps) {
     lang,
     image,
     siteName,
+    robots,
     JSON.stringify(alternateLangs),
     JSON.stringify(jsonLd),
   ]);
@@ -163,7 +177,9 @@ function setMeta(attrName: string, attrValue: string, content: string) {
 }
 
 function setLink(rel: string, href: string) {
-  let el = document.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+  const existing = [...document.querySelectorAll<HTMLLinkElement>(`link[rel="${rel}"]`)];
+  let el = existing.shift();
+  existing.forEach((node) => node.remove());
   if (!el) {
     el = document.createElement('link');
     el.rel = rel;
@@ -173,9 +189,11 @@ function setLink(rel: string, href: string) {
 }
 
 function removeOldHreflangs() {
-  document.querySelectorAll('link[data-i18n-hreflang]').forEach((el) => el.remove());
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove());
 }
 
 function removeOldJsonLd() {
-  document.querySelectorAll('script[data-i18n-jsonld]').forEach((el) => el.remove());
+  document
+    .querySelectorAll('script[type="application/ld+json"]:not([data-site-jsonld])')
+    .forEach((el) => el.remove());
 }

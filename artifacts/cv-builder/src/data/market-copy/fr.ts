@@ -99,7 +99,7 @@ export const fr: MarketPhrasebook = {
     (c) =>
       `La plupart des candidatures de ${c.skill} sont écartées dès la première lecture, avant même le détail. ${c.proof} Utilisez notre outil gratuit pour placer l’information décisive dans le premier tiers de la page, puis téléchargez votre CV en PDF.`,
     (c) =>
-      `Les recruteurs comparent les CV de ${c.skill} à une liste d’éléments qu’ils doivent absolument trouver. ${c.proof} Notre créateur en ligne gratuit vous donne une structure qui les met en évidence, avec trois modèles professionnels et un export PDF immédiat.`,
+      `Les recruteurs comparent les CV de ${c.skill} à une liste d’éléments qu’ils doivent absolument trouver. ${c.proof} Notre créateur en ligne gratuit vous donne une structure qui les met en évidence, avec quatre modèles professionnels et un export PDF immédiat.`,
   ],
 
   introCity: [
@@ -234,7 +234,7 @@ export const fr: MarketPhrasebook = {
     } else {
       entries.push({
         q: `Ce CV passe-t-il les filtres ATS ?`,
-        a: `Nos modèles utilisent une mise en page en une colonne, en texte réel, avec des intitulés de sections standard — c’est ce que les logiciels de recrutement analysent le plus fiablement. Gardez les mots de l’annonce pour vos intitulés et compétences.`,
+        a: `Pour les candidatures analysées par un logiciel, privilégiez le modèle Minimaliste ou l’export DOCX simple. Respectez le format demandé et reprenez les termes pertinents de l’annonce.`,
       });
     }
 

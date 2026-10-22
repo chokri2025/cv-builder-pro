@@ -6,8 +6,23 @@
   "redirects": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": "cvbuilder-pro.online" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "cvbuilder-pro.online"
+        }
+      ],
       "destination": "https://www.cvbuilder-pro.online/$1",
+      "permanent": true
+    },
+    {
+      "source": "/resume/:role(software-engineer|web-developer|data-analyst|project-manager|graphic-designer|marketing-manager|accountant|nurse|teacher|sales-manager|ux-designer|product-manager|devops-engineer|business-analyst|hr-manager|financial-analyst|content-writer|customer-service|electrician|civil-engineer)-:city(new-york|london|paris|toronto|sydney|berlin|dubai|singapore|chicago|san-francisco|los-angeles|amsterdam|madrid|melbourne|montreal)",
+      "destination": "/resume/:role",
+      "permanent": true
+    },
+    {
+      "source": "/:lang(fr|es|ar|tr|pt)/resume/:role(software-engineer|web-developer|data-analyst|project-manager|graphic-designer|marketing-manager|accountant|nurse|teacher|sales-manager|ux-designer|product-manager|devops-engineer|business-analyst|hr-manager|financial-analyst|content-writer|customer-service|electrician|civil-engineer)-:city(new-york|london|paris|toronto|sydney|berlin|dubai|singapore|chicago|san-francisco|los-angeles|amsterdam|madrid|melbourne|montreal)",
+      "destination": "/:lang/resume/:role",
       "permanent": true
     },
     {
@@ -21,27 +36,36 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
   "headers": [
     {
       "source": "/assets/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/sitemap.xml",
       "headers": [
-        { "key": "Content-Type", "value": "application/xml" },
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     },
     {
       "source": "/robots.txt",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     }
   ]
