@@ -95,7 +95,7 @@ export const en: MarketPhrasebook = {
     (c) =>
       `Most ${c.skill} applications are rejected on the first skim, before anyone reads the detail. ${c.proof} Use our free builder to put the decisive information in the first third of page one, then download your CV as a PDF.`,
     (c) =>
-      `Recruiters compare ${c.skill} CVs against a shortlist of things they must find. ${c.proof} Our free online builder gives you a structure that surfaces them, with three professional templates and instant PDF export.`,
+      `Recruiters compare ${c.skill} CVs against a shortlist of things they must find. ${c.proof} Our free online builder gives you a structure that surfaces them, with four professional templates and instant PDF export.`,
   ],
 
   introCity: [
@@ -230,7 +230,7 @@ export const en: MarketPhrasebook = {
     } else {
       entries.push({
         q: `Will this CV pass an ATS screen?`,
-        a: `Our templates use a single-column, text-based layout with standard section headings, which is what applicant tracking systems parse most reliably. Keep your job titles and skills in the same words the advert uses.`,
+        a: `For software-screened applications, prefer the Minimal template or plain DOCX export. Follow the employer’s format requirements and use relevant wording from the job advert.`,
       });
     }
 

@@ -108,8 +108,8 @@ function buildEnSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
   const metaDescription = city
     ? skill
       ? `Create a professional ${skillLabel} CV tailored for jobs in ${cityLabel}. Download as PDF in minutes. Free, no sign-up required.`
-      : `Build a professional CV for job seekers in ${cityLabel}. 3 templates, PDF export, free online CV maker.`
-    : `Build a standout ${skillLabel} resume or CV with our free online builder. Choose from 3 templates and download as PDF instantly.`;
+      : `Build a professional CV for job seekers in ${cityLabel}. 4 templates, PDF export, free online CV maker.`
+    : `Build a standout ${skillLabel} resume or CV with our free online builder. Choose from 4 templates and download as PDF instantly.`;
 
   const h1 = city
     ? skill
@@ -152,8 +152,8 @@ function buildFrSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
   const metaDescription = city
     ? skill
       ? `Créez un CV professionnel de ${skillLabel} adapté aux emplois à ${cityLabel}. Téléchargez en PDF en quelques minutes. Gratuit, sans inscription.`
-      : `Créez un CV professionnel pour les chercheurs d'emploi à ${cityLabel}. 3 modèles, export PDF, créateur de CV gratuit en ligne.`
-    : `Créez un CV de ${skillLabel} remarquable avec notre outil gratuit en ligne. Choisissez parmi 3 modèles et téléchargez en PDF instantanément.`;
+      : `Créez un CV professionnel pour les chercheurs d'emploi à ${cityLabel}. 4 modèles, export PDF, créateur de CV gratuit en ligne.`
+    : `Créez un CV de ${skillLabel} remarquable avec notre outil gratuit en ligne. Choisissez parmi 4 modèles et téléchargez en PDF instantanément.`;
 
   const h1 = city
     ? skill
@@ -196,8 +196,8 @@ function buildEsSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
   const metaDescription = city
     ? skill
       ? `Crea un CV profesional de ${skillLabel} adaptado a empleos en ${cityLabel}. Descarga en PDF en minutos. Gratis, sin registro.`
-      : `Crea un CV profesional para buscadores de empleo en ${cityLabel}. 3 plantillas, exportación PDF, creador de CV gratis online.`
-    : `Crea un CV de ${skillLabel} destacado con nuestra herramienta gratuita online. Elige entre 3 plantillas y descarga en PDF al instante.`;
+      : `Crea un CV profesional para buscadores de empleo en ${cityLabel}. 4 plantillas, exportación PDF, creador de CV gratis online.`
+    : `Crea un CV de ${skillLabel} destacado con nuestra herramienta gratuita online. Elige entre 4 plantillas y descarga en PDF al instante.`;
 
   const h1 = city
     ? skill
@@ -240,8 +240,8 @@ function buildArSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
   const metaDescription = city
     ? skill
       ? `أنشئ سيرة ذاتية احترافية لـ ${skillLabel} مناسبة للوظائف في ${cityLabel}. حمّل بصيغة PDF في دقائق. مجاني، دون تسجيل.`
-      : `أنشئ سيرة ذاتية احترافية للباحثين عن عمل في ${cityLabel}. 3 قوالب، تصدير PDF، منشئ سيرة ذاتية مجاني عبر الإنترنت.`
-    : `أنشئ سيرة ذاتية متميزة لـ ${skillLabel} باستخدام أداتنا المجانية عبر الإنترنت. اختر من 3 قوالب وحمّل بصيغة PDF فوراً.`;
+      : `أنشئ سيرة ذاتية احترافية للباحثين عن عمل في ${cityLabel}. 4 قوالب، تصدير PDF، منشئ سيرة ذاتية مجاني عبر الإنترنت.`
+    : `أنشئ سيرة ذاتية متميزة لـ ${skillLabel} باستخدام أداتنا المجانية عبر الإنترنت. اختر من 4 قوالب وحمّل بصيغة PDF فوراً.`;
 
   const h1 = city
     ? skill
@@ -284,8 +284,8 @@ function buildTrSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
   const metaDescription = city
     ? skill
       ? `${cityLabel}'deki işler için özelleştirilmiş profesyonel ${skillLabel} CV'si oluşturun. PDF olarak dakikalar içinde indirin. Ücretsiz, kayıt gerekmez.`
-      : `${cityLabel}'deki iş arayanlar için profesyonel CV oluşturun. 3 şablon, PDF dışa aktarma, ücretsiz çevrimiçi CV oluşturucu.`
-    : `Ücretsiz çevrimiçi aracımızla öne çıkan bir ${skillLabel} CV'si oluşturun. 3 şablondan birini seçin ve PDF'yi anında indirin.`;
+      : `${cityLabel}'deki iş arayanlar için profesyonel CV oluşturun. 4 şablon, PDF dışa aktarma, ücretsiz çevrimiçi CV oluşturucu.`
+    : `Ücretsiz çevrimiçi aracımızla öne çıkan bir ${skillLabel} CV'si oluşturun. 4 şablondan birini seçin ve PDF'yi anında indirin.`;
 
   const h1 = city
     ? skill
@@ -328,8 +328,8 @@ function buildPtSeoPageData(skill: SeoSkill | null, city: SeoCity | null): SeoPa
   const metaDescription = city
     ? skill
       ? `Crie um CV profissional de ${skillLabel} adaptado para empregos em ${cityLabel}. Descarregue em PDF em minutos. Grátis, sem registo.`
-      : `Crie um CV profissional para candidatos em ${cityLabel}. 3 modelos, exportação PDF, criador de CV gratuito online.`
-    : `Crie um CV de ${skillLabel} de destaque com a nossa ferramenta gratuita online. Escolha entre 3 modelos e descarregue em PDF instantaneamente.`;
+      : `Crie um CV profissional para candidatos em ${cityLabel}. 4 modelos, exportação PDF, criador de CV gratuito online.`
+    : `Crie um CV de ${skillLabel} de destaque com a nossa ferramenta gratuita online. Escolha entre 4 modelos e descarregue em PDF instantaneamente.`;
 
   const h1 = city
     ? skill
