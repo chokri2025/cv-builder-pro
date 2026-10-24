@@ -1,0 +1,4 @@
+# Independent PoC workspace. Does not modify the existing production pnpm lockfile.
+packages:
+  - .
+minimumReleaseAge: 1440
