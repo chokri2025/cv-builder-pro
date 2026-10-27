@@ -8,10 +8,8 @@ import CvVersions from '../components/CvVersions';
 import CVPreview from '../components/CVPreview';
 import { useCV } from '../hooks/useCV';
 import { useSEO } from '../hooks/useSEO';
-import { useLanguage } from '../hooks/useLanguage';
 import { SITE_URL } from '../lib/site';
 import { buildHomeFaqJsonLd, getHomeFaqs } from '../lib/home-seo';
-import type { SupportedLang } from '../i18n';
 import type { TemplateType } from '../types/cv';
 
 const SUPPORTED_LANG_CODES = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
@@ -22,7 +20,6 @@ export default function CVBuilderPage() {
   const location = useLocation();
   const params = useParams<{ lang?: string }>();
   const { t, i18n } = useTranslation();
-  const { changeLanguage } = useLanguage();
 
   const urlLang = params.lang;
   // /en serves the same page as the root URL, so it canonicalizes to "/".
@@ -43,14 +40,6 @@ export default function CVBuilderPage() {
     // the FAQ is per-locale, so it is attached here alongside the visible answers.
     jsonLd: buildHomeFaqJsonLd(getHomeFaqs(t), canonical),
   });
-
-  useEffect(() => {
-    const urlLang = params.lang;
-    const supported = ['en', 'fr', 'es', 'ar', 'tr', 'pt'];
-    if (urlLang && supported.includes(urlLang) && urlLang !== i18n.language?.slice(0, 2)) {
-      changeLanguage(urlLang as SupportedLang);
-    }
-  }, [params.lang]);
 
   useEffect(() => {
     const state = location.state as { prefilledJobTitle?: string; template?: TemplateType } | null;
