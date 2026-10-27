@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useParams, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, lazy, Suspense, type ReactNode } from 'react';
 import { isRTL, SUPPORTED_LANGUAGES } from './i18n';
@@ -30,12 +30,17 @@ function ValidRoute({ children }: { children: ReactNode }) {
 
 function AppRoutes() {
   const { i18n } = useTranslation();
-  const lang = i18n.language?.slice(0, 2) ?? 'en';
+  const { pathname } = useLocation();
+  const prefix = pathname.split('/')[1];
+  const lang = SUPPORTED_LANGUAGES.find((locale) => locale.code === prefix)?.code ?? 'en';
 
   useEffect(() => {
+    // The URL locale takes precedence over browser and persisted preferences.
+    // Sync on client-side navigation as well as direct page loads.
+    if (i18n.language?.slice(0, 2) !== lang) void i18n.changeLanguage(lang);
     document.documentElement.dir = isRTL(lang) ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
-  }, [lang]);
+  }, [lang, i18n]);
 
   return (
     <Suspense fallback={null}>

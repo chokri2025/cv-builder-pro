@@ -39,7 +39,9 @@ i18n
     fallbackLng: 'en',
     supportedLngs: ['en', 'fr', 'es', 'ar', 'tr', 'pt'],
     detection: {
-      order: ['localStorage', 'navigator', 'htmlTag'],
+      // Use the localized route before persisted/browser preferences on first load.
+      order: ['path', 'htmlTag', 'localStorage', 'navigator'],
+      lookupFromPathIndex: 0,
       caches: ['localStorage'],
       lookupLocalStorage: 'cv-builder-lang',
     },
